@@ -1,21 +1,84 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container", "height": 300,
-  "data": {"url": "data/accommodation_waffle.csv"},
-  "mark": {"type": "square", "size": 420, "stroke": "#fcfcfb", "strokeWidth": 2},
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/accommodation_waffle.csv"
+  },
+  "mark": {
+    "type": "square",
+    "size": 420,
+    "stroke": "#fcfcfb",
+    "strokeWidth": 2
+  },
   "encoding": {
-    "x": {"field": "col", "type": "ordinal", "title": null,
-          "axis": {"labels": false, "ticks": false, "domain": false, "grid": false}},
-    "y": {"field": "row", "type": "ordinal", "title": null,
-          "axis": {"labels": false, "ticks": false, "domain": false, "grid": false}},
-    "color": {
-      "field": "type", "type": "nominal", "title": "One square = 1% of trips",
-      "scale": {
-        "domain": ["Cabin", "Travelling with caravan", "Camping", "Caravan park (no RV)", "Motorhome / campervan"],
-        "range": ["#9ec5f4", "#5598e7", "#eb6834", "#c3c2b7", "#898781"]
-      },
-      "legend": {"orient": "right", "labelLimit": 200, "symbolType": "square", "symbolSize": 150}
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labels": false,
+        "ticks": false,
+        "domain": false,
+        "grid": false
+      }
     },
-    "tooltip": [{"field": "type", "type": "nominal", "title": "Accommodation"}]
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labels": false,
+        "ticks": false,
+        "domain": false,
+        "grid": false
+      }
+    },
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "title": "One square = 1% of trips",
+      "scale": {
+        "domain": [
+          "Cabin",
+          "Travelling with caravan",
+          "Camping",
+          "Caravan park (no RV)",
+          "Motorhome / campervan"
+        ],
+        "range": [
+          "#9ec5f4",
+          "#5598e7",
+          "#eb6834",
+          "#c3c2b7",
+          "#898781"
+        ]
+      },
+      "legend": {
+        "orient": "right",
+        "labelLimit": 200,
+        "symbolType": "square",
+        "symbolSize": 150
+      }
+    },
+    "tooltip": [
+      {
+        "field": "type",
+        "type": "nominal",
+        "title": "Accommodation"
+      }
+    ]
+  },
+  "title": {
+    "text": "Camping is the third most common way to camp",
+    "subtitle": "Share of caravan and camping trips by accommodation used, 2024",
+    "fontSize": 15,
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
   }
 }

@@ -1,31 +1,157 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container", "height": 300,
-  "data": {"url": "data/national_decade.csv"},
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/national_decade.csv"
+  },
   "transform": [
-    {"joinaggregate": [{"op": "min", "field": "year", "as": "y0"}], "groupby": ["metric"]},
-    {"window": [{"op": "first_value", "field": "value", "as": "base"}],
-     "groupby": ["metric"], "sort": [{"field": "year"}], "frame": [null, null]},
-    {"calculate": "datum.value / datum.base * 100", "as": "idx"},
-    {"calculate": "{'trips':'Trips','nights':'Nights','rv_manufacturing':'RVs built','economic_impact':'Economic impact'}[datum.metric]", "as": "label"}
+    {
+      "joinaggregate": [
+        {
+          "op": "min",
+          "field": "year",
+          "as": "y0"
+        }
+      ],
+      "groupby": [
+        "metric"
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "first_value",
+          "field": "value",
+          "as": "base"
+        }
+      ],
+      "groupby": [
+        "metric"
+      ],
+      "sort": [
+        {
+          "field": "year"
+        }
+      ],
+      "frame": [
+        null,
+        null
+      ]
+    },
+    {
+      "calculate": "datum.value / datum.base * 100",
+      "as": "idx"
+    },
+    {
+      "calculate": "{'trips':'Trips','nights':'Nights','rv_manufacturing':'RVs built','economic_impact':'Economic impact'}[datum.metric]",
+      "as": "label"
+    }
   ],
   "encoding": {
-    "x": {"field": "year", "type": "ordinal", "title": null,
-          "axis": {"labelAngle": 0, "grid": false}, "scale": {"padding": 0.22}},
-    "y": {"field": "idx", "type": "quantitative", "title": "Indexed, 2015 = 100",
-          "scale": {"zero": false, "nice": true}},
-    "color": {"field": "label", "type": "nominal", "title": null,
-              "scale": {"range": ["#2a78d6", "#eb6834", "#1baf7a", "#898781"]},
-              "legend": null}
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "grid": false
+      },
+      "scale": {
+        "padding": 0.22
+      }
+    },
+    "y": {
+      "field": "idx",
+      "type": "quantitative",
+      "title": "Indexed, 2015 = 100",
+      "scale": {
+        "zero": false,
+        "nice": true
+      }
+    },
+    "color": {
+      "field": "label",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "range": [
+          "#2a78d6",
+          "#eb6834",
+          "#1baf7a",
+          "#898781"
+        ]
+      },
+      "legend": null
+    }
   },
   "layer": [
-    {"mark": {"type": "line", "strokeWidth": 2.5, "point": {"size": 70, "filled": true}}},
-    {"transform": [{"filter": "datum.year == 2024"}],
-     "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 12, "fontWeight": 600},
-     "encoding": {"text": {"field": "label"}}},
-    {"transform": [{"filter": "datum.year == 2024"}],
-     "mark": {"type": "text", "align": "left", "dx": 10, "dy": 14, "fontSize": 11, "color": "#898781"},
-     "encoding": {"text": {"field": "idx", "format": ".0f"}}}
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "point": {
+          "size": 70,
+          "filled": true
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": 14,
+        "fontSize": 11,
+        "color": "#898781"
+      },
+      "encoding": {
+        "text": {
+          "field": "idx",
+          "format": ".0f"
+        }
+      }
+    }
   ],
-  "resolve": {"scale": {"color": "shared"}}
+  "resolve": {
+    "scale": {
+      "color": "shared"
+    }
+  },
+  "title": {
+    "text": "A decade of growth",
+    "subtitle": "Caravan and camping measures, indexed to 2015 = 100",
+    "fontSize": 15,
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
+  }
 }

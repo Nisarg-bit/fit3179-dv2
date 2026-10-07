@@ -1,27 +1,131 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container", "height": 300,
-  "data": {"url": "data/spend_series.csv"},
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/spend_series.csv"
+  },
   "layer": [
-    {"mark": {"type": "area", "line": {"strokeWidth": 2.5, "color": "#2a78d6"},
-              "color": {"x1": 1, "y1": 1, "x2": 1, "y2": 0, "gradient": "linear",
-                        "stops": [{"offset": 0, "color": "#ffffff"}, {"offset": 1, "color": "#9ec5f4"}]}},
-     "encoding": {
-       "x": {"field": "year", "type": "ordinal", "title": null, "axis": {"labelAngle": 0, "grid": false}},
-       "y": {"field": "expenditure_m_aud", "type": "quantitative",
-             "title": "Expenditure ($ million)", "axis": {"format": ","}},
-       "tooltip": [
-         {"field": "year", "type": "ordinal", "title": "Year"},
-         {"field": "expenditure_m_aud", "type": "quantitative", "title": "Spend ($m)", "format": ","},
-         {"field": "spend_per_trip_aud", "type": "quantitative", "title": "Per trip ($)"}
-       ]}},
-    {"mark": {"type": "point", "filled": true, "size": 80, "color": "#2a78d6"},
-     "encoding": {"x": {"field": "year", "type": "ordinal"},
-                  "y": {"field": "expenditure_m_aud", "type": "quantitative"}}},
-    {"transform": [{"filter": "datum.year == 2023"}],
-     "mark": {"type": "text", "align": "center", "dy": -18, "fontSize": 12, "fontWeight": 600, "color": "#52514e"},
-     "encoding": {"x": {"field": "year", "type": "ordinal"},
-                  "y": {"field": "expenditure_m_aud", "type": "quantitative"},
-                  "text": {"value": "peak"}}}
-  ]
+    {
+      "mark": {
+        "type": "area",
+        "line": {
+          "strokeWidth": 2.5,
+          "color": "#2a78d6"
+        },
+        "color": {
+          "x1": 1,
+          "y1": 1,
+          "x2": 1,
+          "y2": 0,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0,
+              "color": "#ffffff"
+            },
+            {
+              "offset": 1,
+              "color": "#9ec5f4"
+            }
+          ]
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "expenditure_m_aud",
+          "type": "quantitative",
+          "title": "Expenditure ($ million)",
+          "axis": {
+            "format": ","
+          }
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "expenditure_m_aud",
+            "type": "quantitative",
+            "title": "Spend ($m)",
+            "format": ","
+          },
+          {
+            "field": "spend_per_trip_aud",
+            "type": "quantitative",
+            "title": "Per trip ($)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 80,
+        "color": "#2a78d6"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "expenditure_m_aud",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2023"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -18,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#52514e"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "expenditure_m_aud",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "peak"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Spending recovered, then stalled",
+    "subtitle": "Domestic caravan and camping expenditure, 2020-2024",
+    "fontSize": 15,
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
+  }
 }

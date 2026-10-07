@@ -4,49 +4,145 @@
   "height": 460,
   "projection": {
     "type": "conicEqualArea",
-    "rotate": [-132, 0],
-    "center": [0, -27],
-    "parallels": [-18, -36],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -27
+    ],
+    "parallels": [
+      -18,
+      -36
+    ],
     "scale": 780
   },
   "layer": [
     {
       "data": {
-        "url": "data/au_states.geojson",
-        "format": {"type": "json", "property": "features"}
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
       },
-      "mark": {"type": "geoshape", "fill": "#f0efec", "stroke": "#c3c2b7", "strokeWidth": 0.6}
+      "mark": {
+        "type": "geoshape",
+        "fill": "#f0efec",
+        "stroke": "#c3c2b7",
+        "strokeWidth": 0.6
+      }
     },
     {
-      "data": {"url": "data/campervans_postcode.csv"},
-      "transform": [{"filter": "datum.campervans > 0"}],
-      "mark": {"type": "circle", "opacity": 0.72, "stroke": "#fcfcfb", "strokeWidth": 0.3},
+      "data": {
+        "url": "data/campervans_postcode.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.campervans > 0"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.72,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 0.3
+      },
       "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
         "size": {
           "field": "campervans",
           "type": "quantitative",
           "title": "Campervans",
-          "scale": {"type": "sqrt", "range": [6, 900]},
-          "legend": {"format": ".0f", "values": [10, 100, 400, 1200]}
+          "scale": {
+            "type": "sqrt",
+            "range": [
+              6,
+              900
+            ]
+          },
+          "legend": {
+            "format": ".0f",
+            "values": [
+              10,
+              100,
+              400,
+              1200
+            ]
+          }
         },
         "color": {
           "field": "per_10k_fleet",
           "type": "quantitative",
-          "title": ["Per 10,000", "local vehicles"],
-          "scale": {"type": "quantize", "nice": true, "scheme": "blues"},
-          "legend": {"format": ".0f"}
+          "title": [
+            "Per 10,000",
+            "local vehicles"
+          ],
+          "scale": {
+            "type": "quantize",
+            "nice": true,
+            "scheme": "blues"
+          },
+          "legend": {
+            "format": ".0f"
+          }
         },
         "tooltip": [
-          {"field": "postcode", "type": "nominal", "title": "Postcode"},
-          {"field": "state", "type": "nominal", "title": "State"},
-          {"field": "remoteness", "type": "nominal", "title": "Remoteness"},
-          {"field": "campervans", "type": "quantitative", "title": "Campervans", "format": ","},
-          {"field": "fleet_total", "type": "quantitative", "title": "All vehicles", "format": ","},
-          {"field": "per_10k_fleet", "type": "quantitative", "title": "Per 10k fleet", "format": ".1f"}
+          {
+            "field": "postcode",
+            "type": "nominal",
+            "title": "Postcode"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "remoteness",
+            "type": "nominal",
+            "title": "Remoteness"
+          },
+          {
+            "field": "campervans",
+            "type": "quantitative",
+            "title": "Campervans",
+            "format": ","
+          },
+          {
+            "field": "fleet_total",
+            "type": "quantitative",
+            "title": "All vehicles",
+            "format": ","
+          },
+          {
+            "field": "per_10k_fleet",
+            "type": "quantitative",
+            "title": "Per 10k fleet",
+            "format": ".1f"
+          }
         ]
       }
     }
-  ]
+  ],
+  "title": {
+    "text": "Campervans by postcode",
+    "subtitle": "Size is the count; colour is campervans per 10,000 local vehicles, Jan 2025",
+    "fontSize": 15,
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
+  }
 }

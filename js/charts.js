@@ -5,7 +5,8 @@ const THEME = () => {
   return {
     background: null,
     font: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-    title:  { fontSize: 0, text: '' },
+    title:  { fontSize: 15, anchor: 'start', color: v('--ink'),
+              subtitleColor: v('--ink-2'), subtitleFontSize: 12.5, offset: 10 },
     axis:   { labelColor: v('--muted'), titleColor: v('--ink-2'),
               gridColor: v('--grid'), domainColor: v('--rule'), tickColor: v('--rule'),
               labelFontSize: 12, titleFontSize: 12, titleFontWeight: 600,

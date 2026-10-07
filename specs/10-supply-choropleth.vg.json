@@ -4,49 +4,135 @@
   "height": 420,
   "projection": {
     "type": "conicEqualArea",
-    "rotate": [-132, 0],
-    "center": [0, -27],
-    "parallels": [-18, -36],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -27
+    ],
+    "parallels": [
+      -18,
+      -36
+    ],
     "scale": 680
   },
   "data": {
-    "url": "data/au_states.geojson",
-    "format": {"type": "json", "property": "features"}
+    "url": "data/au_states.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "states"
+    }
   },
   "transform": [
     {
       "lookup": "properties.STATE_NAME",
       "from": {
         "key": "state",
-        "fields": ["per_100k", "campgrounds"],
+        "fields": [
+          "per_100k",
+          "campgrounds"
+        ],
         "data": {
           "values": [
-            {"state": "Northern Territory", "per_100k": 150.2, "campgrounds": 404},
-            {"state": "Tasmania", "per_100k": 71.3, "campgrounds": 414},
-            {"state": "South Australia", "per_100k": 58.5, "campgrounds": 1121},
-            {"state": "Western Australia", "per_100k": 39.1, "campgrounds": 1210},
-            {"state": "Queensland", "per_100k": 33.6, "campgrounds": 1931},
-            {"state": "Victoria", "per_100k": 28.2, "campgrounds": 2020},
-            {"state": "New South Wales", "per_100k": 26.8, "campgrounds": 2326},
-            {"state": "Australian Capital Territory", "per_100k": 2.9, "campgrounds": 14}
+            {
+              "state": "Northern Territory",
+              "per_100k": 150.2,
+              "campgrounds": 404
+            },
+            {
+              "state": "Tasmania",
+              "per_100k": 71.3,
+              "campgrounds": 414
+            },
+            {
+              "state": "South Australia",
+              "per_100k": 58.5,
+              "campgrounds": 1121
+            },
+            {
+              "state": "Western Australia",
+              "per_100k": 39.1,
+              "campgrounds": 1210
+            },
+            {
+              "state": "Queensland",
+              "per_100k": 33.6,
+              "campgrounds": 1931
+            },
+            {
+              "state": "Victoria",
+              "per_100k": 28.2,
+              "campgrounds": 2020
+            },
+            {
+              "state": "New South Wales",
+              "per_100k": 26.8,
+              "campgrounds": 2326
+            },
+            {
+              "state": "Australian Capital Territory",
+              "per_100k": 2.9,
+              "campgrounds": 14
+            }
           ]
         }
       }
     }
   ],
-  "mark": {"type": "geoshape", "stroke": "#fcfcfb", "strokeWidth": 1},
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#fcfcfb",
+    "strokeWidth": 1
+  },
   "encoding": {
     "color": {
       "field": "per_100k",
       "type": "quantitative",
-      "title": ["Campgrounds per", "100,000 residents"],
-      "scale": {"type": "quantize", "nice": true, "scheme": "blues"},
-      "legend": {"format": ".0f"}
+      "title": [
+        "Campgrounds per",
+        "100,000 residents"
+      ],
+      "scale": {
+        "type": "quantize",
+        "nice": true,
+        "scheme": "blues"
+      },
+      "legend": {
+        "format": ".0f"
+      }
     },
     "tooltip": [
-      {"field": "properties.STATE_NAME", "type": "nominal", "title": "State"},
-      {"field": "campgrounds", "type": "quantitative", "title": "Campgrounds", "format": ","},
-      {"field": "per_100k", "type": "quantitative", "title": "Per 100k residents", "format": ".1f"}
+      {
+        "field": "properties.STATE_NAME",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "campgrounds",
+        "type": "quantitative",
+        "title": "Campgrounds",
+        "format": ","
+      },
+      {
+        "field": "per_100k",
+        "type": "quantitative",
+        "title": "Per 100k residents",
+        "format": ".1f"
+      }
     ]
+  },
+  "title": {
+    "text": "Supply per head",
+    "subtitle": "Campgrounds per 100,000 residents by state and territory",
+    "fontSize": 15,
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
   }
 }

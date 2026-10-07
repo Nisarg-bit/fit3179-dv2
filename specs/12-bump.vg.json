@@ -1,35 +1,188 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container", "height": 300,
-  "data": {"url": "data/states.csv"},
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/states.csv"
+  },
   "transform": [
-    {"filter": "datum.nights_2024_m != null && datum.nights_2024_m != ''"},
-    {"calculate": "toNumber(datum.nights_2024_m)", "as": "absolute"},
-    {"calculate": "toNumber(datum.nights_2024_m) * 1000000 / toNumber(datum.population_2026) * 1000", "as": "percapita"},
-    {"window": [{"op": "rank", "as": "r_abs"}], "sort": [{"field": "absolute", "order": "descending"}]},
-    {"window": [{"op": "rank", "as": "r_pc"}], "sort": [{"field": "percapita", "order": "descending"}]},
-    {"fold": ["r_abs", "r_pc"], "as": ["basis", "rank"]},
-    {"calculate": "datum.basis == 'r_abs' ? 'By total nights' : 'Per 1,000 residents'", "as": "axis"}
+    {
+      "filter": "datum.nights_2024_m != null && datum.nights_2024_m != ''"
+    },
+    {
+      "calculate": "toNumber(datum.nights_2024_m)",
+      "as": "absolute"
+    },
+    {
+      "calculate": "toNumber(datum.nights_2024_m) * 1000000 / toNumber(datum.population_2026) * 1000",
+      "as": "percapita"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "r_abs"
+        }
+      ],
+      "sort": [
+        {
+          "field": "absolute",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "r_pc"
+        }
+      ],
+      "sort": [
+        {
+          "field": "percapita",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "fold": [
+        "r_abs",
+        "r_pc"
+      ],
+      "as": [
+        "basis",
+        "rank"
+      ]
+    },
+    {
+      "calculate": "datum.basis == 'r_abs' ? 'By total nights' : 'Per 1,000 residents'",
+      "as": "axis"
+    }
   ],
   "encoding": {
-    "x": {"field": "axis", "type": "nominal", "title": null, "sort": ["By total nights", "Per 1,000 residents"],
-          "axis": {"labelAngle": 0, "labelFontSize": 13, "labelFontWeight": 600, "grid": false},
-          "scale": {"padding": 0.35}},
-    "y": {"field": "rank", "type": "quantitative", "title": "Rank",
-          "scale": {"reverse": true, "domain": [0.5, 7.5]},
-          "axis": {"values": [1,2,3,4,5,6,7], "grid": true, "tickMinStep": 1}},
-    "color": {"field": "code", "type": "nominal", "title": "State", "scale": {"scheme": "tableau10"}},
-    "detail": {"field": "code"}
+    "x": {
+      "field": "axis",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "By total nights",
+        "Per 1,000 residents"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "grid": false
+      },
+      "scale": {
+        "padding": 0.35
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank",
+      "scale": {
+        "reverse": true,
+        "domain": [
+          0.5,
+          7.5
+        ]
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "grid": true,
+        "tickMinStep": 1
+      }
+    },
+    "color": {
+      "field": "code",
+      "type": "nominal",
+      "title": "State",
+      "scale": {
+        "scheme": "tableau10"
+      }
+    },
+    "detail": {
+      "field": "code"
+    }
   },
   "layer": [
-    {"mark": {"type": "line", "strokeWidth": 2.6, "opacity": 0.9}},
-    {"mark": {"type": "point", "filled": true, "size": 180, "stroke": "#fcfcfb", "strokeWidth": 2},
-     "encoding": {"tooltip": [
-       {"field": "state", "type": "nominal", "title": "State"},
-       {"field": "axis", "type": "nominal", "title": "Ranked by"},
-       {"field": "rank", "type": "quantitative", "title": "Rank"},
-       {"field": "percapita", "type": "quantitative", "title": "Nights per 1,000", "format": ".0f"}]}},
-    {"mark": {"type": "text", "fontSize": 9, "fontWeight": 700, "color": "#ffffff"},
-     "encoding": {"text": {"field": "code", "type": "nominal"}}}
-  ]
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.6,
+        "opacity": 0.9
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 180,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "axis",
+            "type": "nominal",
+            "title": "Ranked by"
+          },
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank"
+          },
+          {
+            "field": "percapita",
+            "type": "quantitative",
+            "title": "Nights per 1,000",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 9,
+        "fontWeight": 700,
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "text": {
+          "field": "code",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Absolute versus per person",
+    "subtitle": "State rank by total camping nights and by nights per 1,000 residents",
+    "fontSize": 15,
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
+  }
 }
