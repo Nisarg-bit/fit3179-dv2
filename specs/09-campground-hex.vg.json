@@ -83,18 +83,31 @@
             "in cell"
           ],
           "scale": {
-            "type": "quantize",
-            "nice": true,
-            "scheme": "blues"
+            "type": "threshold",
+            "domain": [
+              2,
+              5,
+              10,
+              25,
+              50
+            ],
+            "range": [
+              "#e8f1fd",
+              "#b7d3f6",
+              "#86b6ef",
+              "#5598e7",
+              "#2a78d6",
+              "#184f95"
+            ]
           },
           "legend": {
-            "format": ".0f",
             "orient": "bottom",
             "direction": "horizontal",
             "titleOrient": "top",
-            "offset": 6,
+            "format": ".0f",
             "titleFontSize": 11.5,
-            "labelFontSize": 11
+            "labelFontSize": 11,
+            "offset": 8
           }
         },
         "tooltip": [
@@ -109,7 +122,10 @@
   ],
   "title": {
     "text": "Where campgrounds cluster",
-    "subtitle": "Campgrounds aggregated to a 0.9 degree grid",
+    "subtitle": [
+      "Campgrounds per 0.9 degree cell. Classed breaks, because a handful of",
+      "cells hold more than fifty sites and would flatten an equal-range scale."
+    ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",

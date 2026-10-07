@@ -216,9 +216,6 @@
           "field": "code",
           "type": "nominal"
         },
-        "dx": {
-          "value": 0
-        },
         "yOffset": {
           "value": 0,
           "condition": [
