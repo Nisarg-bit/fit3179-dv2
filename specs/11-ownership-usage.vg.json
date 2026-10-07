@@ -1,0 +1,75 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Everywhere except the Territory, owning and camping rise together",
+    "subtitle": "Campervan ownership against camping nights, per 1,000 residents, 2024. Trend fitted to the six states; the NT is excluded from it.",
+    "fontSize": 15, "anchor": "start", "color": "#0b0b0b", "offset": 10,
+    "subtitleFontSize": 12.5, "subtitleColor": "#52514e", "subtitlePadding": 5
+  },
+  "width": "container", "height": 360,
+  "padding": {"left": 5, "top": 5, "right": 34, "bottom": 5},
+  "data": {"url": "data/states.csv"},
+  "transform": [
+    {"filter": "datum.nights_2024_m != null && datum.nights_2024_m != ''"},
+    {"calculate": "toNumber(datum.rv_registrations_2024) / toNumber(datum.population_2026) * 1000", "as": "own"},
+    {"calculate": "toNumber(datum.nights_2024_m) * 1000000 / toNumber(datum.population_2026) * 1000", "as": "use"},
+    {"calculate": "toNumber(datum.population_2026)", "as": "pop"},
+    {"calculate": "datum.code == 'NT' ? 'Northern Territory' : 'Other states'", "as": "group"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "own", "type": "quantitative",
+      "title": "Registered RVs per 1,000 residents",
+      "scale": {"domain": [0, 56], "nice": false}
+    },
+    "y": {
+      "field": "use", "type": "quantitative",
+      "title": "Camping nights per 1,000 residents",
+      "scale": {"domain": [1300, 3950], "nice": false},
+      "axis": {"format": ","}
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {"filter": "datum.code != 'NT'"},
+        {"regression": "use", "on": "own", "extent": [22, 52]}
+      ],
+      "mark": {"type": "line", "color": "#c3c2b7", "strokeWidth": 2, "strokeDash": [5, 4]}
+    },
+    {
+      "mark": {"type": "circle", "opacity": 0.9, "stroke": "#fcfcfb", "strokeWidth": 1.5},
+      "encoding": {
+        "size": {
+          "field": "pop", "type": "quantitative", "title": "Population",
+          "scale": {"type": "threshold", "domain": [1000000, 3000000, 6000000],
+                    "range": [120, 260, 460, 760]},
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "group", "type": "nominal", "title": null,
+          "scale": {"domain": ["Other states", "Northern Territory"],
+                    "range": ["#2a78d6", "#eb6834"]}
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "own", "type": "quantitative", "title": "RVs per 1,000", "format": ".1f"},
+          {"field": "use", "type": "quantitative", "title": "Nights per 1,000", "format": ",.0f"},
+          {"field": "nights_2024_m", "type": "quantitative", "title": "Total nights (m)"},
+          {"field": "population_2026", "type": "quantitative", "title": "Population", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 16, "dy": -12,
+               "fontSize": 12.5, "fontWeight": 700, "color": "#0b0b0b"},
+      "encoding": {"text": {"field": "code", "type": "nominal"}}
+    },
+    {
+      "transform": [{"filter": "datum.code == 'NT'"}],
+      "mark": {"type": "text", "align": "left", "dx": 16, "dy": 6,
+               "fontSize": 11.5, "fontStyle": "italic", "color": "#b8431a"},
+      "encoding": {"text": {"value": "fewest vans, most nights"}}
+    }
+  ]
+}
