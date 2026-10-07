@@ -79,6 +79,12 @@
       "type": "nominal",
       "title": null,
       "scale": {
+        "domain": [
+          "Trips",
+          "Nights",
+          "Economic impact",
+          "RVs built"
+        ],
         "range": [
           "#2a78d6",
           "#eb6834",
@@ -138,33 +144,11 @@
         "dx": 10,
         "fontSize": 11.5,
         "fontWeight": 600,
-        "limit": 92
+        "limit": 110
       },
       "encoding": {
         "text": {
           "field": "label"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.year == 2024"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 10,
-        "dy": 14,
-        "fontSize": 11.5,
-        "color": "#898781",
-        "limit": 92
-      },
-      "encoding": {
-        "text": {
-          "field": "idx",
-          "format": ".0f"
         }
       }
     }
@@ -190,6 +174,10 @@
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 96
+    "right": 122
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

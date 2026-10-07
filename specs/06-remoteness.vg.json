@@ -62,7 +62,16 @@
       "title": "Campervans per 10,000 registered vehicles",
       "axis": {
         "labelExpr": "format(datum.value, '.0f')",
-        "titleFontSize": 12
+        "titleFontSize": 12,
+        "values": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ]
       }
     }
   },
@@ -121,8 +130,11 @@
     }
   ],
   "title": {
-    "text": "The further out, the more vans",
-    "subtitle": "Campervans per 10,000 registered vehicles by remoteness, Jan 2025",
+    "text": "The outer regions, not the outback",
+    "subtitle": [
+      "Campervans per 10,000 registered vehicles by remoteness, January 2025.",
+      "Very Remote has the lowest rate of the five — below the major cities."
+    ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",
@@ -131,5 +143,9 @@
     "subtitleFontSize": 12.5,
     "subtitleColor": "#52514e",
     "subtitlePadding": 5
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

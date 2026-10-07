@@ -178,5 +178,9 @@
     "subtitleFontSize": 12.5,
     "subtitleColor": "#52514e",
     "subtitlePadding": 5
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

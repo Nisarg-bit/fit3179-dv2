@@ -180,5 +180,9 @@
         "name": "Show state:  "
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

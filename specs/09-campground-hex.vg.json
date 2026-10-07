@@ -155,5 +155,9 @@
         "name": "Only cells with at least:  "
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

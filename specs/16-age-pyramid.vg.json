@@ -166,5 +166,9 @@
         }
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

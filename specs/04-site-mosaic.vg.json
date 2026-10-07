@@ -1,56 +1,190 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": ["Where the money is"],
-    "subtitle": ["Caravan park revenue (bar width) against occupancy (bar height), 2024.",
-                 "Cabins earn $1.9b at 60% full; unpowered tent sites earn $66m at 20%."],
-    "fontSize": 15, "anchor": "start", "color": "#0b0b0b", "offset": 10,
-    "subtitleFontSize": 12.5, "subtitleLineHeight": 17, "subtitleColor": "#52514e", "subtitlePadding": 6
+    "text": [
+      "Where the money is"
+    ],
+    "subtitle": [
+      "Caravan park revenue (bar width) against occupancy (bar height), 2024.",
+      "Cabins earn $1.9b at 60% full; unpowered tent sites earn $66m at 20%."
+    ],
+    "fontSize": 15,
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleLineHeight": 17,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 6
   },
-  "width": "container", "height": 330,
-  "data": {"url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/occupancy.csv"},
+  "width": "container",
+  "height": 330,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/occupancy.csv"
+  },
   "transform": [
-    {"window": [{"op": "sum", "field": "revenue_2024_bn_aud", "as": "cum"}],
-     "sort": [{"field": "revenue_2024_bn_aud", "order": "descending"}], "frame": [null, 0]},
-    {"joinaggregate": [{"op": "sum", "field": "revenue_2024_bn_aud", "as": "tot"}]},
-    {"calculate": "(datum.cum - datum.revenue_2024_bn_aud) / datum.tot * 100", "as": "x0"},
-    {"calculate": "datum.cum / datum.tot * 100", "as": "x1"},
-    {"calculate": "(datum.x0 + datum.x1) / 2", "as": "xm"}
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "revenue_2024_bn_aud",
+          "as": "cum"
+        }
+      ],
+      "sort": [
+        {
+          "field": "revenue_2024_bn_aud",
+          "order": "descending"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ]
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "revenue_2024_bn_aud",
+          "as": "tot"
+        }
+      ]
+    },
+    {
+      "calculate": "(datum.cum - datum.revenue_2024_bn_aud) / datum.tot * 100",
+      "as": "x0"
+    },
+    {
+      "calculate": "datum.cum / datum.tot * 100",
+      "as": "x1"
+    },
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "xm"
+    }
   ],
   "layer": [
     {
-      "mark": {"type": "rect", "stroke": "#fcfcfb", "strokeWidth": 2},
+      "mark": {
+        "type": "rect",
+        "stroke": "#fcfcfb",
+        "strokeWidth": 2
+      },
       "encoding": {
-        "x":  {"field": "x0", "type": "quantitative",
-               "title": "Share of caravan park revenue (%)",
-               "scale": {"domain": [0, 100]},
-               "axis": {"grid": false, "titleFontSize": 12, "labelExpr": "datum.value + '%'"}},
-        "x2": {"field": "x1"},
-        "y":  {"field": "occupancy_2024_pct", "type": "quantitative",
-               "title": "Occupancy (%)",
-               "scale": {"domain": [0, 70]},
-               "axis": {"titleFontSize": 12, "labelExpr": "datum.value + '%'"}},
-        "y2": {"datum": 0},
-        "color": {"field": "site_type", "type": "nominal", "title": null,
-                  "scale": {"domain": ["Cabins", "Powered sites", "Unpowered sites"],
-                            "range": ["#2a78d6", "#86b6ef", "#eb6834"]},
-                  "legend": {"orient": "bottom", "direction": "horizontal",
-                             "labelFontSize": 12, "symbolSize": 130, "offset": 8}},
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "title": "Share of caravan park revenue (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "grid": false,
+            "titleFontSize": 12,
+            "labelExpr": "datum.value + '%'"
+          }
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "occupancy_2024_pct",
+          "type": "quantitative",
+          "title": "Occupancy (%)",
+          "scale": {
+            "domain": [
+              0,
+              70
+            ]
+          },
+          "axis": {
+            "titleFontSize": 12,
+            "labelExpr": "datum.value + '%'"
+          }
+        },
+        "y2": {
+          "datum": 0
+        },
+        "color": {
+          "field": "site_type",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Cabins",
+              "Powered sites",
+              "Unpowered sites"
+            ],
+            "range": [
+              "#2a78d6",
+              "#86b6ef",
+              "#eb6834"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "labelFontSize": 12,
+            "symbolSize": 130,
+            "offset": 8
+          }
+        },
         "tooltip": [
-          {"field": "site_type", "type": "nominal", "title": "Site type"},
-          {"field": "revenue_2024_bn_aud", "type": "quantitative", "title": "Revenue ($b)", "format": ".3f"},
-          {"field": "occupancy_2024_pct", "type": "quantitative", "title": "Occupancy 2024 (%)"},
-          {"field": "occupancy_2023_pct", "type": "quantitative", "title": "Occupancy 2023 (%)"}
+          {
+            "field": "site_type",
+            "type": "nominal",
+            "title": "Site type"
+          },
+          {
+            "field": "revenue_2024_bn_aud",
+            "type": "quantitative",
+            "title": "Revenue ($b)",
+            "format": ".3f"
+          },
+          {
+            "field": "occupancy_2024_pct",
+            "type": "quantitative",
+            "title": "Occupancy 2024 (%)"
+          },
+          {
+            "field": "occupancy_2023_pct",
+            "type": "quantitative",
+            "title": "Occupancy 2023 (%)"
+          }
         ]
       }
     },
     {
-      "mark": {"type": "text", "dy": -11, "fontSize": 12.5, "fontWeight": 700, "color": "#52514e"},
+      "mark": {
+        "type": "text",
+        "dy": -11,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#52514e"
+      },
       "encoding": {
-        "x": {"field": "xm", "type": "quantitative"},
-        "y": {"field": "occupancy_2024_pct", "type": "quantitative"},
-        "text": {"field": "occupancy_2024_pct", "type": "quantitative", "format": ".1f"}
+        "x": {
+          "field": "xm",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "occupancy_2024_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "occupancy_2024_pct",
+          "type": "quantitative",
+          "format": ".1f"
+        }
       }
     }
-  ]
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

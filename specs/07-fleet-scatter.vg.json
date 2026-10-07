@@ -196,7 +196,7 @@
     {
       "transform": [
         {
-          "filter": "datum.campervans >= 700"
+          "filter": "datum.campervans >= 700 && datum.per_10k_fleet >= 400"
         }
       ],
       "mark": {
@@ -210,35 +210,66 @@
     {
       "transform": [
         {
-          "filter": "datum.campervans >= 700"
+          "filter": "datum.postcode === '4013'"
         }
       ],
       "mark": {
         "type": "text",
         "align": "right",
-        "dx": -16,
+        "dx": -15,
+        "dy": -13,
         "fontSize": 11.5,
         "fontWeight": 600,
-        "color": "#0b0b0b",
-        "dy": -2
+        "color": "#0b0b0b"
       },
       "encoding": {
         "text": {
           "field": "postcode",
           "type": "nominal"
-        },
-        "yOffset": {
-          "value": 0,
-          "condition": [
-            {
-              "test": "datum.postcode === '3019'",
-              "value": 16
-            },
-            {
-              "test": "datum.postcode === '4013'",
-              "value": -14
-            }
-          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.postcode === '3019'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -15,
+        "dy": 16,
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "color": "#0b0b0b"
+      },
+      "encoding": {
+        "text": {
+          "field": "postcode",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.postcode === '4009'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 15,
+        "dy": -2,
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "color": "#0b0b0b"
+      },
+      "encoding": {
+        "text": {
+          "field": "postcode",
+          "type": "nominal"
         }
       }
     }
@@ -248,5 +279,9 @@
     "top": 5,
     "right": 34,
     "bottom": 5
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }
