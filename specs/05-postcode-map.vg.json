@@ -39,6 +39,9 @@
         },
         {
           "filter": "datum.campervans > 0"
+        },
+        {
+          "filter": "stateSel == 'All' || datum.state == stateSel"
         }
       ],
       "mark": {
@@ -128,12 +131,47 @@
             "format": ".1f"
           }
         ]
-      }
+      },
+      "params": [
+        {
+          "name": "stateSel",
+          "value": "All",
+          "bind": {
+            "input": "select",
+            "options": [
+              "All",
+              "NSW",
+              "Vic",
+              "Qld",
+              "SA",
+              "WA",
+              "Tas",
+              "NT",
+              "ACT"
+            ],
+            "labels": [
+              "All of Australia",
+              "New South Wales",
+              "Victoria",
+              "Queensland",
+              "South Australia",
+              "Western Australia",
+              "Tasmania",
+              "Northern Territory",
+              "ACT"
+            ],
+            "name": "Show state:  "
+          }
+        }
+      ]
     }
   ],
   "title": {
     "text": "Campervans by postcode",
-    "subtitle": "Size is the count; colour is campervans per 10,000 local vehicles, Jan 2025",
+    "subtitle": [
+      "Size is the campervan count; colour is campervans per 10,000 local vehicles, January 2025.",
+      "Use the dropdown to isolate one state."
+    ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",

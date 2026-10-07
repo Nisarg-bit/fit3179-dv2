@@ -56,6 +56,9 @@
             "gx",
             "gy"
           ]
+        },
+        {
+          "filter": "datum.n >= minSites"
         }
       ],
       "mark": {
@@ -122,14 +125,27 @@
             "title": "Campgrounds in cell"
           }
         ]
-      }
+      },
+      "params": [
+        {
+          "name": "minSites",
+          "value": 1,
+          "bind": {
+            "input": "range",
+            "min": 1,
+            "max": 40,
+            "step": 1,
+            "name": "Only cells with at least:  "
+          }
+        }
+      ]
     }
   ],
   "title": {
     "text": "Where campgrounds cluster",
     "subtitle": [
-      "Campgrounds per 0.9 degree cell. Classed breaks, because a handful of",
-      "cells hold more than fifty sites and would flatten an equal-range scale."
+      "Campgrounds per 0.9 degree cell. Classed breaks, because a few cells hold",
+      "more than fifty sites. Drag the slider to hide the sparsest cells."
     ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",

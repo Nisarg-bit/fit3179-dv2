@@ -125,3 +125,41 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 .note { font-size: 14px; color: var(--ink-2); max-width: var(--measure); margin: 20px 0 0; }
 
 .todo { color: var(--critical); font-style: italic; }
+
+/* ---------- Vega-Lite bound controls (dropdowns, sliders) ---------- */
+
+.viz .vega-bindings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: center;
+  margin: 2px 0 6px;
+  padding: 10px 12px;
+  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.viz .vega-bind { display: flex; align-items: center; gap: 8px; }
+
+.viz .vega-bind-name {
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.viz .vega-bindings select {
+  font: inherit;
+  padding: 5px 9px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.viz .vega-bindings input[type="range"] { accent-color: var(--accent); width: 190px; }
+.viz .vega-bindings label { display: flex; align-items: center; gap: 8px; }

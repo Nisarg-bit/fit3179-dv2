@@ -89,23 +89,45 @@
           "legend": null
         },
         "opacity": {
-          "condition": {
-            "test": "datum.type === 'caravan_site'",
-            "value": 0.85
-          },
-          "value": 0.38
+          "condition": [
+            {
+              "param": "siteType",
+              "test": "datum.type === 'caravan_site'",
+              "value": 0.85
+            },
+            {
+              "param": "siteType",
+              "value": 0.38
+            }
+          ],
+          "value": 0.04
         }
       },
       "transform": [
         {
           "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
         }
+      ],
+      "params": [
+        {
+          "name": "siteType",
+          "select": {
+            "type": "point",
+            "fields": [
+              "type"
+            ]
+          },
+          "bind": "legend"
+        }
       ]
     }
   ],
   "title": {
     "text": "Nearly ten thousand places to camp",
-    "subtitle": "Campgrounds and caravan sites in OpenStreetMap, October 2026",
+    "subtitle": [
+      "Every campground and caravan site in OpenStreetMap, October 2026.",
+      "Click a legend entry to isolate one type."
+    ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",

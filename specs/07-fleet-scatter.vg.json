@@ -6,7 +6,7 @@
     ],
     "subtitle": [
       "Every postcode: campervans against its total registered vehicle fleet, January 2025.",
-      "The five labelled outliers are industrial suburbs — rental fleets and dealerships, not residents."
+      "Click a remoteness class in the legend to isolate it."
     ],
     "fontSize": 15,
     "anchor": "start",
@@ -171,8 +171,27 @@
             "title": "Per 10,000",
             "format": ".1f"
           }
-        ]
-      }
+        ],
+        "opacity": {
+          "condition": {
+            "param": "remoteSel",
+            "value": 0.62
+          },
+          "value": 0.05
+        }
+      },
+      "params": [
+        {
+          "name": "remoteSel",
+          "select": {
+            "type": "point",
+            "fields": [
+              "Remoteness"
+            ]
+          },
+          "bind": "legend"
+        }
+      ]
     },
     {
       "transform": [
