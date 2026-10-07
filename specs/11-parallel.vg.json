@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container", "height": 330,
+  "data": {"url": "data/states.csv"},
+  "transform": [
+    {"filter": "datum.nights_2024_m != null && datum.nights_2024_m != ''"},
+    {"calculate": "toNumber(datum.nights_2024_m) * 1000000 / toNumber(datum.population_2026) * 1000", "as": "Nights per 1,000 people"},
+    {"calculate": "toNumber(datum.trips_2024_m) * 1000000 / toNumber(datum.population_2026) * 1000", "as": "Trips per 1,000 people"},
+    {"calculate": "toNumber(datum.rv_registrations_2024) / toNumber(datum.population_2026) * 1000", "as": "RVs per 1,000 people"},
+    {"calculate": "toNumber(datum.nights_2024_m) / toNumber(datum.trips_2024_m)", "as": "Nights per trip"},
+    {"fold": ["Trips per 1,000 people", "Nights per 1,000 people", "RVs per 1,000 people", "Nights per trip"],
+     "as": ["measure", "value"]},
+    {"joinaggregate": [{"op": "min", "field": "value", "as": "lo"},
+                       {"op": "max", "field": "value", "as": "hi"}], "groupby": ["measure"]},
+    {"calculate": "(datum.value - datum.lo) / (datum.hi - datum.lo)", "as": "norm"}
+  ],
+  "layer": [
+    {"mark": {"type": "line", "strokeWidth": 2.2, "point": {"size": 55, "filled": true}, "opacity": 0.85},
+     "encoding": {
+       "x": {"field": "measure", "type": "nominal", "title": null, "sort": null,
+             "axis": {"labelAngle": 0, "labelFontSize": 11, "labelLimit": 120, "grid": true}},
+       "y": {"field": "norm", "type": "quantitative", "title": "Lowest state → highest state",
+             "axis": {"labels": false, "ticks": false}},
+       "color": {"field": "code", "type": "nominal", "title": "State",
+                 "scale": {"scheme": "tableau10"}},
+       "detail": {"field": "code"},
+       "tooltip": [
+         {"field": "state", "type": "nominal", "title": "State"},
+         {"field": "measure", "type": "nominal", "title": "Measure"},
+         {"field": "value", "type": "quantitative", "title": "Value", "format": ".1f"}]}}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container", "height": 310,
+  "data": {"url": "data/spend_series.csv"},
+  "encoding": {
+    "x": {"field": "spend_per_trip_aud", "type": "quantitative",
+          "title": "Spend per trip ($)", "scale": {"zero": false, "nice": true, "padding": 18}},
+    "y": {"field": "avg_trip_nights", "type": "quantitative",
+          "title": "Average nights per trip", "scale": {"zero": false, "nice": true, "padding": 18}}
+  },
+  "layer": [
+    {"mark": {"type": "line", "strokeWidth": 2, "color": "#898781", "point": false},
+     "encoding": {"order": {"field": "year", "type": "quantitative"}}},
+    {"mark": {"type": "point", "filled": true, "size": 150},
+     "encoding": {
+       "color": {"field": "year", "type": "quantitative",
+                 "scale": {"scheme": "blues", "domain": [2019, 2024]}, "legend": null},
+       "tooltip": [
+         {"field": "year", "type": "quantitative", "title": "Year", "format": "d"},
+         {"field": "spend_per_trip_aud", "type": "quantitative", "title": "Spend per trip ($)"},
+         {"field": "avg_trip_nights", "type": "quantitative", "title": "Nights"}
+       ]}},
+    {"mark": {"type": "text", "align": "left", "dx": 12, "dy": -8, "fontSize": 12, "fontWeight": 600, "color": "#52514e"},
+     "encoding": {"text": {"field": "year", "type": "quantitative", "format": "d"}}}
+  ]
+}

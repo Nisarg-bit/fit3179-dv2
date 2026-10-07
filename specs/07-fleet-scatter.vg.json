@@ -1,0 +1,26 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container", "height": 310,
+  "data": {"url": "data/campervans_postcode.csv"},
+  "transform": [{"filter": "datum.campervans > 0 && datum.fleet_total > 0"}],
+  "encoding": {
+    "x": {"field": "fleet_total", "type": "quantitative", "title": "All registered vehicles in postcode",
+          "scale": {"type": "log"}, "axis": {"format": "~s"}},
+    "y": {"field": "campervans", "type": "quantitative", "title": "Campervans",
+          "scale": {"type": "log"}, "axis": {"format": "~s"}}
+  },
+  "layer": [
+    {"mark": {"type": "circle", "size": 26, "opacity": 0.4, "color": "#2a78d6"},
+     "encoding": {"tooltip": [
+       {"field": "postcode", "type": "nominal", "title": "Postcode"},
+       {"field": "state", "type": "nominal", "title": "State"},
+       {"field": "campervans", "type": "quantitative", "title": "Campervans", "format": ","},
+       {"field": "fleet_total", "type": "quantitative", "title": "All vehicles", "format": ","},
+       {"field": "per_10k_fleet", "type": "quantitative", "title": "Per 10k", "format": ".1f"}]}},
+    {"transform": [{"filter": "datum.campervans >= 500"}],
+     "mark": {"type": "circle", "size": 70, "color": "#d03b3b", "opacity": 0.95}},
+    {"transform": [{"filter": "datum.campervans >= 500"}],
+     "mark": {"type": "text", "align": "right", "dx": -10, "fontSize": 11, "fontWeight": 600, "color": "#d03b3b"},
+     "encoding": {"text": {"field": "postcode", "type": "nominal"}}}
+  ]
+}

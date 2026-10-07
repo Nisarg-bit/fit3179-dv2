@@ -1,0 +1,101 @@
+i,col,row,type
+0,0,9,Cabin
+1,1,9,Cabin
+2,2,9,Cabin
+3,3,9,Cabin
+4,4,9,Cabin
+5,5,9,Cabin
+6,6,9,Cabin
+7,7,9,Cabin
+8,8,9,Cabin
+9,9,9,Cabin
+10,0,8,Cabin
+11,1,8,Cabin
+12,2,8,Cabin
+13,3,8,Cabin
+14,4,8,Cabin
+15,5,8,Cabin
+16,6,8,Cabin
+17,7,8,Cabin
+18,8,8,Cabin
+19,9,8,Cabin
+20,0,7,Cabin
+21,1,7,Cabin
+22,2,7,Cabin
+23,3,7,Cabin
+24,4,7,Cabin
+25,5,7,Cabin
+26,6,7,Cabin
+27,7,7,Cabin
+28,8,7,Cabin
+29,9,7,Cabin
+30,0,6,Cabin
+31,1,6,Cabin
+32,2,6,Cabin
+33,3,6,Cabin
+34,4,6,Cabin
+35,5,6,Cabin
+36,6,6,Cabin
+37,7,6,Cabin
+38,8,6,Travelling with caravan
+39,9,6,Travelling with caravan
+40,0,5,Travelling with caravan
+41,1,5,Travelling with caravan
+42,2,5,Travelling with caravan
+43,3,5,Travelling with caravan
+44,4,5,Travelling with caravan
+45,5,5,Travelling with caravan
+46,6,5,Travelling with caravan
+47,7,5,Travelling with caravan
+48,8,5,Travelling with caravan
+49,9,5,Travelling with caravan
+50,0,4,Travelling with caravan
+51,1,4,Travelling with caravan
+52,2,4,Travelling with caravan
+53,3,4,Travelling with caravan
+54,4,4,Travelling with caravan
+55,5,4,Travelling with caravan
+56,6,4,Travelling with caravan
+57,7,4,Travelling with caravan
+58,8,4,Travelling with caravan
+59,9,4,Travelling with caravan
+60,0,3,Travelling with caravan
+61,1,3,Travelling with caravan
+62,2,3,Travelling with caravan
+63,3,3,Camping
+64,4,3,Camping
+65,5,3,Camping
+66,6,3,Camping
+67,7,3,Camping
+68,8,3,Camping
+69,9,3,Camping
+70,0,2,Camping
+71,1,2,Camping
+72,2,2,Camping
+73,3,2,Camping
+74,4,2,Camping
+75,5,2,Camping
+76,6,2,Camping
+77,7,2,Camping
+78,8,2,Camping
+79,9,2,Camping
+80,0,1,Camping
+81,1,1,Camping
+82,2,1,Camping
+83,3,1,Camping
+84,4,1,Camping
+85,5,1,Camping
+86,6,1,Caravan park (no RV)
+87,7,1,Caravan park (no RV)
+88,8,1,Caravan park (no RV)
+89,9,1,Caravan park (no RV)
+90,0,0,Caravan park (no RV)
+91,1,0,Caravan park (no RV)
+92,2,0,Caravan park (no RV)
+93,3,0,Caravan park (no RV)
+94,4,0,Caravan park (no RV)
+95,5,0,Motorhome / campervan
+96,6,0,Motorhome / campervan
+97,7,0,Motorhome / campervan
+98,8,0,Motorhome / campervan
+99,9,0,Motorhome / campervan

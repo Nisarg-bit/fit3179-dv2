@@ -20,21 +20,8 @@
   --font: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --page:    #0d0d0d;
-    --surface: #1a1a19;
-    --ink:     #ffffff;
-    --ink-2:   #c3c2b7;
-    --muted:   #898781;
-    --grid:    #2c2c2a;
-    --rule:    #383835;
-    --border:  rgba(255,255,255,0.10);
-    --accent:  #3987e5;
-    --accent-2:#d95926;
-  }
-}
+/* Deliberately single-theme (light): map base fills live in static
+   Vega-Lite specs and cannot follow CSS custom properties. */
 
 * { box-sizing: border-box; }
 

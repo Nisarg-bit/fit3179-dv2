@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container", "height": 420,
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [-132, 0], "center": [0, -27],
+    "parallels": [-18, -36], "scale": 700
+  },
+  "layer": [
+    {
+      "data": {"url": "data/au_states.geojson", "format": {"type": "json", "property": "features"}},
+      "mark": {"type": "geoshape", "fill": "#f4f3f0", "stroke": "#c3c2b7", "strokeWidth": 0.6}
+    },
+    {
+      "data": {"url": "data/regions.csv"},
+      "mark": {"type": "circle", "opacity": 0.88, "stroke": "#fcfcfb", "strokeWidth": 1.2},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {"field": "trips_k", "type": "quantitative", "title": "Trips (000s)",
+                 "scale": {"type": "sqrt", "range": [120, 1400]},
+                 "legend": {"format": ".0f", "values": [500, 800, 1300]}},
+        "color": {"field": "nights_yoy_pct", "type": "quantitative",
+                  "title": ["Change in", "nights (%)"],
+                  "scale": {"scheme": "redblue", "reverse": true, "domainMid": 0, "domain": [-35, 55]},
+                  "legend": {"format": "+d"}},
+        "tooltip": [
+          {"field": "region", "type": "nominal", "title": "Region"},
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "trips_k", "type": "quantitative", "title": "Trips (000s)", "format": ".1f"},
+          {"field": "nights_m", "type": "quantitative", "title": "Nights (m)", "format": ".2f"},
+          {"field": "trips_yoy_pct", "type": "quantitative", "title": "Trips change (%)", "format": "+d"},
+          {"field": "nights_yoy_pct", "type": "quantitative", "title": "Nights change (%)", "format": "+d"}
+        ]
+      }
+    },
+    {
+      "data": {"url": "data/regions.csv"},
+      "transform": [{"filter": "abs(datum.nights_yoy_pct) >= 18"}],
+      "mark": {"type": "text", "align": "left", "dx": 16, "fontSize": 11,
+               "fontWeight": 600, "color": "#52514e"},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "region", "type": "nominal"}
+      }
+    }
+  ]
+}
