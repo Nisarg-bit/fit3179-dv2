@@ -1,4 +1,9 @@
 // Loads every spec in specs/ into its container and applies shared config.
+//
+// BUILD: bump this whenever a spec changes. GitHub Pages caches static assets,
+// so without it the browser keeps serving the previous version of a .vg.json
+// and edits appear to have no effect.
+const BUILD = '2026-10-07c';
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();
@@ -25,7 +30,7 @@ const THEME = () => {
 async function draw(el) {
   const spec = el.dataset.spec;
   try {
-    await vegaEmbed(el, `specs/${spec}`, {
+    await vegaEmbed(el, `specs/${spec}?v=${BUILD}`, {
       actions: { export: true, source: false, compiled: false, editor: false },
       config: THEME(),
       renderer: 'canvas'
