@@ -44,9 +44,10 @@
         "y": {
           "field": "expenditure_m_aud",
           "type": "quantitative",
-          "title": "Expenditure ($ million)",
+          "title": "Expenditure ($ billion)",
           "axis": {
-            "format": ","
+            "format": "$.1f",
+            "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
           }
         },
         "tooltip": [
@@ -58,8 +59,12 @@
           {
             "field": "expenditure_m_aud",
             "type": "quantitative",
-            "title": "Spend ($m)",
-            "format": ","
+            "title": "Expenditure ($ billion)",
+            "format": ",",
+            "axis": {
+              "format": "$.1f",
+              "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
+            }
           },
           {
             "field": "spend_per_trip_aud",
@@ -83,7 +88,12 @@
         },
         "y": {
           "field": "expenditure_m_aud",
-          "type": "quantitative"
+          "type": "quantitative",
+          "title": "Expenditure ($ billion)",
+          "axis": {
+            "format": "$.1f",
+            "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
+          }
         }
       }
     },
@@ -108,7 +118,12 @@
         },
         "y": {
           "field": "expenditure_m_aud",
-          "type": "quantitative"
+          "type": "quantitative",
+          "title": "Expenditure ($ billion)",
+          "axis": {
+            "format": "$.1f",
+            "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
+          }
         },
         "text": {
           "value": "peak"

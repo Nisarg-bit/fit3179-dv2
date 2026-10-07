@@ -58,7 +58,7 @@
         "grid": false
       },
       "scale": {
-        "padding": 0.22
+        "padding": 0.14
       }
     },
     "y": {
@@ -106,8 +106,9 @@
         "type": "text",
         "align": "left",
         "dx": 10,
-        "fontSize": 12,
-        "fontWeight": 600
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "limit": 92
       },
       "encoding": {
         "text": {
@@ -126,8 +127,9 @@
         "align": "left",
         "dx": 10,
         "dy": 14,
-        "fontSize": 11,
-        "color": "#898781"
+        "fontSize": 11.5,
+        "color": "#898781",
+        "limit": 92
       },
       "encoding": {
         "text": {
@@ -153,5 +155,11 @@
     "subtitleFontSize": 12.5,
     "subtitleColor": "#52514e",
     "subtitlePadding": 5
+  },
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "bottom": 5,
+    "right": 96
   }
 }

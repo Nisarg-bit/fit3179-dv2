@@ -1,125 +1,66 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 310,
-  "data": {
-    "url": "data/campervans_postcode.csv"
+  "title": {
+    "text": "Depots, not driveways",
+    "subtitle": "Every postcode: campervans against its total vehicle fleet, Jan 2025",
+    "fontSize": 15, "anchor": "start", "color": "#0b0b0b", "offset": 10,
+    "subtitleFontSize": 12.5, "subtitleColor": "#52514e", "subtitlePadding": 5
   },
+  "width": "container", "height": 330,
+  "data": {"url": "data/campervans_postcode.csv"},
   "transform": [
-    {
-      "filter": "datum.campervans > 0 && datum.fleet_total > 0"
-    }
+    {"filter": "datum.campervans > 0 && datum.fleet_total > 0"},
+    {"calculate": "replace(replace(datum.remoteness, ' of Australia',''), ' Australia','')", "as": "Remoteness"}
   ],
   "encoding": {
     "x": {
-      "field": "fleet_total",
-      "type": "quantitative",
-      "title": "All registered vehicles in postcode",
-      "scale": {
-        "type": "log"
-      },
-      "axis": {
-        "format": "~s"
-      }
+      "field": "fleet_total", "type": "quantitative",
+      "title": "All registered vehicles in the postcode",
+      "scale": {"type": "log", "domain": [10, 200000]},
+      "axis": {"tickCount": 5, "format": "~s"}
     },
     "y": {
-      "field": "campervans",
-      "type": "quantitative",
-      "title": "Campervans",
-      "scale": {
-        "type": "log"
-      },
-      "axis": {
-        "format": "~s"
-      }
+      "field": "campervans", "type": "quantitative", "title": "Campervans",
+      "scale": {"type": "log", "domain": [1, 2000]},
+      "axis": {"tickCount": 4, "format": "~s"}
     }
   },
   "layer": [
     {
-      "mark": {
-        "type": "circle",
-        "size": 26,
-        "opacity": 0.4,
-        "color": "#2a78d6"
-      },
+      "mark": {"type": "circle", "opacity": 0.55, "stroke": "#fcfcfb", "strokeWidth": 0.3},
       "encoding": {
+        "size": {
+          "field": "per_10k_fleet", "type": "quantitative",
+          "title": ["Campervans per", "10,000 vehicles"],
+          "scale": {"type": "threshold", "domain": [20, 40, 80, 200], "range": [18, 60, 140, 260, 420]},
+          "legend": {"format": ".0f"}
+        },
+        "color": {
+          "field": "Remoteness", "type": "nominal",
+          "scale": {
+            "domain": ["Major Cities", "Inner Regional", "Outer Regional", "Remote", "Very Remote"],
+            "range": ["#9ec5f4", "#5598e7", "#2a78d6", "#eb6834", "#b8431a"]
+          },
+          "legend": {"orient": "right"}
+        },
         "tooltip": [
-          {
-            "field": "postcode",
-            "type": "nominal",
-            "title": "Postcode"
-          },
-          {
-            "field": "state",
-            "type": "nominal",
-            "title": "State"
-          },
-          {
-            "field": "campervans",
-            "type": "quantitative",
-            "title": "Campervans",
-            "format": ","
-          },
-          {
-            "field": "fleet_total",
-            "type": "quantitative",
-            "title": "All vehicles",
-            "format": ","
-          },
-          {
-            "field": "per_10k_fleet",
-            "type": "quantitative",
-            "title": "Per 10k",
-            "format": ".1f"
-          }
+          {"field": "postcode", "type": "nominal", "title": "Postcode"},
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "Remoteness", "type": "nominal", "title": "Remoteness"},
+          {"field": "campervans", "type": "quantitative", "title": "Campervans", "format": ","},
+          {"field": "fleet_total", "type": "quantitative", "title": "All vehicles", "format": ","},
+          {"field": "per_10k_fleet", "type": "quantitative", "title": "Per 10,000", "format": ".1f"}
         ]
       }
     },
     {
-      "transform": [
-        {
-          "filter": "datum.campervans >= 500"
-        }
-      ],
-      "mark": {
-        "type": "circle",
-        "size": 70,
-        "color": "#d03b3b",
-        "opacity": 0.95
-      }
+      "transform": [{"filter": "datum.campervans >= 500"}],
+      "mark": {"type": "point", "size": 150, "stroke": "#0b0b0b", "strokeWidth": 1.4, "shape": "circle"}
     },
     {
-      "transform": [
-        {
-          "filter": "datum.campervans >= 500"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -10,
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#d03b3b"
-      },
-      "encoding": {
-        "text": {
-          "field": "postcode",
-          "type": "nominal"
-        }
-      }
+      "transform": [{"filter": "datum.campervans >= 500"}],
+      "mark": {"type": "text", "align": "right", "dx": -14, "fontSize": 11, "fontWeight": 600, "color": "#0b0b0b"},
+      "encoding": {"text": {"field": "postcode", "type": "nominal"}}
     }
-  ],
-  "title": {
-    "text": "Depots, not driveways",
-    "subtitle": "Campervans against total vehicles per postcode; outliers labelled",
-    "fontSize": 15,
-    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 5
-  }
+  ]
 }
