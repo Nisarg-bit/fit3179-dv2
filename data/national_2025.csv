@@ -1,0 +1,16 @@
+metric,value,unit,period
+trips,17.3,millions,YE Dec 2025
+nights,57.9,millions,YE Dec 2025
+spend_total,12.6,billions_aud,YE Dec 2025
+spend_travelling,10.3,billions_aud,YE Dec 2025
+spend_regional,8.6,billions_aud,YE Dec 2025
+registrations,938000,units,YE Dec 2025
+regional_nights_share,87,pct,YE Dec 2025
+commercial_trips_share,67,pct,YE Dec 2025
+commercial_nights_share,70,pct,YE Dec 2025
+commercial_spend_share,75,pct,YE Dec 2025
+holiday_trips_share,77,pct,YE Dec 2025
+vfr_trips_share,13,pct,YE Dec 2025
+business_trips_share,5,pct,YE Dec 2025
+spend_precovid,10.2,billions_aud,2019
+registrations_growth_since_2019,32,pct,2019-2025

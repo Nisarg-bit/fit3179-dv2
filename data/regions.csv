@@ -1,0 +1,11 @@
+region,state,lon,lat,trips_k,nights_m,trips_yoy_pct,nights_yoy_pct
+North Coast,NSW,152.9,-30.3,1310.0,5.26,-5,-9
+South Coast,NSW,150.2,-35.5,991.6,3.95,-5,0
+Australia's South West,WA,115.5,-33.9,787.7,2.65,5,2
+Queensland Country,QLD,146.5,-22.5,765.3,2.33,34,52
+High Country,VIC,146.9,-36.9,707.8,1.96,-9,-18
+Sunshine Coast,QLD,153.0,-26.6,651.4,2.07,9,5
+Great Ocean Road,VIC,143.6,-38.6,551.8,1.82,14,13
+Brisbane,QLD,153.0,-27.5,540.0,1.76,1,11
+Central NSW,NSW,148.6,-33.3,516.3,1.50,7,-6
+Hunter,NSW,151.4,-32.6,506.7,1.42,17,-33
