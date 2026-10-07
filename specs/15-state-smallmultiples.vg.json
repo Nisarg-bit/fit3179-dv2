@@ -3,51 +3,186 @@
   "title": {
     "text": "Ownership rose in every state",
     "subtitle": "Registered campervans, 2021–2025. Each panel on its own scale; the shape is the point.",
-    "fontSize": 15, "anchor": "start", "color": "#0b0b0b", "offset": 10,
-    "subtitleFontSize": 12.5, "subtitleColor": "#52514e", "subtitlePadding": 5
+    "fontSize": 15,
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
   },
-  "data": {"url": "data/campervans_state.csv"},
+  "data": {
+    "url": "data/campervans_state.csv"
+  },
   "transform": [
-    {"joinaggregate": [{"op": "max", "field": "campervans", "as": "peak"}], "groupby": ["code"]},
-    {"window": [{"op": "first_value", "field": "campervans", "as": "start"}],
-     "groupby": ["code"], "sort": [{"field": "year"}], "frame": [null, null]},
-    {"calculate": "(datum.campervans / datum.start - 1) * 100", "as": "growth"}
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "campervans",
+          "as": "peak"
+        }
+      ],
+      "groupby": [
+        "code"
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "first_value",
+          "field": "campervans",
+          "as": "start"
+        }
+      ],
+      "groupby": [
+        "code"
+      ],
+      "sort": [
+        {
+          "field": "year"
+        }
+      ],
+      "frame": [
+        null,
+        null
+      ]
+    },
+    {
+      "calculate": "(datum.campervans / datum.start - 1) * 100",
+      "as": "growth"
+    }
   ],
   "facet": {
-    "field": "code", "type": "nominal", "title": null, "columns": 4,
-    "sort": {"field": "peak", "op": "max", "order": "descending"},
-    "header": {"labelFontSize": 13, "labelFontWeight": 600, "labelColor": "#0b0b0b", "labelAnchor": "start"}
+    "field": "code",
+    "type": "nominal",
+    "title": null,
+    "sort": {
+      "field": "peak",
+      "op": "max",
+      "order": "descending"
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFontWeight": 600,
+      "labelColor": "#0b0b0b",
+      "labelAnchor": "start"
+    }
   },
+  "columns": 4,
   "spec": {
-    "width": 170, "height": 110,
+    "width": 170,
+    "height": 110,
     "layer": [
       {
-        "mark": {"type": "area", "line": {"strokeWidth": 2, "color": "#2a78d6"},
-                 "color": {"x1": 1, "y1": 1, "x2": 1, "y2": 0, "gradient": "linear",
-                           "stops": [{"offset": 0, "color": "#ffffff"},
-                                     {"offset": 1, "color": "#b7d3f6"}]}},
+        "mark": {
+          "type": "area",
+          "line": {
+            "strokeWidth": 2,
+            "color": "#2a78d6"
+          },
+          "color": {
+            "x1": 1,
+            "y1": 1,
+            "x2": 1,
+            "y2": 0,
+            "gradient": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#ffffff"
+              },
+              {
+                "offset": 1,
+                "color": "#b7d3f6"
+              }
+            ]
+          }
+        },
         "encoding": {
-          "x": {"field": "year", "type": "ordinal", "title": null,
-                "axis": {"labelAngle": 0, "labelFontSize": 10, "grid": false,
-                         "values": [2021, 2023, 2025]}},
-          "y": {"field": "campervans", "type": "quantitative", "title": null,
-                "scale": {"zero": true}, "axis": {"tickCount": 3, "format": "~s", "labelFontSize": 10}},
+          "x": {
+            "field": "year",
+            "type": "ordinal",
+            "title": null,
+            "axis": {
+              "labelAngle": 0,
+              "labelFontSize": 10,
+              "grid": false,
+              "values": [
+                2021,
+                2023,
+                2025
+              ]
+            }
+          },
+          "y": {
+            "field": "campervans",
+            "type": "quantitative",
+            "title": null,
+            "scale": {
+              "zero": true
+            },
+            "axis": {
+              "tickCount": 3,
+              "format": "~s",
+              "labelFontSize": 10
+            }
+          },
           "tooltip": [
-            {"field": "state", "type": "nominal", "title": "State"},
-            {"field": "year", "type": "ordinal", "title": "Year"},
-            {"field": "campervans", "type": "quantitative", "title": "Campervans", "format": ","},
-            {"field": "growth", "type": "quantitative", "title": "Growth since 2021 (%)", "format": "+.0f"}
+            {
+              "field": "state",
+              "type": "nominal",
+              "title": "State"
+            },
+            {
+              "field": "year",
+              "type": "ordinal",
+              "title": "Year"
+            },
+            {
+              "field": "campervans",
+              "type": "quantitative",
+              "title": "Campervans",
+              "format": ","
+            },
+            {
+              "field": "growth",
+              "type": "quantitative",
+              "title": "Growth since 2021 (%)",
+              "format": "+.0f"
+            }
           ]
         }
       },
       {
-        "transform": [{"filter": "datum.year == 2025"}],
-        "mark": {"type": "text", "align": "right", "baseline": "top", "dx": -2, "dy": 2,
-                 "fontSize": 11, "fontWeight": 700, "color": "#1c5cab"},
+        "transform": [
+          {
+            "filter": "datum.year == 2025"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "top",
+          "dx": -2,
+          "dy": 2,
+          "fontSize": 11,
+          "fontWeight": 700,
+          "color": "#1c5cab"
+        },
         "encoding": {
-          "x": {"field": "year", "type": "ordinal"},
-          "y": {"value": 6},
-          "text": {"field": "growth", "type": "quantitative", "format": "+.0f"}
+          "x": {
+            "field": "year",
+            "type": "ordinal"
+          },
+          "y": {
+            "value": 6
+          },
+          "text": {
+            "field": "growth",
+            "type": "quantitative",
+            "format": "+.0f"
+          }
         }
       }
     ]

@@ -88,12 +88,13 @@ h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: -.02em; margin: 6px 0 0;
 
 /* ---------- chart blocks ---------- */
 
-.charts { display: grid; gap: var(--gap); grid-template-columns: 1fr; }
-.charts.two { grid-template-columns: 1fr 1fr; }
+.charts { display: grid; gap: var(--gap); grid-template-columns: minmax(0, 1fr); }
+.charts.two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 @media (max-width: 760px) { .charts.two { grid-template-columns: 1fr; } }
 
 figure.chart {
-  margin: 0; background: var(--surface);
+  margin: 0;
+  min-width: 0; background: var(--surface);
   border: 1px solid var(--border); padding: 20px 20px 16px;
 }
 
@@ -107,7 +108,7 @@ figure.chart figcaption {
 }
 figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 6px; font-size: 12px; }
 
-.viz { width: 100%; overflow-x: auto; }
+.viz { width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; }
 .viz .vega-embed { width: 100%; }
 .viz .vega-embed summary { opacity: .35; }
 
