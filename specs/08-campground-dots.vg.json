@@ -8,15 +8,10 @@
       -132,
       0
     ],
-    "center": [
-      0,
-      -27
-    ],
     "parallels": [
       -18,
       -36
-    ],
-    "scale": 840
+    ]
   },
   "layer": [
     {
@@ -87,7 +82,12 @@
             "title": "State"
           }
         ]
-      }
+      },
+      "transform": [
+        {
+          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+        }
+      ]
     }
   ],
   "title": {

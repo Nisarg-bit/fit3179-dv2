@@ -8,15 +8,10 @@
       -132,
       0
     ],
-    "center": [
-      0,
-      -27
-    ],
     "parallels": [
       -18,
       -36
-    ],
-    "scale": 700
+    ]
   },
   "layer": [
     {
@@ -129,13 +124,21 @@
             "format": "+d"
           }
         ]
-      }
+      },
+      "transform": [
+        {
+          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+        }
+      ]
     },
     {
       "data": {
         "url": "data/regions.csv"
       },
       "transform": [
+        {
+          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+        },
         {
           "filter": "abs(datum.nights_yoy_pct) >= 18"
         }

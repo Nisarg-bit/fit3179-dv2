@@ -8,15 +8,10 @@
       -132,
       0
     ],
-    "center": [
-      0,
-      -27
-    ],
     "parallels": [
       -18,
       -36
-    ],
-    "scale": 680
+    ]
   },
   "data": {
     "url": "data/au_states.topojson",

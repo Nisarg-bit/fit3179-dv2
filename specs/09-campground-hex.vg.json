@@ -8,15 +8,10 @@
       -132,
       0
     ],
-    "center": [
-      0,
-      -27
-    ],
     "parallels": [
       -18,
       -36
-    ],
-    "scale": 840
+    ]
   },
   "layer": [
     {
@@ -39,6 +34,9 @@
         "url": "data/campgrounds.csv"
       },
       "transform": [
+        {
+          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+        },
         {
           "calculate": "floor(datum.lon / 0.9) * 0.9 + 0.45",
           "as": "gx"
