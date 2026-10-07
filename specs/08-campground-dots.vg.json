@@ -35,8 +35,8 @@
       },
       "mark": {
         "type": "circle",
-        "size": 9,
-        "opacity": 0.42
+        "size": 11,
+        "opacity": 0.5
       },
       "encoding": {
         "longitude": {
@@ -81,7 +81,20 @@
             "type": "nominal",
             "title": "State"
           }
-        ]
+        ],
+        "order": {
+          "field": "type",
+          "type": "nominal",
+          "sort": "descending",
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.type === 'caravan_site'",
+            "value": 0.85
+          },
+          "value": 0.38
+        }
       },
       "transform": [
         {
