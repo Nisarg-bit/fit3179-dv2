@@ -125,20 +125,7 @@
             "title": "Campgrounds in cell"
           }
         ]
-      },
-      "params": [
-        {
-          "name": "minSites",
-          "value": 1,
-          "bind": {
-            "input": "range",
-            "min": 1,
-            "max": 40,
-            "step": 1,
-            "name": "Only cells with at least:  "
-          }
-        }
-      ]
+      }
     }
   ],
   "title": {
@@ -155,5 +142,18 @@
     "subtitleFontSize": 12.5,
     "subtitleColor": "#52514e",
     "subtitlePadding": 5
-  }
+  },
+  "params": [
+    {
+      "name": "minSites",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 40,
+        "step": 1,
+        "name": "Only cells with at least:  "
+      }
+    }
+  ]
 }

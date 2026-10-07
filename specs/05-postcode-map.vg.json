@@ -131,39 +131,7 @@
             "format": ".1f"
           }
         ]
-      },
-      "params": [
-        {
-          "name": "stateSel",
-          "value": "All",
-          "bind": {
-            "input": "select",
-            "options": [
-              "All",
-              "NSW",
-              "Vic",
-              "Qld",
-              "SA",
-              "WA",
-              "Tas",
-              "NT",
-              "ACT"
-            ],
-            "labels": [
-              "All of Australia",
-              "New South Wales",
-              "Victoria",
-              "Queensland",
-              "South Australia",
-              "Western Australia",
-              "Tasmania",
-              "Northern Territory",
-              "ACT"
-            ],
-            "name": "Show state:  "
-          }
-        }
-      ]
+      }
     }
   ],
   "title": {
@@ -180,5 +148,37 @@
     "subtitleFontSize": 12.5,
     "subtitleColor": "#52514e",
     "subtitlePadding": 5
-  }
+  },
+  "params": [
+    {
+      "name": "stateSel",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "NSW",
+          "Vic",
+          "Qld",
+          "SA",
+          "WA",
+          "Tas",
+          "NT",
+          "ACT"
+        ],
+        "labels": [
+          "All of Australia",
+          "New South Wales",
+          "Victoria",
+          "Queensland",
+          "South Australia",
+          "Western Australia",
+          "Tasmania",
+          "Northern Territory",
+          "ACT"
+        ],
+        "name": "Show state:  "
+      }
+    }
+  ]
 }
