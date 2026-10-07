@@ -43,8 +43,14 @@
     "y": {
       "field": "label",
       "type": "nominal",
-      "title": null,
-      "sort": "-x",
+      "title": "Remoteness",
+      "sort": [
+        "Major Cities",
+        "Inner Regional",
+        "Outer Regional",
+        "Remote",
+        "Very Remote"
+      ],
       "axis": {
         "labelFontSize": 13,
         "grid": false

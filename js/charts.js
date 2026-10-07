@@ -1,9 +1,11 @@
 // Loads every spec in specs/ into its container and applies shared config.
 //
-// BUILD: bump this whenever a spec changes. GitHub Pages caches static assets,
-// so without it the browser keeps serving the previous version of a .vg.json
-// and edits appear to have no effect.
-const BUILD = '2026-10-07n';
+// BUILD versions this file and the stylesheet from index.html, so a hard reload
+// picks up new code. Specs are NOT versioned by a query string: GitHub Pages and
+// raw.githubusercontent both ignore query strings for caching, so a stale spec
+// could survive a BUILD bump. Instead each spec is fetched with
+// cache: 'reload', which forces a revalidated network fetch every time.
+const BUILD = '2026-10-08a';
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();
@@ -30,20 +32,20 @@ const THEME = () => {
 async function draw(el) {
   const spec = el.dataset.spec;
   try {
-    await vegaEmbed(el, `specs/${spec}?v=${BUILD}`, {
+    // cache: 'reload' bypasses the HTTP cache for this request, so an edited
+    // spec always takes effect without needing a cache-busting query string.
+    const res = await fetch(`specs/${spec}`, { cache: 'reload' });
+    if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+    const json = await res.json();
+    await vegaEmbed(el, json, {
       actions: { export: true, source: false, compiled: false, editor: false },
       config: THEME(),
       renderer: 'canvas'
     });
   } catch (e) {
-    el.innerHTML = `<p style="color:#d03b3b;font-size:14px">Could not load <code>${spec}</code> — ${e}</p>`;
+    el.innerHTML = `<p style="color:#d03b3b;font-size:14px">Could not load <code>${spec}</code> \u2014 ${e}</p>`;
     console.error(spec, e);
   }
 }
 
 document.querySelectorAll('.viz[data-spec]').forEach(draw);
-
-// redraw on theme change so chart ink follows the page
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  document.querySelectorAll('.viz[data-spec]').forEach(el => { el.innerHTML = ''; draw(el); });
-});
