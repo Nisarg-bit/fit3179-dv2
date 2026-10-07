@@ -14,7 +14,7 @@
     ]
   },
   "data": {
-    "url": "data/au_states.topojson",
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
     "format": {
       "type": "topojson",
       "feature": "states"

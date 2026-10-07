@@ -3,7 +3,7 @@
   "width": "container",
   "height": 310,
   "data": {
-    "url": "data/occupancy.csv"
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/occupancy.csv"
   },
   "transform": [
     {

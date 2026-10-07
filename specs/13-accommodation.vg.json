@@ -3,7 +3,7 @@
   "width": "container",
   "height": 300,
   "data": {
-    "url": "data/accommodation_waffle.csv"
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/accommodation_waffle.csv"
   },
   "mark": {
     "type": "square",

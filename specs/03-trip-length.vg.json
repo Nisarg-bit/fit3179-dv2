@@ -3,7 +3,7 @@
   "width": "container",
   "height": 310,
   "data": {
-    "url": "data/spend_series.csv"
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/spend_series.csv"
   },
   "encoding": {
     "x": {

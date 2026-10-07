@@ -22,7 +22,7 @@
   "width": "container",
   "height": 260,
   "data": {
-    "url": "data/age_groups.csv"
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/age_groups.csv"
   },
   "transform": [
     {
