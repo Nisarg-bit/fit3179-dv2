@@ -53,7 +53,11 @@
     "x": {
       "field": "rate",
       "type": "quantitative",
-      "title": "Campervans per 10,000 registered vehicles"
+      "title": "Campervans per 10,000 registered vehicles",
+      "axis": {
+        "labelExpr": "format(datum.value, '.0f')",
+        "titleFontSize": 12
+      }
     }
   },
   "layer": [

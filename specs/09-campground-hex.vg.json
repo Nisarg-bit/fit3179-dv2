@@ -88,7 +88,13 @@
             "scheme": "blues"
           },
           "legend": {
-            "format": ".0f"
+            "format": ".0f",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleOrient": "top",
+            "offset": 6,
+            "titleFontSize": 11.5,
+            "labelFontSize": 11
           }
         },
         "tooltip": [

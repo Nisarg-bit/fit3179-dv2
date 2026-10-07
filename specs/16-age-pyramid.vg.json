@@ -1,49 +1,170 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Older campers take fewer trips but stay far longer",
-    "subtitle": "Share of all caravan and camping trips, and of all nights, by age group, 2024",
-    "fontSize": 15, "anchor": "start", "color": "#0b0b0b", "offset": 10,
-    "subtitleFontSize": 12.5, "subtitleColor": "#52514e", "subtitlePadding": 5
+    "text": [
+      "Older campers take fewer trips",
+      "but stay far longer"
+    ],
+    "subtitle": [
+      "Share of all caravan and camping trips,",
+      "and of all nights, by age group, 2024"
+    ],
+    "fontSize": 15,
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5,
+    "lineHeight": 20,
+    "subtitleLineHeight": 16
   },
-  "width": "container", "height": 260,
-  "data": {"url": "data/age_groups.csv"},
+  "width": "container",
+  "height": 260,
+  "data": {
+    "url": "data/age_groups.csv"
+  },
   "transform": [
-    {"fold": ["trips_share_pct", "nights_share_pct"], "as": ["measure", "share"]},
-    {"calculate": "datum.measure == 'trips_share_pct' ? 'Trips' : 'Nights'", "as": "Measure"},
-    {"calculate": "datum.measure == 'trips_share_pct' ? -datum.share : datum.share", "as": "signed"}
+    {
+      "fold": [
+        "trips_share_pct",
+        "nights_share_pct"
+      ],
+      "as": [
+        "measure",
+        "share"
+      ]
+    },
+    {
+      "calculate": "datum.measure == 'trips_share_pct' ? 'Trips' : 'Nights'",
+      "as": "Measure"
+    },
+    {
+      "calculate": "datum.measure == 'trips_share_pct' ? -datum.share : datum.share",
+      "as": "signed"
+    }
   ],
   "encoding": {
-    "y": {"field": "age_group", "type": "ordinal", "title": null,
-          "sort": ["55+", "30-54", "20-29", "15-19"],
-          "axis": {"labelFontSize": 13, "labelFontWeight": 600, "grid": false, "domain": false, "ticks": false}}
+    "y": {
+      "field": "age_group",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "55+",
+        "30-54",
+        "20-29",
+        "15-19"
+      ],
+      "axis": {
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "grid": false,
+        "domain": false,
+        "ticks": false
+      }
+    }
   },
   "layer": [
     {
-      "mark": {"type": "bar", "height": 26, "cornerRadius": 3},
+      "mark": {
+        "type": "bar",
+        "height": 26,
+        "cornerRadius": 3
+      },
       "encoding": {
-        "x": {"field": "signed", "type": "quantitative",
-              "title": "← share of trips          share of nights →",
-              "scale": {"domain": [-50, 50]},
-              "axis": {"values": [-40, -20, 0, 20, 40], "labelExpr": "abs(datum.value) + '%'"}},
-        "color": {"field": "Measure", "type": "nominal", "title": null,
-                  "scale": {"domain": ["Trips", "Nights"], "range": ["#86b6ef", "#2a78d6"]}},
+        "x": {
+          "field": "signed",
+          "type": "quantitative",
+          "title": "← share of trips          share of nights →",
+          "scale": {
+            "domain": [
+              -50,
+              50
+            ]
+          },
+          "axis": {
+            "values": [
+              -40,
+              -20,
+              0,
+              20,
+              40
+            ],
+            "labelExpr": "abs(datum.value) + '%'"
+          }
+        },
+        "color": {
+          "field": "Measure",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Trips",
+              "Nights"
+            ],
+            "range": [
+              "#86b6ef",
+              "#2a78d6"
+            ]
+          }
+        },
         "tooltip": [
-          {"field": "age_group", "type": "nominal", "title": "Age group"},
-          {"field": "Measure", "type": "nominal", "title": "Measure"},
-          {"field": "share", "type": "quantitative", "title": "Share (%)"}
+          {
+            "field": "age_group",
+            "type": "nominal",
+            "title": "Age group"
+          },
+          {
+            "field": "Measure",
+            "type": "nominal",
+            "title": "Measure"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "title": "Share (%)"
+          }
         ]
       }
     },
     {
-      "mark": {"type": "text", "fontSize": 11.5, "fontWeight": 600, "color": "#52514e"},
+      "mark": {
+        "type": "text",
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "color": "#52514e"
+      },
       "encoding": {
-        "x": {"field": "signed", "type": "quantitative"},
-        "text": {"field": "share", "type": "quantitative", "format": ".0f"},
-        "xOffset": {"condition": {"test": "datum.signed < 0", "value": -14}, "value": 14}
+        "x": {
+          "field": "signed",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "share",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "xOffset": {
+          "condition": {
+            "test": "datum.signed < 0",
+            "value": -14
+          },
+          "value": 14
+        }
       }
     },
-    {"mark": {"type": "rule", "color": "#c3c2b7", "strokeWidth": 1},
-     "encoding": {"x": {"datum": 0, "type": "quantitative"}}}
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#c3c2b7",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative"
+        }
+      }
+    }
   ]
 }

@@ -3,7 +3,7 @@
 // BUILD: bump this whenever a spec changes. GitHub Pages caches static assets,
 // so without it the browser keeps serving the previous version of a .vg.json
 // and edits appear to have no effect.
-const BUILD = '2026-10-07f';
+const BUILD = '2026-10-07g';
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();

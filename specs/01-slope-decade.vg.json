@@ -68,6 +68,10 @@
       "scale": {
         "zero": false,
         "nice": true
+      },
+      "axis": {
+        "labelExpr": "format(datum.value, '.0f')",
+        "titleFontSize": 12
       }
     },
     "color": {
@@ -94,6 +98,32 @@
           "size": 70,
           "filled": true
         }
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "label",
+            "type": "nominal",
+            "title": "Measure"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Value",
+            "format": ","
+          },
+          {
+            "field": "idx",
+            "type": "quantitative",
+            "title": "Index (2015=100)",
+            "format": ".0f"
+          }
+        ]
       }
     },
     {

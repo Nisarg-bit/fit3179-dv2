@@ -14,6 +14,10 @@
         "zero": false,
         "nice": true,
         "padding": 18
+      },
+      "axis": {
+        "labelExpr": "'$' + format(datum.value, ',.0f')",
+        "titleFontSize": 12
       }
     },
     "y": {
@@ -24,6 +28,10 @@
         "zero": false,
         "nice": true,
         "padding": 18
+      },
+      "axis": {
+        "labelExpr": "format(datum.value, '.2f')",
+        "titleFontSize": 12
       }
     }
   },
