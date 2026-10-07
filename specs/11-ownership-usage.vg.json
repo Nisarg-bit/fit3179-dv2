@@ -1,55 +1,61 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Everywhere except the Territory, owning and camping rise together",
-    "subtitle": "Campervan ownership against camping nights, per 1,000 residents, 2024. Trend fitted to the six states; the NT is excluded from it.",
-    "fontSize": 15, "anchor": "start", "color": "#0b0b0b", "offset": 10,
-    "subtitleFontSize": 12.5, "subtitleColor": "#52514e", "subtitlePadding": 5
+    "text": ["Owning and camping rise together —", "everywhere except the Territory"],
+    "subtitle": ["Campervan ownership against camping nights, per 1,000 residents, 2024.",
+                 "Dashed trend fitted to the six states; the Northern Territory is excluded from it."],
+    "fontSize": 16, "lineHeight": 21, "anchor": "start", "color": "#0b0b0b", "offset": 12,
+    "subtitleFontSize": 12.5, "subtitleLineHeight": 17, "subtitleColor": "#52514e", "subtitlePadding": 7
   },
-  "width": "container", "height": 360,
-  "padding": {"left": 5, "top": 5, "right": 34, "bottom": 5},
+  "width": "container", "height": 400,
+  "padding": {"left": 5, "top": 5, "right": 46, "bottom": 5},
   "data": {"url": "data/states.csv"},
   "transform": [
     {"filter": "datum.nights_2024_m != null && datum.nights_2024_m != ''"},
     {"calculate": "toNumber(datum.rv_registrations_2024) / toNumber(datum.population_2026) * 1000", "as": "own"},
     {"calculate": "toNumber(datum.nights_2024_m) * 1000000 / toNumber(datum.population_2026) * 1000", "as": "use"},
     {"calculate": "toNumber(datum.population_2026)", "as": "pop"},
-    {"calculate": "datum.code == 'NT' ? 'Northern Territory' : 'Other states'", "as": "group"}
+    {"calculate": "datum.code == 'NT' ? 'Northern Territory' : 'The six states'", "as": "group"}
   ],
   "encoding": {
     "x": {
       "field": "own", "type": "quantitative",
       "title": "Registered RVs per 1,000 residents",
-      "scale": {"domain": [0, 56], "nice": false}
+      "scale": {"domain": [0, 58], "nice": false},
+      "axis": {"tickCount": 6, "labelFontSize": 12, "titleFontSize": 12.5, "titlePadding": 12}
     },
     "y": {
       "field": "use", "type": "quantitative",
       "title": "Camping nights per 1,000 residents",
-      "scale": {"domain": [1300, 3950], "nice": false},
-      "axis": {"format": ","}
+      "scale": {"domain": [1400, 3900], "nice": false},
+      "axis": {"tickCount": 6, "labelExpr": "format(datum.value, ',.0f')",
+               "labelFontSize": 12, "titleFontSize": 12.5, "titlePadding": 12}
     }
   },
   "layer": [
     {
       "transform": [
         {"filter": "datum.code != 'NT'"},
-        {"regression": "use", "on": "own", "extent": [22, 52]}
+        {"regression": "use", "on": "own", "extent": [23, 52]}
       ],
-      "mark": {"type": "line", "color": "#c3c2b7", "strokeWidth": 2, "strokeDash": [5, 4]}
+      "mark": {"type": "line", "color": "#aeada7", "strokeWidth": 2, "strokeDash": [6, 5]}
     },
     {
-      "mark": {"type": "circle", "opacity": 0.9, "stroke": "#fcfcfb", "strokeWidth": 1.5},
+      "mark": {"type": "circle", "opacity": 0.88, "stroke": "#fcfcfb", "strokeWidth": 1.5},
       "encoding": {
         "size": {
           "field": "pop", "type": "quantitative", "title": "Population",
           "scale": {"type": "threshold", "domain": [1000000, 3000000, 6000000],
-                    "range": [120, 260, 460, 760]},
-          "legend": {"format": ".1s"}
+                    "range": [130, 300, 540, 900]},
+          "legend": {"orient": "bottom", "direction": "horizontal", "format": ".1s",
+                     "titleFontSize": 12, "labelFontSize": 11.5, "offset": 6}
         },
         "color": {
           "field": "group", "type": "nominal", "title": null,
-          "scale": {"domain": ["Other states", "Northern Territory"],
-                    "range": ["#2a78d6", "#eb6834"]}
+          "scale": {"domain": ["The six states", "Northern Territory"],
+                    "range": ["#2a78d6", "#eb6834"]},
+          "legend": {"orient": "bottom", "direction": "horizontal",
+                     "labelFontSize": 12.5, "symbolSize": 150, "offset": 6}
         },
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State"},
@@ -61,14 +67,35 @@
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "dx": 16, "dy": -12,
-               "fontSize": 12.5, "fontWeight": 700, "color": "#0b0b0b"},
-      "encoding": {"text": {"field": "code", "type": "nominal"}}
+      "mark": {"type": "text", "fontSize": 13, "fontWeight": 700, "color": "#0b0b0b"},
+      "encoding": {
+        "text": {"field": "code", "type": "nominal"},
+        "dx": {"value": 0},
+        "yOffset": {
+          "value": 0,
+          "condition": [
+            {"test": "datum.code === 'WA'",  "value": 34},
+            {"test": "datum.code === 'NSW'", "value": 30},
+            {"test": "datum.code === 'SA'",  "value": -30},
+            {"test": "datum.code === 'QLD'", "value": -2}
+          ]
+        },
+        "xOffset": {
+          "value": 26,
+          "condition": [
+            {"test": "datum.code === 'SA'",  "value": -4},
+            {"test": "datum.code === 'WA'",  "value": -4},
+            {"test": "datum.code === 'NSW'", "value": -6},
+            {"test": "datum.code === 'NT'",  "value": 24},
+            {"test": "datum.code === 'VIC'", "value": 30}
+          ]
+        }
+      }
     },
     {
       "transform": [{"filter": "datum.code == 'NT'"}],
-      "mark": {"type": "text", "align": "left", "dx": 16, "dy": 6,
-               "fontSize": 11.5, "fontStyle": "italic", "color": "#b8431a"},
+      "mark": {"type": "text", "align": "left", "dx": 24, "dy": 18,
+               "fontSize": 12, "fontStyle": "italic", "color": "#b8431a"},
       "encoding": {"text": {"value": "fewest vans, most nights"}}
     }
   ]
