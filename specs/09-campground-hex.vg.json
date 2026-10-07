@@ -101,13 +101,18 @@
             ]
           },
           "legend": {
+            "type": "symbol",
+            "symbolType": "square",
+            "symbolSize": 150,
             "orient": "bottom",
             "direction": "horizontal",
+            "columns": 6,
             "titleOrient": "top",
-            "format": ".0f",
+            "title": "Campgrounds in cell",
             "titleFontSize": 11.5,
             "labelFontSize": 11,
-            "offset": 8
+            "offset": 10,
+            "labelExpr": "datum.label == '2' ? '1' : datum.label == '5' ? '2–4' : datum.label == '10' ? '5–9' : datum.label == '25' ? '10–24' : datum.label == '50' ? '25–49' : '50+'"
           }
         },
         "tooltip": [
