@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Gear, No Go — Camping in Australia</title>
+<meta name="description" content="Australia owns more than 100,000 campervans and is using them less every year.">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">FIT3179 Data Visualisation 2 &middot; Semester 2, 2026</p>
+  <h1>All Gear,<br>No Go</h1>
+  <p class="standfirst">Australia owns more than 100,000 campervans and nearly 10,000 campgrounds
+    to put them in. It is using both less every year.</p>
+  <p class="byline">
+    <span>Nisarg</span><span>Monash University</span><span>October 2026</span>
+  </p>
+  <div class="tiles">
+    <div class="tile"><div class="v">17.3M</div><div class="k">Caravan &amp; camping trips, 2025</div></div>
+    <div class="tile"><div class="v">$12.6B</div><div class="k">Spent on them</div></div>
+    <div class="tile"><div class="v">103,481</div><div class="k">Campervans registered</div></div>
+    <div class="tile"><div class="v">9,945</div><div class="k">Campgrounds mapped</div></div>
+  </div>
+</header>
+
+<!-- ===== 1 ===== -->
+<section id="boom">
+  <div class="sec-head"><div class="sec-num">01</div><h2>The boom that was</h2></div>
+  <div class="prose">
+    <p class="todo">[Your narrative, ~80 words. The decade story: trips up 38% since 2015,
+    the industry worth $27.1B. Set the reader up to believe the boom is still running.]</p>
+  </div>
+  <div class="charts two">
+    <figure class="chart">
+      <h3>A decade of growth</h3>
+      <p class="sub">Every measure of the caravan and camping industry, indexed to 2015 = 100.</p>
+      <div class="viz" data-spec="01-slope-decade.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
+    </figure>
+    <figure class="chart">
+      <h3>Spending recovered — then stalled</h3>
+      <p class="sub">Domestic caravan and camping expenditure, 2020–2024.</p>
+      <div class="viz" data-spec="02-spend-area.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 2 ===== -->
+<section id="turn">
+  <div class="sec-head"><div class="sec-num">02</div><h2>The turn</h2></div>
+  <div class="prose">
+    <p class="todo">[~80 words. 2024 fell on every metric. Trips are getting shorter —
+    4.1 nights in 2020, 3.78 in 2024. The money kept rising while the nights fell.]</p>
+  </div>
+  <div class="charts two">
+    <figure class="chart">
+      <h3>Paying more, staying less</h3>
+      <p class="sub">Spend per trip against average trip length, one point per year. The path doubles back after 2023.</p>
+      <div class="viz" data-spec="03-trip-length.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
+    </figure>
+    <figure class="chart">
+      <h3>Where the money actually is</h3>
+      <p class="sub">Caravan park revenue and occupancy by site type. Width is revenue; height is occupancy.</p>
+      <div class="viz" data-spec="04-site-mosaic.vg.json"></div>
+      <figcaption><span class="todo">[Annotation — cabins earn $1.9B at 60% occupancy; unpowered tent sites earn $66M at 20%.]</span>
+        <span class="src">Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 3 ===== -->
+<section id="vans">
+  <div class="sec-head"><div class="sec-num">03</div><h2>Where the vans are</h2></div>
+  <div class="prose">
+    <p class="todo">[~90 words. 103,481 campervans across 2,414 postcodes. Ownership is a
+    regional habit, not a city one. Flag the rental-depot caveat here.]</p>
+  </div>
+  <div class="charts">
+    <figure class="chart">
+      <h3>Campervans by postcode</h3>
+      <p class="sub">Every postcode with a registered campervan, sized by count and coloured by share of the local vehicle fleet.</p>
+      <div class="viz" data-spec="05-postcode-map.vg.json"></div>
+      <figcaption><span class="todo">[Annotation — name the rental-depot outliers.]</span>
+        <span class="src">BITRE / data.gov.au, Road Vehicles Australia, January 2025</span></figcaption>
+    </figure>
+  </div>
+  <div class="charts two" style="margin-top:28px">
+    <figure class="chart">
+      <h3>The further out, the more vans</h3>
+      <p class="sub">Campervans per 10,000 registered vehicles, by remoteness class.</p>
+      <div class="viz" data-spec="06-remoteness.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">BITRE Jan 2025 &middot; ABS remoteness structure</span></figcaption>
+    </figure>
+    <figure class="chart">
+      <h3>Depots, not driveways</h3>
+      <p class="sub">Campervans against total registered vehicles, per postcode. Points far above the trend are fleet depots.</p>
+      <div class="viz" data-spec="07-fleet-scatter.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">BITRE / data.gov.au, January 2025</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 4 ===== -->
+<section id="campgrounds">
+  <div class="sec-head"><div class="sec-num">04</div><h2>Where the campgrounds are</h2></div>
+  <div class="prose">
+    <p class="todo">[~90 words. 9,945 campgrounds, hugging the coast. Note the OSM caveat:
+    this is where campgrounds are *mapped*, which is not quite where they are.]</p>
+  </div>
+  <div class="charts">
+    <figure class="chart">
+      <h3>Nearly ten thousand places to camp</h3>
+      <p class="sub">Every campground and caravan site in OpenStreetMap, by type.</p>
+      <div class="viz" data-spec="08-campground-dots.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">&copy; OpenStreetMap contributors (ODbL), via Overpass API, 7 Oct 2026</span></figcaption>
+    </figure>
+  </div>
+  <div class="charts two" style="margin-top:28px">
+    <figure class="chart">
+      <h3>Density, not dots</h3>
+      <p class="sub">Campgrounds aggregated to a 0.9&deg; grid — density rather than overlapping dots.</p>
+      <div class="viz" data-spec="09-campground-hex.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">&copy; OpenStreetMap contributors (ODbL)</span></figcaption>
+    </figure>
+    <figure class="chart">
+      <h3>Supply per head</h3>
+      <p class="sub">Campgrounds per 100,000 residents, by state and territory.</p>
+      <div class="viz" data-spec="10-supply-choropleth.vg.json"></div>
+      <figcaption><span class="todo">[Annotation — NT has 150 per 100,000; NSW has 27.]</span>
+        <span class="src">OpenStreetMap &middot; ABS population, March 2026</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 5 ===== -->
+<section id="gap">
+  <div class="sec-head"><div class="sec-num">05</div><h2>The gap</h2></div>
+  <div class="prose">
+    <p class="todo">[~90 words. The states that own the gear are not the states that camp.
+    NT owns almost nothing and camps the most. This is the heart of the argument.]</p>
+  </div>
+  <div class="charts two">
+    <figure class="chart">
+      <h3>Four measures, eight states</h3>
+      <p class="sub">Each state as a line across four normalised measures.</p>
+      <div class="viz" data-spec="11-parallel.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">Caravan Industry Association 2025 &middot; BITRE &middot; ABS</span></figcaption>
+    </figure>
+    <figure class="chart">
+      <h3>Absolute versus per person</h3>
+      <p class="sub">State rank by total camping nights, against rank per 1,000 residents.</p>
+      <div class="viz" data-spec="12-bump.vg.json"></div>
+      <figcaption><span class="todo">[Annotation — NSW is first by volume and fifth per head.]</span>
+        <span class="src">Caravan Industry Association 2025 &middot; ABS population</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 6 ===== -->
+<section id="booking">
+  <div class="sec-head"><div class="sec-num">06</div><h2>What they actually book</h2></div>
+  <div class="prose">
+    <p class="todo">[~80 words. Only 23% of trips involve camping. Cabins are 39%.
+    Then the regional split: Queensland Country up 52%, Hunter down 33%.]</p>
+  </div>
+  <div class="charts two">
+    <figure class="chart">
+      <h3>Camping is the third most common way to camp</h3>
+      <p class="sub">Share of caravan and camping trips by accommodation used.</p>
+      <div class="viz" data-spec="13-accommodation.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
+    </figure>
+    <figure class="chart">
+      <h3>Winners and losers</h3>
+      <p class="sub">Top ten tourism regions, sized by trips and coloured by the change in nights.</p>
+      <div class="viz" data-spec="14-region-map.vg.json"></div>
+      <figcaption><span class="todo">[Annotation]</span>
+        <span class="src">Caravan Industry Association 2025, Table 2</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== metadata ===== -->
+<div class="meta" id="sources">
+  <h2>Sources &amp; method</h2>
+  <table>
+    <thead><tr><th>Source</th><th>Used for</th><th>Period</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://assets.pc.gov.au/2025-09/sub012-competition-analysis-2025-attachment.pdf">Caravan Industry Association of Australia — <em>State of Industry 2025</em></a></td>
+          <td>Trips, nights, spend, occupancy, accommodation mix, regions</td><td>2024</td></tr>
+      <tr><td><a href="https://www.tra.gov.au/en/tourism-statistics/caravan-and-camping-data">Tourism Research Australia — caravan and camping data</a></td>
+          <td>Headline national figures</td><td>Year ending Dec 2025</td></tr>
+      <tr><td><a href="https://data.gov.au/data/dataset/road-vehicles-australia-january-2025">BITRE / data.gov.au — <em>Road Vehicles Australia</em></a></td>
+          <td>Campervan registrations by postcode and state</td><td>31 Jan 2025</td></tr>
+      <tr><td><a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/latest-release">ABS — national, state and territory population</a></td>
+          <td>Per-capita normalisation</td><td>Quarter to 31 Mar 2026</td></tr>
+      <tr><td><a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors (ODbL)</a></td>
+          <td>Campground and caravan site locations</td><td>Queried 7 Oct 2026</td></tr>
+      <tr><td><a href="https://github.com/matthewproctor/australianpostcodes">matthewproctor/australianpostcodes</a></td>
+          <td>Postcode centroids and remoteness class</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="note"><strong>Derived values.</strong> Per-capita and per-fleet rates are simple division;
+    the index in chart 01 sets each measure to 100 at 2015. Nothing is modelled or estimated.</p>
+  <p class="note"><strong>Known limitations.</strong> The ACT does not publish caravan and camping
+    trips or nights, and is shown as “not published” rather than zero. OpenStreetMap facility tags
+    are too sparse to chart — only site type, which is complete, is encoded. Registration postcode is
+    not residence: the largest concentrations are rental fleet depots. Two reporting periods appear
+    on this page (calendar 2024 and year-ending December 2025) and are never compared directly.</p>
+  <p class="note"><strong>Tools.</strong> Built with Vega-Lite. Every chart specification is in
+    <a href="https://github.com/Nisarg-bit/fit3179-dv2/tree/main/specs">/specs</a>.
+    Generative AI (Claude) was used to assist with data extraction, chart specifications and
+    copy-editing; all source selection, analysis and narrative decisions are the author’s.</p>
+  <p class="note" style="color:var(--muted)">Nisarg &middot; FIT3179 Data Visualisation &middot; Monash University &middot; October 2026</p>
+</div>
+
+</div>
+<script src="js/charts.js"></script>
+</body>
+</html>

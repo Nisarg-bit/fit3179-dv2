@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 500,
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [-132, 0],
+    "center": [0, -27],
+    "parallels": [-18, -36],
+    "scale": 840
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {"type": "geoshape", "fill": "#f4f3f0", "stroke": "#c3c2b7", "strokeWidth": 0.6}
+    },
+    {
+      "data": {"url": "data/campgrounds.csv"},
+      "mark": {"type": "circle", "size": 9, "opacity": 0.42},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "color": {
+          "field": "type",
+          "type": "nominal",
+          "title": "Site type",
+          "scale": {
+            "domain": ["camp_site", "caravan_site"],
+            "range": ["#2a78d6", "#eb6834"]
+          },
+          "legend": {"labelExpr": "datum.label == 'camp_site' ? 'Camp site' : 'Caravan site'"}
+        },
+        "tooltip": [
+          {"field": "name", "type": "nominal", "title": "Name"},
+          {"field": "type", "type": "nominal", "title": "Type"},
+          {"field": "state", "type": "nominal", "title": "State"}
+        ]
+      }
+    }
+  ]
+}

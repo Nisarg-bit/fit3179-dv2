@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 500,
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [-132, 0],
+    "center": [0, -27],
+    "parallels": [-18, -36],
+    "scale": 840
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {"type": "geoshape", "fill": "#f4f3f0", "stroke": "#c3c2b7", "strokeWidth": 0.6}
+    },
+    {
+      "data": {"url": "data/campgrounds.csv"},
+      "transform": [
+        {"calculate": "floor(datum.lon / 0.9) * 0.9 + 0.45", "as": "gx"},
+        {"calculate": "floor(datum.lat / 0.9) * 0.9 + 0.45", "as": "gy"},
+        {"aggregate": [{"op": "count", "as": "n"}], "groupby": ["gx", "gy"]}
+      ],
+      "mark": {"type": "square", "opacity": 0.88, "stroke": null},
+      "encoding": {
+        "longitude": {"field": "gx", "type": "quantitative"},
+        "latitude": {"field": "gy", "type": "quantitative"},
+        "size": {"value": 56},
+        "color": {
+          "field": "n",
+          "type": "quantitative",
+          "title": ["Campgrounds", "in cell"],
+          "scale": {"type": "quantize", "nice": true, "scheme": "blues"},
+          "legend": {"format": ".0f"}
+        },
+        "tooltip": [{"field": "n", "type": "quantitative", "title": "Campgrounds in cell"}]
+      }
+    }
+  ]
+}
