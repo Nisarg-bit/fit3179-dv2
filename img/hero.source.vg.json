@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1600,
+  "height": 560,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "padding": {"left": 720, "top": 30, "bottom": 30, "right": 50},
+  "background": "#0c2338",
+  "config": {"view": {"stroke": null}},
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [-132, 0], "center": [0, -27], "parallels": [-18, -36]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
+        "format": {"type": "topojson", "feature": "au_states"}
+      },
+      "mark": {"type": "geoshape", "fill": "#15385a", "stroke": "#1f537f", "strokeWidth": 0.7}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds.csv"
+      },
+      "transform": [
+        {"filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"}
+      ],
+      "mark": {"type": "circle", "size": 7, "color": "#ffb366", "opacity": 0.55},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"}
+      }
+    }
+  ]
+}
