@@ -110,7 +110,8 @@
       "title": "State",
       "scale": {
         "scheme": "tableau10"
-      }
+      },
+      "legend": null
     },
     "detail": {
       "field": "code"
@@ -128,7 +129,7 @@
       "mark": {
         "type": "point",
         "filled": true,
-        "size": 180,
+        "size": 130,
         "stroke": "#fcfcfb",
         "strokeWidth": 2
       },
@@ -159,17 +160,49 @@
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.axis === 'By total nights'"
+        }
+      ],
       "mark": {
         "type": "text",
-        "fontSize": 9,
-        "fontWeight": 700,
-        "color": "#ffffff"
+        "align": "right",
+        "dx": -14,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "baseline": "middle",
+        "color": "#0b0b0b"
       },
       "encoding": {
         "text": {
           "field": "code",
           "type": "nominal"
+        },
+        "color": null
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.axis === 'Per 1,000 residents'"
         }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "baseline": "middle",
+        "color": "#0b0b0b"
+      },
+      "encoding": {
+        "text": {
+          "field": "code",
+          "type": "nominal"
+        },
+        "color": null
       }
     }
   ],
@@ -188,5 +221,11 @@
   "autosize": {
     "type": "fit",
     "contains": "padding"
+  },
+  "padding": {
+    "left": 54,
+    "top": 5,
+    "bottom": 5,
+    "right": 54
   }
 }
