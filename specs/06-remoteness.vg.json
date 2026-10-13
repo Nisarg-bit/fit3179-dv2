@@ -131,10 +131,7 @@
   ],
   "title": {
     "text": "The outer regions, not the outback",
-    "subtitle": [
-      "Campervans per 10,000 registered vehicles by remoteness, January 2025.",
-      "Very Remote has the lowest rate of the five — below the major cities."
-    ],
+    "subtitle": "Campervans per 10,000 registered vehicles by remoteness, January 2025. Very Remote has the lowest rate of the five — below the major cities.",
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",

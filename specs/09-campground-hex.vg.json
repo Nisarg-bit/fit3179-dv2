@@ -131,8 +131,9 @@
   "title": {
     "text": "Where campgrounds cluster",
     "subtitle": [
-      "Campgrounds per 0.9 degree cell. Classed breaks, because a few cells hold",
-      "more than fifty sites. Drag the slider to hide the sparsest cells."
+      "Campgrounds per 0.9 degree cell. Classed breaks,",
+      "because a few cells hold more than fifty sites.",
+      "Drag the slider to hide the sparsest cells."
     ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",

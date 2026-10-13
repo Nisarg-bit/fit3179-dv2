@@ -124,10 +124,7 @@
   ],
   "title": {
     "text": "Nearly ten thousand places to camp",
-    "subtitle": [
-      "Every campground and caravan site in OpenStreetMap, October 2026.",
-      "Click a legend entry to isolate one type."
-    ],
+    "subtitle": "Every campground and caravan site in OpenStreetMap, October 2026. Click a legend entry to isolate one type.",
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",

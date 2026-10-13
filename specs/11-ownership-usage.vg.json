@@ -1,14 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "Owning and camping rise together —",
-      "everywhere except the Territory"
-    ],
-    "subtitle": [
-      "Campervan ownership against camping nights, per 1,000 residents, 2024.",
-      "Dashed trend fitted to the six states; the Northern Territory is excluded from it."
-    ],
+    "text": "Owning and camping rise together — everywhere except the Territory",
+    "subtitle": "Campervan ownership against camping nights, per 1,000 residents, 2024. The dashed trend excludes the Northern Territory.",
     "fontSize": 16,
     "lineHeight": 21,
     "anchor": "start",

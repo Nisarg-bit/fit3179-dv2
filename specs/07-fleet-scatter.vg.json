@@ -1,13 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "Depots, not driveways"
-    ],
-    "subtitle": [
-      "Every postcode: campervans against its total registered vehicle fleet, January 2025.",
-      "Click a remoteness class in the legend to isolate it."
-    ],
+    "text": "Depots, not driveways",
+    "subtitle": "Every postcode: campervans against its total registered vehicle fleet, January 2025. Click a remoteness class in the legend to isolate it.",
     "fontSize": 15,
     "anchor": "start",
     "color": "#0b0b0b",

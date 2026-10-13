@@ -136,10 +136,7 @@
   ],
   "title": {
     "text": "Campervans by postcode",
-    "subtitle": [
-      "Size is the campervan count; colour is campervans per 10,000 local vehicles, January 2025.",
-      "Use the dropdown to isolate one state."
-    ],
+    "subtitle": "Size is the campervan count; colour is campervans per 10,000 local vehicles, January 2025. Use the dropdown to isolate one state.",
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",

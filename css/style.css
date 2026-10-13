@@ -102,6 +102,9 @@ figure.chart h3 {
   font-size: 17px; font-weight: 600; margin: 0 0 4px; letter-spacing: -.01em;
 }
 figure.chart .sub { font-size: 14px; color: var(--muted); margin: 0 0 16px; max-width: 60ch; }
+/* Full-width charts: the caption should span the figure, not sit in a 70ch column. */
+.charts:not(.two) figure.chart figcaption { max-width: none; }
+
 figure.chart figcaption {
   font-size: 13px; color: var(--ink-2); margin-top: 14px;
   padding-top: 12px; border-top: 1px solid var(--grid); max-width: 70ch;
