@@ -15,7 +15,7 @@
   --accent-2:    #eb6834;
   --critical:    #d03b3b;
 
-  --measure: 66ch;
+  --measure: 90ch;      /* section narrative; top of the 45-90ch readable range */
   --gap: 28px;
   --font: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -125,7 +125,7 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 .meta th { font-size: 12px; text-transform: uppercase; letter-spacing: .08em;
            color: var(--muted); font-weight: 600; }
 .meta a { color: var(--accent); }
-.note { font-size: 14px; color: var(--ink-2); max-width: var(--measure); margin: 20px 0 0; }
+.note { font-size: 14px; color: var(--ink-2); max-width: 66ch; margin: 20px 0 0; }
 
 .todo { color: var(--critical); font-style: italic; }
 

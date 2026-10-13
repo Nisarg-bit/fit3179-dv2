@@ -5,7 +5,7 @@
 // raw.githubusercontent both ignore query strings for caching, so a stale spec
 // could survive a BUILD bump. Instead each spec is fetched with
 // cache: 'reload', which forces a revalidated network fetch every time.
-const BUILD = '2026-10-13a';
+const BUILD = '2026-10-13b';
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();
