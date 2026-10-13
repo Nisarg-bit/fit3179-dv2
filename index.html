@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All Gear, No Go — Camping in Australia</title>
 <meta name="description" content="Australia owns more than 100,000 campervans and is using them less every year.">
-<link rel="stylesheet" href="css/style.css?v=2026-10-13b">
+<link rel="stylesheet" href="css/style.css?v=2026-10-13c">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -81,7 +81,7 @@
 <section id="vans">
   <div class="sec-head"><div class="sec-num">03</div><h2>Where the vans are</h2></div>
   <div class="prose">
-    <p>The 103,481 campervans on the register are spread across 2,414 postcodes, and they are not a city habit. Ownership runs at 38 per 10,000 vehicles in the major cities and rises to 62.5 in the outer regions &mdash; then collapses to 29.8 in Very Remote Australia, the lowest of the five classes. Vans cluster where there is road access to country, not in the deep interior. One caveat: registration records where a vehicle is registered, and three rental-depot postcodes alone hold 3.1% of the national fleet.</p>
+    <p>The 103,481 campervans on the register are spread across 2,414 postcodes, and they are not a city habit. Ownership runs at 38 per 10,000 vehicles in the major cities and rises to 62.5 in the outer regions &mdash; then collapses to 29.8 in Very Remote Australia, the lowest of the five classes. Vans cluster where there is road access to country, not in the deep interior. One caveat matters: registration records where a vehicle is registered, not where its owner lives. Two depot postcodes sit at forty and thirty times the median rate, and ten of the eighteen highest are Tasmanian &mdash; hire fleets, not households.</p>
   </div>
   <div class="charts">
     <figure class="chart">
@@ -99,8 +99,8 @@
     </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <div class="viz" data-spec="07-fleet-scatter.vg.json"></div>
-      <figcaption>Both axes are logarithmic. Most postcodes fall on a straight line &mdash; vans in proportion to fleet size. The three labelled points sit far above it; 4013 runs 1,819 campervans per 10,000 vehicles, against 30 to 63 across the remoteness classes.
+      <div class="viz" data-spec="07-fleet-lollipop.vg.json"></div>
+      <figcaption>Ten of the eighteen are Tasmanian. The two extremes are rental depots &mdash; postcode 4013 in Queensland runs 1,820 campervans per 10,000 vehicles against a median of 40 &mdash; but Tasmania is not a depot, it is a whole state of hire fleets registered where the vans are based rather than where their drivers live. Postcodes with fewer than 2,000 vehicles are excluded, because three vans in a fleet of three produces a meaningless rate.
         <span class="src">BITRE / data.gov.au, January 2025</span></figcaption>
     </figure>
   </div>
@@ -183,6 +183,6 @@
 </section>
 
 </div>
-<script src="js/charts.js?v=2026-10-13b"></script>
+<script src="js/charts.js?v=2026-10-13c"></script>
 </body>
 </html>

@@ -1,0 +1,225 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 430,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_postcode.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "postcode": "string",
+        "state": "string",
+        "campervans": "number",
+        "fleet_total": "number",
+        "per_10k_fleet": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.fleet_total >= 2000"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rk"
+        }
+      ],
+      "sort": [
+        {
+          "field": "per_10k_fleet",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rk <= 18"
+    },
+    {
+      "calculate": "datum.postcode + '  ' + datum.state",
+      "as": "label"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "label",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "per_10k_fleet",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontSize": 12.5,
+        "grid": false,
+        "labelPadding": 6
+      }
+    },
+    "x": {
+      "field": "per_10k_fleet",
+      "type": "quantitative",
+      "title": "Campervans per 10,000 registered vehicles",
+      "scale": {
+        "domain": [
+          0,
+          2100
+        ],
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          0,
+          500,
+          1000,
+          1500,
+          2000
+        ],
+        "titleFontSize": 12,
+        "grid": true
+      }
+    },
+    "color": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "Tas",
+          "Qld",
+          "Vic",
+          "NSW"
+        ],
+        "range": [
+          "#1baf7a",
+          "#eb6834",
+          "#2a78d6",
+          "#898781"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "offset": 10,
+        "symbolType": "circle"
+      }
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "m": 40
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#898781",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "m",
+          "type": "quantitative"
+        },
+        "y": null,
+        "color": null
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2.5,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        },
+        "x2": {
+          "field": "per_10k_fleet"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 150,
+        "opacity": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "postcode",
+            "type": "nominal",
+            "title": "Postcode"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "campervans",
+            "type": "quantitative",
+            "title": "Campervans",
+            "format": ","
+          },
+          {
+            "field": "fleet_total",
+            "type": "quantitative",
+            "title": "All vehicles",
+            "format": ","
+          },
+          {
+            "field": "per_10k_fleet",
+            "type": "quantitative",
+            "title": "Per 10,000",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 11,
+        "fontSize": 11.5,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "per_10k_fleet",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    }
+  ],
+  "title": {
+    "text": "Rental fleets, not households",
+    "subtitle": [
+      "Campervans per 10,000 registered vehicles, January 2025. The 18 highest postcodes",
+      "with a fleet of at least 2,000 vehicles. The median such postcode runs 40 (dashed line)."
+    ],
+    "fontSize": 15,
+    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "anchor": "start",
+    "color": "#0b0b0b",
+    "offset": 10,
+    "subtitleFontSize": 12.5,
+    "subtitleColor": "#52514e",
+    "subtitlePadding": 5
+  }
+}
