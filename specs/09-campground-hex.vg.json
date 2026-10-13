@@ -59,6 +59,10 @@
         },
         {
           "filter": "datum.n >= minSites"
+        },
+        {
+          "calculate": "datum.n < 2 ? '1' : datum.n < 5 ? '2–4' : datum.n < 10 ? '5–9' : datum.n < 25 ? '10–24' : datum.n < 50 ? '25–49' : '50+'",
+          "as": "band"
         }
       ],
       "mark": {
@@ -79,20 +83,17 @@
           "value": 56
         },
         "color": {
-          "field": "n",
-          "type": "quantitative",
-          "title": [
-            "Campgrounds",
-            "in cell"
-          ],
+          "field": "band",
+          "type": "ordinal",
+          "title": "Campgrounds in cell",
           "scale": {
-            "type": "threshold",
             "domain": [
-              2,
-              5,
-              10,
-              25,
-              50
+              "1",
+              "2–4",
+              "5–9",
+              "10–24",
+              "25–49",
+              "50+"
             ],
             "range": [
               "#e8f1fd",
@@ -111,11 +112,9 @@
             "direction": "horizontal",
             "columns": 6,
             "titleOrient": "top",
-            "title": "Campgrounds in cell",
             "titleFontSize": 11.5,
             "labelFontSize": 11,
-            "offset": 10,
-            "labelExpr": "datum.label == '2' ? '1' : datum.label == '5' ? '2–4' : datum.label == '10' ? '5–9' : datum.label == '25' ? '10–24' : datum.label == '50' ? '25–49' : '50+'"
+            "offset": 10
           }
         },
         "tooltip": [
@@ -123,6 +122,11 @@
             "field": "n",
             "type": "quantitative",
             "title": "Campgrounds in cell"
+          },
+          {
+            "field": "band",
+            "type": "nominal",
+            "title": "Class"
           }
         ]
       }
