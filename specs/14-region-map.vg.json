@@ -77,7 +77,6 @@
           ],
           "scale": {
             "scheme": "redblue",
-            "reverse": true,
             "domainMid": 0,
             "domain": [
               -35,
