@@ -114,7 +114,7 @@
       "legend": null
     },
     "detail": {
-      "field": "code"
+      "field": "state"
     }
   },
   "layer": [
@@ -123,6 +123,24 @@
         "type": "line",
         "strokeWidth": 2.6,
         "opacity": 0.9
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "hl",
+            "empty": true,
+            "value": 0.9
+          },
+          "value": 0.14
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "hl",
+            "empty": false,
+            "value": 4.5
+          },
+          "value": 2.6
+        }
       }
     },
     {
@@ -156,8 +174,30 @@
             "title": "Nights per 1,000",
             "format": ".0f"
           }
-        ]
-      }
+        ],
+        "opacity": {
+          "condition": {
+            "param": "hl",
+            "empty": true,
+            "value": 0.9
+          },
+          "value": 0.14
+        }
+      },
+      "params": [
+        {
+          "name": "hl",
+          "select": {
+            "type": "point",
+            "fields": [
+              "state"
+            ],
+            "on": "click",
+            "toggle": false,
+            "clear": "dblclick"
+          }
+        }
+      ]
     },
     {
       "transform": [
@@ -176,10 +216,18 @@
       },
       "encoding": {
         "text": {
-          "field": "code",
+          "field": "state",
           "type": "nominal"
         },
-        "color": null
+        "color": null,
+        "opacity": {
+          "condition": {
+            "param": "hl",
+            "empty": true,
+            "value": 0.9
+          },
+          "value": 0.14
+        }
       }
     },
     {
@@ -199,16 +247,27 @@
       },
       "encoding": {
         "text": {
-          "field": "code",
+          "field": "state",
           "type": "nominal"
         },
-        "color": null
+        "color": null,
+        "opacity": {
+          "condition": {
+            "param": "hl",
+            "empty": true,
+            "value": 0.9
+          },
+          "value": 0.14
+        }
       }
     }
   ],
   "title": {
     "text": "Absolute versus per person",
-    "subtitle": "State rank by total camping nights and by nights per 1,000 residents",
+    "subtitle": [
+      "State rank by total camping nights and by nights per 1,000 residents.",
+      "Click a state to highlight it; double-click to reset."
+    ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",
@@ -223,9 +282,9 @@
     "contains": "padding"
   },
   "padding": {
-    "left": 54,
+    "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 54
+    "right": 5
   }
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 420,
+  "height": 440,
   "projection": {
     "type": "conicEqualArea",
     "rotate": [
@@ -11,7 +11,13 @@
     "parallels": [
       -18,
       -36
-    ]
+    ],
+    "scale": {
+      "expr": "(min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom)"
+    },
+    "translate": {
+      "expr": "[width / 2 + mapPanX - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.018354, height / 2 + mapPanY - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.926161]"
+    }
   },
   "layer": [
     {
@@ -26,7 +32,8 @@
         "type": "geoshape",
         "fill": "#f4f3f0",
         "stroke": "#c3c2b7",
-        "strokeWidth": 0.6
+        "strokeWidth": 0.6,
+        "clip": true
       }
     },
     {
@@ -37,7 +44,8 @@
         "type": "circle",
         "opacity": 0.88,
         "stroke": "#fcfcfb",
-        "strokeWidth": 1.2
+        "strokeWidth": 1.2,
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -94,7 +102,7 @@
             "title": "Region"
           },
           {
-            "field": "state",
+            "field": "stateName",
             "type": "nominal",
             "title": "State"
           },
@@ -126,6 +134,10 @@
       },
       "transform": [
         {
+          "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
+          "as": "stateName"
+        },
+        {
           "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
         }
       ]
@@ -135,6 +147,10 @@
         "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/regions.csv"
       },
       "transform": [
+        {
+          "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
+          "as": "stateName"
+        },
         {
           "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
         },
@@ -148,7 +164,8 @@
         "dx": 16,
         "fontSize": 11,
         "fontWeight": 600,
-        "color": "#52514e"
+        "color": "#52514e",
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -179,7 +196,25 @@
     "subtitlePadding": 5
   },
   "autosize": {
-    "type": "fit",
+    "type": "fit-x",
     "contains": "padding"
+  },
+  "params": [
+    {
+      "name": "mapZoom",
+      "value": 1
+    },
+    {
+      "name": "mapPanX",
+      "value": 0
+    },
+    {
+      "name": "mapPanY",
+      "value": 0
+    }
+  ],
+  "view": {
+    "stroke": "#dcdad2",
+    "strokeWidth": 1
   }
 }

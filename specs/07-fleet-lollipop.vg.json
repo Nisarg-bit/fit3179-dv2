@@ -21,6 +21,10 @@
   },
   "transform": [
     {
+      "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
+      "as": "stateName"
+    },
+    {
       "filter": "datum.fleet_total >= 2000"
     },
     {
@@ -41,7 +45,7 @@
       "filter": "datum.rk <= 18"
     },
     {
-      "calculate": "datum.postcode + '  ' + datum.state",
+      "calculate": "datum.postcode + '  ' + datum.stateName",
       "as": "label"
     }
   ],
@@ -84,15 +88,15 @@
       }
     },
     "color": {
-      "field": "state",
+      "field": "stateName",
       "type": "nominal",
       "title": null,
       "scale": {
         "domain": [
-          "Tas",
-          "Qld",
-          "Vic",
-          "NSW"
+          "Tasmania",
+          "Queensland",
+          "Victoria",
+          "New South Wales"
         ],
         "range": [
           "#1baf7a",
@@ -165,7 +169,7 @@
             "title": "Postcode"
           },
           {
-            "field": "state",
+            "field": "stateName",
             "type": "nominal",
             "title": "State"
           },

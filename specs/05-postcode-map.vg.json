@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 460,
+  "height": 440,
   "projection": {
     "type": "conicEqualArea",
     "rotate": [
@@ -11,7 +11,13 @@
     "parallels": [
       -18,
       -36
-    ]
+    ],
+    "scale": {
+      "expr": "(min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom)"
+    },
+    "translate": {
+      "expr": "[width / 2 + mapPanX - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.018354, height / 2 + mapPanY - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.926161]"
+    }
   },
   "layer": [
     {
@@ -26,29 +32,29 @@
         "type": "geoshape",
         "fill": "#f0efec",
         "stroke": "#c3c2b7",
-        "strokeWidth": 0.6
+        "strokeWidth": 0.6,
+        "clip": true
       }
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_postcode.csv"
+        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_cells.csv"
       },
       "transform": [
         {
-          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+          "filter": "stateSel == 'All' || upper(datum.state) == upper(stateSel)"
         },
         {
-          "filter": "datum.campervans > 0"
-        },
-        {
-          "filter": "stateSel == 'All' || datum.state == stateSel"
+          "calculate": "datum.fleet_total < 300 ? 'Too few vehicles' : datum.per_10k_fleet < 25 ? 'Under 25' : datum.per_10k_fleet < 50 ? '25\u201349' : datum.per_10k_fleet < 100 ? '50\u201399' : datum.per_10k_fleet < 200 ? '100\u2013199' : '200 or more'",
+          "as": "band"
         }
       ],
       "mark": {
         "type": "circle",
-        "opacity": 0.72,
+        "opacity": 0.8,
         "stroke": "#fcfcfb",
-        "strokeWidth": 0.3
+        "strokeWidth": 0.5,
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -62,55 +68,68 @@
         "size": {
           "field": "campervans",
           "type": "quantitative",
-          "title": "Campervans",
+          "title": "Campervans in the square",
           "scale": {
             "type": "sqrt",
+            "domain": [
+              0,
+              10500
+            ],
             "range": [
-              6,
-              900
+              8,
+              340
             ]
           },
           "legend": {
-            "format": ".0f",
+            "format": ",.0f",
             "values": [
-              10,
               100,
-              400,
-              1200
-            ]
+              1000,
+              5000,
+              10000
+            ],
+            "orient": "right"
           }
         },
         "color": {
-          "field": "per_10k_fleet",
-          "type": "quantitative",
+          "field": "band",
+          "type": "ordinal",
           "title": [
             "Per 10,000",
             "local vehicles"
           ],
           "scale": {
-            "type": "quantize",
-            "nice": true,
-            "scheme": "blues"
+            "domain": [
+              "Under 25",
+              "25\u201349",
+              "50\u201399",
+              "100\u2013199",
+              "200 or more",
+              "Too few vehicles"
+            ],
+            "range": [
+              "#cde2fb",
+              "#9ec5f4",
+              "#5598e7",
+              "#2a78d6",
+              "#184f95",
+              "#c3c2b7"
+            ]
           },
           "legend": {
-            "format": ".0f"
+            "orient": "right"
           }
+        },
+        "order": {
+          "field": "campervans",
+          "type": "quantitative",
+          "sort": "descending"
         },
         "tooltip": [
           {
-            "field": "postcode",
-            "type": "nominal",
-            "title": "Postcode"
-          },
-          {
-            "field": "state",
+            "field": "state_name",
             "type": "nominal",
             "title": "State"
-          },
-          {
-            "field": "remoteness",
-            "type": "nominal",
-            "title": "Remoteness"
           },
           {
             "field": "campervans",
@@ -127,16 +146,29 @@
           {
             "field": "per_10k_fleet",
             "type": "quantitative",
-            "title": "Per 10k fleet",
+            "title": "Per 10,000 vehicles",
             "format": ".1f"
+          },
+          {
+            "field": "postcodes",
+            "type": "quantitative",
+            "title": "Postcodes pooled"
+          },
+          {
+            "field": "top_postcode",
+            "type": "nominal",
+            "title": "Largest postcode"
           }
         ]
       }
     }
   ],
   "title": {
-    "text": "Campervans by postcode",
-    "subtitle": "Size is the campervan count; colour is campervans per 10,000 local vehicles, January 2025. Use the dropdown to isolate one state.",
+    "text": "Campervans by postcode area",
+    "subtitle": [
+      "Postcodes pooled into 1\u00b0 squares, about 100 km across. Size is the campervan count.",
+      "Colour is campervans per 10,000 local vehicles, January 2025. Use the dropdown to isolate one state."
+    ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",
@@ -172,14 +204,30 @@
           "Western Australia",
           "Tasmania",
           "Northern Territory",
-          "ACT"
+          "Australian Capital Territory"
         ],
         "name": "Show state:  "
       }
+    },
+    {
+      "name": "mapZoom",
+      "value": 1
+    },
+    {
+      "name": "mapPanX",
+      "value": 0
+    },
+    {
+      "name": "mapPanY",
+      "value": 0
     }
   ],
   "autosize": {
-    "type": "fit",
+    "type": "fit-x",
     "contains": "padding"
+  },
+  "view": {
+    "stroke": "#dcdad2",
+    "strokeWidth": 1
   }
 }

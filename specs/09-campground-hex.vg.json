@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 500,
+  "height": 440,
   "projection": {
     "type": "conicEqualArea",
     "rotate": [
@@ -11,7 +11,13 @@
     "parallels": [
       -18,
       -36
-    ]
+    ],
+    "scale": {
+      "expr": "(min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom)"
+    },
+    "translate": {
+      "expr": "[width / 2 + mapPanX - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.018354, height / 2 + mapPanY - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.926161]"
+    }
   },
   "layer": [
     {
@@ -26,7 +32,8 @@
         "type": "geoshape",
         "fill": "#f4f3f0",
         "stroke": "#c3c2b7",
-        "strokeWidth": 0.6
+        "strokeWidth": 0.6,
+        "clip": true
       }
     },
     {
@@ -61,14 +68,15 @@
           "filter": "datum.n >= minSites"
         },
         {
-          "calculate": "datum.n < 2 ? '1' : datum.n < 5 ? '2–4' : datum.n < 10 ? '5–9' : datum.n < 25 ? '10–24' : datum.n < 50 ? '25–49' : '50+'",
+          "calculate": "datum.n < 2 ? '1' : datum.n < 5 ? '2\u20134' : datum.n < 10 ? '5\u20139' : datum.n < 25 ? '10\u201324' : datum.n < 50 ? '25\u201349' : '50+'",
           "as": "band"
         }
       ],
       "mark": {
         "type": "square",
         "opacity": 0.88,
-        "stroke": null
+        "stroke": null,
+        "clip": true
       },
       "encoding": {
         "longitude": {
@@ -80,7 +88,9 @@
           "type": "quantitative"
         },
         "size": {
-          "value": 56
+          "value": {
+            "expr": "56 * mapZoom * mapZoom"
+          }
         },
         "color": {
           "field": "band",
@@ -89,10 +99,10 @@
           "scale": {
             "domain": [
               "1",
-              "2–4",
-              "5–9",
-              "10–24",
-              "25–49",
+              "2\u20134",
+              "5\u20139",
+              "10\u201324",
+              "25\u201349",
               "50+"
             ],
             "range": [
@@ -159,10 +169,26 @@
         "step": 1,
         "name": "Only cells with at least:  "
       }
+    },
+    {
+      "name": "mapZoom",
+      "value": 1
+    },
+    {
+      "name": "mapPanX",
+      "value": 0
+    },
+    {
+      "name": "mapPanY",
+      "value": 0
     }
   ],
   "autosize": {
-    "type": "fit",
+    "type": "fit-x",
     "contains": "padding"
+  },
+  "view": {
+    "stroke": "#dcdad2",
+    "strokeWidth": 1
   }
 }

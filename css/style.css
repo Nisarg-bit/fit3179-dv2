@@ -160,6 +160,9 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 .todo { color: var(--critical); font-style: italic; }
 
 /* ---------- Vega-Lite bound controls (dropdowns, sliders) ---------- */
+/* hide the empty control strip under charts that have no dropdown or slider */
+.viz .vega-bindings:not(:has(.vega-bind)) { display: none; }
+
 
 .viz .vega-bindings {
   display: flex;
@@ -196,3 +199,18 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 
 .viz .vega-bindings input[type="range"] { accent-color: var(--accent); width: 190px; }
 .viz .vega-bindings label { display: flex; align-items: center; gap: 8px; }
+
+/* zoom and pan controls above each map */
+.map-controls {
+  display: flex; align-items: center; justify-content: flex-end; gap: 6px;
+  margin: 0 0 8px; font-size: 12px; color: var(--muted);
+}
+.map-controls .map-hint { margin-right: 6px; }
+.map-controls button {
+  font: inherit; font-size: 13px; line-height: 1; min-width: 30px; padding: 6px 10px;
+  color: var(--ink); background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 2px; cursor: pointer;
+}
+.map-controls button:hover:not(:disabled) { background: var(--page); }
+.map-controls button:disabled { color: var(--muted); cursor: default; opacity: .6; }
+.map-controls button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }

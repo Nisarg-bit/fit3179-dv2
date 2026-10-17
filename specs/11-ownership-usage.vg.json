@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Owning and camping rise together — everywhere except the Territory",
+    "text": "Owning and camping rise together \u2014 everywhere except the Territory",
     "subtitle": "Campervan ownership against camping nights, per 1,000 residents, 2024. The dashed trend excludes the Northern Territory.",
     "fontSize": 16,
     "lineHeight": 21,
@@ -18,7 +18,7 @@
   "padding": {
     "left": 5,
     "top": 5,
-    "right": 46,
+    "right": 5,
     "bottom": 5
   },
   "data": {
@@ -107,6 +107,51 @@
           6,
           5
         ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code != 'NT'"
+        },
+        {
+          "regression": "use",
+          "on": "own",
+          "extent": [
+            23,
+            52
+          ]
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "own",
+              "as": "mn"
+            }
+          ]
+        },
+        {
+          "filter": "datum.own == datum.mn"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "dy": 0,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#52514e",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "text": {
+          "value": [
+            "Trend line (six states;",
+            "Northern Territory excluded)"
+          ]
+        }
       }
     },
     {
@@ -199,62 +244,156 @@
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.code == 'TAS'"
+        }
+      ],
       "mark": {
         "type": "text",
-        "fontSize": 13,
+        "fontSize": 12.5,
         "fontWeight": 700,
-        "color": "#0b0b0b"
+        "color": "#0b0b0b",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 12.4
       },
       "encoding": {
         "text": {
-          "field": "code",
+          "field": "state",
           "type": "nominal"
-        },
-        "yOffset": {
-          "value": 0,
-          "condition": [
-            {
-              "test": "datum.code === 'WA'",
-              "value": 34
-            },
-            {
-              "test": "datum.code === 'NSW'",
-              "value": 30
-            },
-            {
-              "test": "datum.code === 'SA'",
-              "value": -30
-            },
-            {
-              "test": "datum.code === 'QLD'",
-              "value": -2
-            }
-          ]
-        },
-        "xOffset": {
-          "value": 26,
-          "condition": [
-            {
-              "test": "datum.code === 'SA'",
-              "value": -4
-            },
-            {
-              "test": "datum.code === 'WA'",
-              "value": -4
-            },
-            {
-              "test": "datum.code === 'NSW'",
-              "value": -6
-            },
-            {
-              "test": "datum.code === 'NT'",
-              "value": 24
-            },
-            {
-              "test": "datum.code === 'VIC'",
-              "value": 30
-            }
-          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code == 'NT'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b0b0b",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 12.4
+      },
+      "encoding": {
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code == 'SA'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b0b0b",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -14.8
+      },
+      "encoding": {
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code == 'QLD'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b0b0b",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 19.1
+      },
+      "encoding": {
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code == 'WA'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b0b0b",
+        "align": "center",
+        "baseline": "top",
+        "dy": 18.1
+      },
+      "encoding": {
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code == 'NSW'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b0b0b",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -22.9
+      },
+      "encoding": {
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code == 'VIC'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b0b0b",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 22.9
+      },
+      "encoding": {
+        "text": {
+          "field": "state",
+          "type": "nominal"
         }
       }
     },

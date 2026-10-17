@@ -58,7 +58,8 @@
         "grid": false
       },
       "scale": {
-        "padding": 0.14
+        "type": "point",
+        "padding": 0.04
       }
     },
     "y": {
@@ -174,7 +175,7 @@
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 122
+    "right": 8
   },
   "autosize": {
     "type": "fit",
