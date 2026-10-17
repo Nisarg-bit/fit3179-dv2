@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Zilla+Slab:wght@600;700&amp;display=swap">
-<link rel="stylesheet" href="css/style.css?v=2026-10-17c">
+<link rel="stylesheet" href="css/style.css?v=2026-10-17d">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -342,10 +342,118 @@
     </tbody>
   </table>
   <p class="note"><strong>Method notes.</strong> Postcodes on the campervan map are pooled into 1&deg; squares by the position of each postcode centre; squares with fewer than 300 registered vehicles are greyed because their rates are unreliable. The rental-fleet chart keeps only postcodes with at least 2,000 vehicles. The trend line on the ownership-and-camping chart is fitted to the six states and leaves out the Northern Territory. Registration records where a vehicle is registered, not where its owner lives, so depot and hire-fleet postcodes inflate some figures. Industry figures are for 2024 and registration figures for January 2025.</p>
-  <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository. Typefaces are Figtree and Zilla Slab (SIL Open Font License) from Google Fonts; the hero scene and campervan are drawn in SVG for this project.</p>
+  <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository. Typefaces are Figtree and Zilla Slab (SIL Open Font License) from Google Fonts; the hero and footer scenes and the campervan are drawn in SVG for this project.</p>
 </section>
 
 </div>
-<script src="js/charts.js?v=2026-10-17c"></script>
+
+<footer class="site-foot">
+  <svg class="foot-edge" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 0H1200V12C1020 40 880 6 690 24C500 42 330 10 170 30C100 38 40 34 0 28Z"/>
+  </svg>
+  <svg class="foot-scene" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#f6efd8" stop-opacity=".35"/>
+        <stop offset="1" stop-color="#f6efd8" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="fireGlow2" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#ffb35c" stop-opacity=".95"/>
+        <stop offset=".5" stop-color="#ff8a3c" stop-opacity=".32"/>
+        <stop offset="1" stop-color="#ff8a3c" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="groundSpill" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#ff9a4a" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#ff9a4a" stop-opacity="0"/>
+      </radialGradient>
+      <mask id="moonMask">
+        <rect x="900" y="0" width="240" height="240" fill="#fff"/>
+        <circle cx="1034" cy="98" r="27" fill="#000"/>
+      </mask>
+    </defs>
+    <g fill="#fff">
+      <circle class="star" cx="683" cy="91" r="1.6" style="--d:3.9s"/>
+      <circle class="star" cx="168" cy="288" r="0.9" style="--d:2.2s"/>
+      <circle class="star" cx="138" cy="273" r="1.1" style="--d:0.2s"/>
+      <circle class="star" cx="908" cy="228" r="0.9" style="--d:1.4s"/>
+      <circle class="star" cx="1148" cy="231" r="0.9" style="--d:5.0s"/>
+      <circle class="star" cx="273" cy="128" r="1.9" style="--d:5.7s"/>
+      <circle class="star" cx="832" cy="39" r="1.1" style="--d:0.3s"/>
+      <circle class="star" cx="292" cy="162" r="1.6" style="--d:0.9s"/>
+      <circle class="star" cx="261" cy="306" r="1.3" style="--d:3.4s"/>
+      <circle class="star" cx="390" cy="66" r="1.9" style="--d:3.4s"/>
+      <circle class="star" cx="404" cy="204" r="0.9" style="--d:3.3s"/>
+      <circle class="star" cx="148" cy="302" r="0.9" style="--d:3.7s"/>
+      <circle class="star" cx="1036" cy="286" r="1.6" style="--d:4.7s"/>
+      <circle class="star" cx="973" cy="313" r="1.6" style="--d:2.2s"/>
+      <circle class="star" cx="528" cy="106" r="1.1" style="--d:0.5s"/>
+      <circle class="star" cx="634" cy="282" r="1.6" style="--d:5.3s"/>
+      <circle class="star" cx="939" cy="161" r="1.9" style="--d:5.9s"/>
+      <circle class="star" cx="261" cy="276" r="1.6" style="--d:1.0s"/>
+      <circle class="star" cx="720" cy="91" r="1.6" style="--d:2.5s"/>
+      <circle class="star" cx="178" cy="299" r="1.9" style="--d:4.7s"/>
+      <circle class="star" cx="662" cy="188" r="1.3" style="--d:3.6s"/>
+      <circle class="star" cx="954" cy="49" r="0.9" style="--d:5.7s"/>
+      <circle class="star" cx="990" cy="47" r="0.9" style="--d:4.4s"/>
+      <circle class="star" cx="654" cy="309" r="1.6" style="--d:1.7s"/>
+      <circle class="star" cx="810" cy="191" r="0.9" style="--d:5.6s"/>
+      <circle class="star" cx="747" cy="100" r="1.9" style="--d:0.7s"/>
+      <circle class="star" cx="140" cy="125" r="1.3" style="--d:0.8s"/>
+      <circle class="star" cx="527" cy="217" r="1.6" style="--d:5.5s"/>
+      <circle class="star" cx="1036" cy="55" r="1.1" style="--d:2.7s"/>
+      <circle class="star" cx="1145" cy="156" r="1.1" style="--d:4.9s"/>
+      <circle class="star" cx="1146" cy="156" r="1.6" style="--d:5.9s"/>
+      <circle class="star" cx="799" cy="132" r="1.1" style="--d:0.5s"/>
+      <circle class="star" cx="329" cy="132" r="1.1" style="--d:0.1s"/>
+      <circle class="star" cx="393" cy="148" r="1.3" style="--d:0.0s"/>
+      <circle class="star" cx="878" cy="287" r="1.3" style="--d:3.7s"/>
+      <circle class="star" cx="672" cy="78" r="1.9" style="--d:5.7s"/>
+      <circle class="star" cx="130" cy="247" r="1.9" style="--d:2.4s"/>
+      <circle class="star" cx="837" cy="215" r="0.9" style="--d:2.9s"/>
+      <circle class="star" cx="840" cy="45" r="1.1" style="--d:0.4s"/>
+      <circle class="star" cx="447" cy="239" r="1.1" style="--d:0.7s"/>
+      <circle class="star" cx="127" cy="66" r="0.9" style="--d:3.4s"/>
+      <circle class="star" cx="1118" cy="65" r="1.3" style="--d:3.7s"/>
+      <circle class="star" cx="164" cy="120" r="1.9" style="--d:2.3s"/>
+      <circle class="star" cx="536" cy="191" r="1.9" style="--d:2.2s"/>
+      <circle class="star" cx="271" cy="73" r="1.6" style="--d:6.0s"/>
+      <circle class="star" cx="974" cy="259" r="1.6" style="--d:1.9s"/>
+    </g>
+    <circle cx="1008" cy="110" r="84" fill="url(#moonGlow)"/>
+    <circle cx="1010" cy="110" r="30" fill="#f6efd8" mask="url(#moonMask)"/>
+    <path fill="#2c2b66" d="M0 420C140 400 260 418 380 408C520 396 640 380 780 392C900 402 1020 384 1200 372V520H0Z"/>
+    <path fill="#221e4c" d="M0 452C140 436 280 460 430 448C570 436 680 452 820 440C960 428 1080 440 1200 424V520H0Z"/>
+    <path fill="#1a1538" d="M0 486C180 472 340 492 520 482C700 472 860 492 1040 480C1120 475 1170 478 1200 474V520H0Z"/>
+    <ellipse cx="640" cy="498" rx="190" ry="20" fill="url(#groundSpill)"/>
+    <!-- campsite, a little later than the hero -->
+    <g transform="translate(-200,-30)">
+      <circle class="fire-glow" cx="840" cy="512" r="58" fill="url(#fireGlow2)"/>
+      <path class="flame" fill="#ffb347" d="M833 520c-8-4-6-14 2-20 0 6 4 8 6 4 6 6 4 14-8 16z"/>
+      <circle class="spark s1" cx="838" cy="496" r="1.6" fill="#ffd9a0"/>
+      <circle class="spark s2" cx="844" cy="494" r="1.3" fill="#ffc070"/>
+      <circle class="spark s3" cx="835" cy="498" r="1.2" fill="#ffd9a0"/>
+      <path fill="#0e0a1a" d="M880 524l50-70 50 70z"/>
+      <path fill="#ffcf80" opacity=".75" d="M918 524l12-38 12 38z"/>
+      <path stroke="#0e0a1a" stroke-width="2" d="M930 454v-10"/>
+      <use href="#van" x="620" y="446" width="170" height="85" style="color:#120c20;--van-win:#ffd68a;--van-trim:#3a2a4a"/>
+    </g>
+    <path fill="#100c20" d="M0 506C200 496 420 512 640 504C860 496 1020 510 1200 502V520H0Z"/>
+    <!-- gum trees, one each side -->
+    <g fill="#0d0918" transform="translate(-10,-26)">
+      <path d="M1088 540c-2-40 2-80-2-120 6 26 8 50 10 78 6-24 14-40 26-56-10 22-12 40-12 66 0 12-1 22-2 32z"/>
+      <ellipse cx="1060" cy="410" rx="44" ry="20"/><ellipse cx="1114" cy="396" rx="52" ry="22"/><ellipse cx="1088" cy="380" rx="40" ry="16"/>
+      <path d="M1170 540c-1-24 1-46-1-70 4 14 5 28 6 44 4-12 8-22 15-30-6 12-7 24-7 40z"/>
+      <ellipse cx="1158" cy="456" rx="26" ry="12"/><ellipse cx="1190" cy="448" rx="26" ry="12"/>
+    </g>
+    <g fill="#0d0918" transform="translate(1230,-26) scale(-1,1)">
+      <path d="M1088 540c-2-40 2-80-2-120 6 26 8 50 10 78 6-24 14-40 26-56-10 22-12 40-12 66 0 12-1 22-2 32z"/>
+      <ellipse cx="1060" cy="410" rx="44" ry="20"/><ellipse cx="1114" cy="396" rx="52" ry="22"/><ellipse cx="1088" cy="380" rx="40" ry="16"/>
+    </g>
+  </svg>
+  <div class="foot-in">
+    <p class="foot-line">More than 100,000 campervans and nearly 10,000 campgrounds,<br><em>used less every year.</em></p>
+  </div>
+</footer>
+<script src="js/charts.js?v=2026-10-17d"></script>
 </body>
 </html>
