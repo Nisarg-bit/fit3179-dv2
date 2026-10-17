@@ -104,54 +104,70 @@
         "tickMinStep": 1
       }
     },
-    "color": {
-      "field": "code",
-      "type": "nominal",
-      "title": "State",
-      "scale": {
-        "scheme": "tableau10"
-      },
-      "legend": null
-    },
     "detail": {
       "field": "state"
     }
   },
   "layer": [
     {
+      "name": "lines",
       "mark": {
         "type": "line",
         "strokeWidth": 2.6,
-        "opacity": 0.9
+        "opacity": 0.95
       },
       "encoding": {
-        "opacity": {
+        "color": {
           "condition": {
-            "param": "hl",
-            "empty": true,
-            "value": 0.9
+            "test": "picked === null || datum.state === picked",
+            "field": "code",
+            "type": "nominal",
+            "scale": {
+              "scheme": "tableau10"
+            },
+            "legend": null
           },
-          "value": 0.14
-        },
-        "strokeWidth": {
-          "condition": {
-            "param": "hl",
-            "empty": false,
-            "value": 4.5
-          },
-          "value": 2.6
+          "value": "#c4c3bc"
         }
       }
     },
     {
+      "name": "linehit",
+      "mark": {
+        "type": "line",
+        "strokeWidth": 18,
+        "opacity": 0,
+        "stroke": "#000"
+      },
+      "encoding": {
+        "color": {
+          "value": "#000000"
+        }
+      }
+    },
+    {
+      "name": "dots",
       "mark": {
         "type": "point",
         "filled": true,
         "size": 130,
         "stroke": "#fcfcfb",
-        "strokeWidth": 2
+        "strokeWidth": 2,
+        "opacity": 0.95
       },
       "encoding": {
+        "color": {
+          "condition": {
+            "test": "picked === null || datum.state === picked",
+            "field": "code",
+            "type": "nominal",
+            "scale": {
+              "scheme": "tableau10"
+            },
+            "legend": null
+          },
+          "value": "#c4c3bc"
+        },
         "tooltip": [
           {
             "field": "state",
@@ -174,30 +190,78 @@
             "title": "Nights per 1,000",
             "format": ".0f"
           }
-        ],
-        "opacity": {
-          "condition": {
-            "param": "hl",
-            "empty": true,
-            "value": 0.9
-          },
-          "value": 0.14
-        }
-      },
-      "params": [
+        ]
+      }
+    },
+    {
+      "transform": [
         {
-          "name": "hl",
-          "select": {
-            "type": "point",
-            "fields": [
-              "state"
-            ],
-            "on": "click",
-            "toggle": false,
-            "clear": "dblclick"
-          }
+          "filter": "picked !== null && datum.state === picked"
         }
-      ]
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 4.2,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "code",
+          "type": "nominal",
+          "scale": {
+            "scheme": "tableau10"
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "picked !== null && datum.state === picked"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 190,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 2,
+        "opacity": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "code",
+          "type": "nominal",
+          "scale": {
+            "scheme": "tableau10"
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "axis",
+            "type": "nominal",
+            "title": "Ranked by"
+          },
+          {
+            "field": "rank",
+            "type": "quantitative",
+            "title": "Rank"
+          },
+          {
+            "field": "percapita",
+            "type": "quantitative",
+            "title": "Nights per 1,000",
+            "format": ".0f"
+          }
+        ]
+      }
     },
     {
       "transform": [
@@ -211,24 +275,22 @@
         "dx": -14,
         "fontSize": 12,
         "fontWeight": 600,
-        "baseline": "middle",
-        "color": "#0b0b0b"
+        "baseline": "middle"
       },
       "encoding": {
         "text": {
           "field": "state",
           "type": "nominal"
         },
-        "color": null,
-        "opacity": {
+        "color": {
           "condition": {
-            "param": "hl",
-            "empty": true,
-            "value": 0.9
+            "test": "picked === null || datum.state === picked",
+            "value": "#0b0b0b"
           },
-          "value": 0.14
+          "value": "#a9a8a1"
         }
-      }
+      },
+      "name": "labL"
     },
     {
       "transform": [
@@ -242,32 +304,27 @@
         "dx": 14,
         "fontSize": 12,
         "fontWeight": 600,
-        "baseline": "middle",
-        "color": "#0b0b0b"
+        "baseline": "middle"
       },
       "encoding": {
         "text": {
           "field": "state",
           "type": "nominal"
         },
-        "color": null,
-        "opacity": {
+        "color": {
           "condition": {
-            "param": "hl",
-            "empty": true,
-            "value": 0.9
+            "test": "picked === null || datum.state === picked",
+            "value": "#0b0b0b"
           },
-          "value": 0.14
+          "value": "#a9a8a1"
         }
-      }
+      },
+      "name": "labR"
     }
   ],
   "title": {
     "text": "Absolute versus per person",
-    "subtitle": [
-      "State rank by total camping nights and by nights per 1,000 residents.",
-      "Click a state to highlight it; double-click to reset."
-    ],
+    "subtitle": "State rank by total camping nights and by nights per 1,000 residents.",
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",
@@ -286,5 +343,11 @@
     "top": 5,
     "bottom": 5,
     "right": 5
-  }
+  },
+  "params": [
+    {
+      "name": "picked",
+      "value": null
+    }
+  ]
 }

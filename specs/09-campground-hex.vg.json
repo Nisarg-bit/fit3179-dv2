@@ -68,7 +68,7 @@
           "filter": "datum.n >= minSites"
         },
         {
-          "calculate": "datum.n < 2 ? '1' : datum.n < 5 ? '2\u20134' : datum.n < 10 ? '5\u20139' : datum.n < 25 ? '10\u201324' : datum.n < 50 ? '25\u201349' : '50+'",
+          "calculate": "datum.n < 2 ? '1' : datum.n < 5 ? '2–4' : datum.n < 10 ? '5–9' : datum.n < 25 ? '10–24' : datum.n < 50 ? '25–49' : '50+'",
           "as": "band"
         }
       ],
@@ -99,10 +99,10 @@
           "scale": {
             "domain": [
               "1",
-              "2\u20134",
-              "5\u20139",
-              "10\u201324",
-              "25\u201349",
+              "2–4",
+              "5–9",
+              "10–24",
+              "25–49",
               "50+"
             ],
             "range": [
@@ -146,8 +146,7 @@
     "text": "Where campgrounds cluster",
     "subtitle": [
       "Campgrounds per 0.9 degree cell. Classed breaks,",
-      "because a few cells hold more than fifty sites.",
-      "Drag the slider to hide the sparsest cells."
+      "because a few cells hold more than fifty sites."
     ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",

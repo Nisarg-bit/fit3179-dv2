@@ -45,7 +45,7 @@
           "filter": "stateSel == 'All' || upper(datum.state) == upper(stateSel)"
         },
         {
-          "calculate": "datum.fleet_total < 300 ? 'Too few vehicles' : datum.per_10k_fleet < 25 ? 'Under 25' : datum.per_10k_fleet < 50 ? '25\u201349' : datum.per_10k_fleet < 100 ? '50\u201399' : datum.per_10k_fleet < 200 ? '100\u2013199' : '200 or more'",
+          "calculate": "datum.fleet_total < 300 ? 'Too few vehicles' : datum.per_10k_fleet < 25 ? 'Under 25' : datum.per_10k_fleet < 50 ? '25–49' : datum.per_10k_fleet < 100 ? '50–99' : datum.per_10k_fleet < 200 ? '100–199' : '200 or more'",
           "as": "band"
         }
       ],
@@ -101,9 +101,9 @@
           "scale": {
             "domain": [
               "Under 25",
-              "25\u201349",
-              "50\u201399",
-              "100\u2013199",
+              "25–49",
+              "50–99",
+              "100–199",
               "200 or more",
               "Too few vehicles"
             ],
@@ -166,8 +166,8 @@
   "title": {
     "text": "Campervans by postcode area",
     "subtitle": [
-      "Postcodes pooled into 1\u00b0 squares, about 100 km across. Size is the campervan count.",
-      "Colour is campervans per 10,000 local vehicles, January 2025. Use the dropdown to isolate one state."
+      "Postcodes pooled into 1° squares, about 100 km across. Size is the campervan count.",
+      "Colour is campervans per 10,000 local vehicles, January 2025."
     ],
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",

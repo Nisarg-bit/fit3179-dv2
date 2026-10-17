@@ -42,7 +42,7 @@
       },
       "mark": {
         "type": "circle",
-        "size": 11,
+        "size": 6,
         "opacity": 0.5,
         "clip": true
       },
@@ -101,14 +101,19 @@
             {
               "param": "siteType",
               "test": "datum.type === 'caravan_site'",
-              "value": 0.85
+              "value": 0.9
             },
             {
               "param": "siteType",
-              "value": 0.25
+              "value": 0.4
             }
           ],
           "value": 0.04
+        },
+        "size": {
+          "value": {
+            "expr": "6 * pow(mapZoom, 0.6)"
+          }
         }
       },
       "transform": [
@@ -132,7 +137,7 @@
   ],
   "title": {
     "text": "Nearly ten thousand places to camp",
-    "subtitle": "Every campground and caravan site in OpenStreetMap, October 2026. Click a legend entry to isolate one type.",
+    "subtitle": "Every campground and caravan site in OpenStreetMap, October 2026.",
     "fontSize": 15,
     "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
     "anchor": "start",

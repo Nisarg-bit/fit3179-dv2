@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Ownership rose in every state",
-    "subtitle": "Registered campervans, 2021\u20132025. Each panel on its own scale; the shape is the point.",
+    "subtitle": "Registered campervans, 2021–2025. Each panel on its own scale.",
     "fontSize": 15,
     "anchor": "start",
     "color": "#0b0b0b",
@@ -49,8 +49,37 @@
       ]
     },
     {
+      "window": [
+        {
+          "op": "last_value",
+          "field": "campervans",
+          "as": "end"
+        }
+      ],
+      "groupby": [
+        "code"
+      ],
+      "sort": [
+        {
+          "field": "year"
+        }
+      ],
+      "frame": [
+        null,
+        null
+      ]
+    },
+    {
       "calculate": "(datum.campervans / datum.start - 1) * 100",
       "as": "growth"
+    },
+    {
+      "calculate": "(datum.end / datum.start - 1) * 100",
+      "as": "final"
+    },
+    {
+      "calculate": "(datum.final >= 0 ? '+' : '') + format(datum.final, '.0f') + '%'",
+      "as": "finalLabel"
     }
   ],
   "facet": {
@@ -157,15 +186,15 @@
       {
         "transform": [
           {
-            "filter": "datum.year == 2025"
+            "filter": "datum.year == 2021"
           }
         ],
         "mark": {
           "type": "text",
-          "align": "right",
+          "align": "left",
           "baseline": "top",
-          "dx": -2,
-          "dy": 2,
+          "dx": 4,
+          "dy": 0,
           "fontSize": 11,
           "fontWeight": 700,
           "color": "#1c5cab"
@@ -176,12 +205,11 @@
             "type": "ordinal"
           },
           "y": {
-            "value": 6
+            "value": 2
           },
           "text": {
-            "field": "growth",
-            "type": "quantitative",
-            "format": "+.0f"
+            "field": "finalLabel",
+            "type": "nominal"
           }
         }
       }

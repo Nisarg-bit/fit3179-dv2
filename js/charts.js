@@ -5,7 +5,7 @@
 // raw.githubusercontent both ignore query strings for caching, so a stale spec
 // could survive a BUILD bump. Instead each spec is fetched with
 // cache: 'reload', which forces a revalidated network fetch every time.
-const BUILD = '2026-10-17a';
+const BUILD = '2026-10-17b';
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();
@@ -30,6 +30,36 @@ const THEME = () => {
 };
 
 
+// Projected bounding boxes of each state at projection scale 1 (conic equal area,
+// the same projection every map spec uses): [x0, y0, x1, y1]. The map centre is
+// (0.018354, 0.926161) and the base scale is min(width / 0.628148, height / 0.602988) * 0.94.
+const STATE_BOUNDS = {
+  'New South Wales': [0.12945, 0.96675, 0.32625, 1.12885],
+  'Victoria': [0.12399, 1.05426, 0.24932, 1.15056],
+  'Queensland': [0.09294, 0.62467, 0.33243, 0.98725],
+  'South Australia': [-0.04646, 0.9095, 0.13937, 1.12519],
+  'Western Australia': [-0.29572, 0.69615, -0.04411, 1.08182],
+  'Tasmania': [0.16057, 1.15479, 0.2222, 1.22766],
+  'Northern Territory': [-0.05104, 0.64726, 0.10077, 0.91111],
+  'Australian Capital Territory': [0.23709, 1.08609, 0.24653, 1.09974]
+};
+const MAP_CENTRE = [0.018354, 0.926161];
+
+// Click-to-highlight for the bump chart. The spec has a plain `picked` param that its
+// colour conditions read; a Vega-Lite point selection cannot span lines, dots and
+// labels at once, so the clicks are wired here. Double-click clears the highlight.
+function addPickHighlight(view) {
+  let ok = false;
+  try { view.signal('picked'); ok = true; } catch (e) { ok = false; }
+  if (!ok) return;
+  const pick = v => view.signal('picked', v).run();
+  view.addEventListener('click', (e, item) => {
+    const st = item && item.datum && item.datum.state;
+    if (st) pick(st);
+  });
+  view.addEventListener('dblclick', () => pick(null));
+}
+
 // Zoom and pan for the five maps. Each map spec declares three plain params
 // (mapZoom, mapPanX, mapPanY) that drive its projection; this wires buttons,
 // mouse drag and Ctrl/Cmd + scroll to them. Specs without those params are left alone.
@@ -50,17 +80,50 @@ function addMapControls(el, view) {
     refresh();
   };
 
+  // zoom and pan that frame one state (used by the dropdown on the dot map)
+  const viewFor = name => {
+    const b = STATE_BOUNDS[name];
+    if (!b) return { z: 1, x: 0, y: 0 };
+    const w = view.width(), h = view.height();
+    const base = Math.min(w / 0.628148, h / 0.602988) * 0.94;
+    const z = Math.min(MAX, Math.max(MIN, 0.8 * Math.min(w / ((b[2] - b[0]) * base), h / ((b[3] - b[1]) * base))));
+    return { z, x: -base * z * ((b[0] + b[2]) / 2 - MAP_CENTRE[0]), y: -base * z * ((b[1] + b[3]) / 2 - MAP_CENTRE[1]) };
+  };
+  const hasStatePicker = el.dataset.spec === '08-campground-dots.vg.json';
+
   const bar = document.createElement('div');
   bar.className = 'map-controls';
   bar.innerHTML =
-    '<span class="map-hint">Drag to pan &middot; Ctrl + scroll to zoom</span>' +
+    (hasStatePicker
+      ? '<label class="map-state">Show state <select aria-label="Zoom the map to a state">' +
+        '<option value="">All of Australia</option><option value="custom" hidden>Custom view</option>' +
+        Object.keys(STATE_BOUNDS).sort().map(n => '<option>' + n + '</option>').join('') +
+        '</select></label>'
+      : '') +
     '<button type="button" data-act="in" aria-label="Zoom in">+</button>' +
     '<button type="button" data-act="out" aria-label="Zoom out">−</button>' +
     '<button type="button" data-act="reset" aria-label="Reset the map view">Reset</button>';
   el.prepend(bar);
 
   const canvas = () => el.querySelector('canvas');
+  const picker = bar.querySelector('select');
+  const syncPicker = () => {
+    if (!picker) return;
+    const s = get();
+    if (s.z === 1 && s.x === 0 && s.y === 0) { picker.value = ''; return; }
+    const t = viewFor(picker.value);
+    const same = picker.value && picker.value !== 'custom' &&
+      Math.abs(t.z - s.z) < 0.01 && Math.abs(t.x - s.x) < 1 && Math.abs(t.y - s.y) < 1;
+    if (!same) picker.value = 'custom';
+  };
+  if (picker) picker.addEventListener('change', () => {
+    if (picker.value === 'custom') return;
+    const t = viewFor(picker.value);
+    set(t.z, t.x, t.y);
+    refresh();
+  });
   const refresh = () => {
+    syncPicker();
     const c = canvas();
     if (c) c.style.cursor = get().z > 1 ? 'grab' : 'default';
     bar.querySelector('[data-act="reset"]').disabled = get().z === 1 && get().x === 0 && get().y === 0;
@@ -109,6 +172,27 @@ function addMapControls(el, view) {
   refresh();
 }
 
+// Faceted charts cannot use width: "container", so size the panels from the space
+// the card actually has. Without this the small multiples stop short of the right edge.
+function fitFacetWidth(el, json) {
+  if (!json.facet || !json.spec) return;
+  const W = el.clientWidth || 900;
+  json.columns = W < 700 ? 2 : 4;
+  const spacing = 20, axis = 50, slack = 14;
+  json.spec.width = Math.max(110, Math.floor((W - axis - spacing * (json.columns - 1) - slack) / json.columns));
+}
+
+let facetTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(facetTimer);
+  facetTimer = setTimeout(() => {
+    document.querySelectorAll('.viz[data-spec="15-state-smallmultiples.vg.json"]').forEach(el => {
+      const cols = el.clientWidth < 700 ? 2 : 4;
+      if (el.dataset.cols !== String(cols) || Math.abs((Number(el.dataset.w) || 0) - el.clientWidth) > 24) { el.innerHTML = ''; draw(el); }
+    });
+  }, 250);
+});
+
 async function draw(el) {
   const spec = el.dataset.spec;
   try {
@@ -117,12 +201,15 @@ async function draw(el) {
     const res = await fetch(`specs/${spec}`, { cache: 'reload' });
     if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
     const json = await res.json();
+    fitFacetWidth(el, json);
     const result = await vegaEmbed(el, json, {
       actions: { export: true, source: false, compiled: false, editor: false },
       config: THEME(),
       renderer: 'canvas'
     });
+    el.dataset.w = el.clientWidth; el.dataset.cols = json.columns || '';
     addMapControls(el, result.view);
+    addPickHighlight(result.view);
   } catch (e) {
     el.innerHTML = `<p style="color:#d03b3b;font-size:14px">Could not load <code>${spec}</code> \u2014 ${e}</p>`;
     console.error(spec, e);
@@ -130,3 +217,27 @@ async function draw(el) {
 }
 
 document.querySelectorAll('.viz[data-spec]').forEach(draw);
+
+
+// Highlights the navbar link for the section currently under the bar.
+(() => {
+  const links = [...document.querySelectorAll('.topnav a[href^="#"]')].filter(a => a.getAttribute('href').length > 1 && a.getAttribute('href') !== '#top');
+  const secs = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if (!secs.length) return;
+  const update = () => {
+    const y = window.scrollY + 100;
+    let cur = null;
+    for (const s of secs) if (s.offsetTop <= y) cur = s;
+    const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    if (atEnd) cur = secs[secs.length - 1];
+    links.forEach(a => {
+      const on = cur && a.getAttribute('href') === '#' + cur.id;
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      if (on) { const ul = a.closest('ul'); const r = a.getBoundingClientRect(), u = ul.getBoundingClientRect();
+        if (r.left < u.left || r.right > u.right) ul.scrollTo({ left: a.offsetLeft - 40, behavior: 'smooth' }); }
+    });
+  };
+  let t; window.addEventListener('scroll', () => { cancelAnimationFrame(t); t = requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
