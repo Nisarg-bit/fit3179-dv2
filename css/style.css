@@ -233,9 +233,8 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 .skip:focus { left: 8px; }
 .topnav {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(239, 236, 228, .94);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--rule);
+  background: #141c44;   /* same as the top of the hero sky */
+  border-bottom: 1px solid rgba(255, 255, 255, .10);
 }
 .topnav-in {
   max-width: 1080px; margin: 0 auto; padding: 0 24px;
@@ -243,7 +242,7 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 }
 .topnav .brand {
   flex: none; font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: 0;
-  color: var(--ink); text-decoration: none; white-space: nowrap;
+  color: #fff; text-decoration: none; white-space: nowrap;
 }
 .topnav ul {
   list-style: none; margin: 0; padding: 0; display: flex; align-items: stretch; gap: 2px;
@@ -251,17 +250,17 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 }
 .topnav ul::-webkit-scrollbar { display: none; }
 .topnav li { display: flex; flex: none; }
-.topnav li.sep { margin-left: 10px; padding-left: 12px; border-left: 1px solid var(--rule); }
+.topnav li.sep { margin-left: 10px; padding-left: 12px; border-left: 1px solid rgba(255, 255, 255, .22); }
 .topnav li a {
   display: flex; align-items: center; gap: 6px; padding: 0 10px; white-space: nowrap;
-  font-size: 13px; color: var(--ink-2); text-decoration: none;
+  font-size: 13px; color: rgba(255, 255, 255, .78); text-decoration: none;
   border-bottom: 2px solid transparent; margin-bottom: -1px;
 }
-.topnav li a span { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .06em; }
-.topnav li a:hover { color: var(--ink); }
-.topnav li a[aria-current="true"] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent-2); }
+.topnav li a span { font-size: 11px; font-weight: 700; color: rgba(255, 255, 255, .5); letter-spacing: .06em; }
+.topnav li a:hover { color: #fff; }
+.topnav li a[aria-current="true"] { color: #fff; font-weight: 600; border-bottom-color: var(--accent-2); }
 .topnav li a[aria-current="true"] span { color: var(--accent-2); }
-.topnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.topnav a:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
 @media (max-width: 760px) { .topnav .brand { display: none; } .topnav ul { margin-left: 0; } }
 
 /* ---------- how-to-read tips ---------- */

@@ -38,96 +38,126 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds.csv"
+        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds_cells.csv"
       },
+      "transform": [
+        {
+          "calculate": "datum.caravan == 0 ? 'No caravan sites' : datum.caravan_share < 0.25 ? 'Under 25% caravan' : datum.caravan_share < 0.5 ? '25–50% caravan' : '50% or more caravan'",
+          "as": "band"
+        }
+      ],
       "mark": {
         "type": "circle",
-        "size": 6,
-        "opacity": 0.5,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 0.6,
         "clip": true
       },
       "encoding": {
         "longitude": {
-          "field": "lon",
+          "field": "cell_lon",
           "type": "quantitative"
         },
         "latitude": {
-          "field": "lat",
+          "field": "cell_lat",
           "type": "quantitative"
         },
+        "size": {
+          "field": "density",
+          "type": "quantitative",
+          "title": "Sites per 1,000 km²",
+          "scale": {
+            "type": "sqrt",
+            "domain": [
+              0,
+              55
+            ],
+            "range": [
+              10,
+              230
+            ]
+          },
+          "legend": {
+            "values": [
+              1,
+              5,
+              15,
+              40
+            ],
+            "format": ".0f",
+            "symbolFillColor": "#898781",
+            "symbolOpacity": 0.7
+          }
+        },
         "color": {
-          "field": "type",
+          "field": "band",
           "type": "nominal",
-          "title": "Site type",
+          "title": "Share of sites in the cell",
           "scale": {
             "domain": [
-              "camp_site",
-              "caravan_site"
+              "No caravan sites",
+              "Under 25% caravan",
+              "25–50% caravan",
+              "50% or more caravan"
             ],
             "range": [
               "#2a78d6",
+              "#8db4e2",
+              "#f2a77d",
               "#eb6834"
             ]
           },
           "legend": {
-            "labelExpr": "datum.label == 'camp_site' ? 'Camp site' : 'Caravan site'"
+            "symbolOpacity": 0.9
           }
         },
+        "opacity": {
+          "condition": {
+            "param": "siteBand",
+            "value": 0.72
+          },
+          "value": 0.05
+        },
+        "order": {
+          "field": "density",
+          "type": "quantitative",
+          "sort": "descending"
+        },
         "tooltip": [
-          {
-            "field": "name",
-            "type": "nominal",
-            "title": "Name"
-          },
-          {
-            "field": "type",
-            "type": "nominal",
-            "title": "Type"
-          },
           {
             "field": "state",
             "type": "nominal",
             "title": "State"
+          },
+          {
+            "field": "sites",
+            "type": "quantitative",
+            "title": "Sites in the cell"
+          },
+          {
+            "field": "density",
+            "type": "quantitative",
+            "title": "Sites per 1,000 km²",
+            "format": ".1f"
+          },
+          {
+            "field": "camp",
+            "type": "quantitative",
+            "title": "Camp sites"
+          },
+          {
+            "field": "caravan",
+            "type": "quantitative",
+            "title": "Caravan sites"
           }
-        ],
-        "order": {
-          "field": "type",
-          "type": "nominal",
-          "sort": "ascending",
-          "legend": null
-        },
-        "opacity": {
-          "condition": [
-            {
-              "param": "siteType",
-              "test": "datum.type === 'caravan_site'",
-              "value": 0.9
-            },
-            {
-              "param": "siteType",
-              "value": 0.4
-            }
-          ],
-          "value": 0.04
-        },
-        "size": {
-          "value": {
-            "expr": "6 * pow(mapZoom, 0.6)"
-          }
-        }
+        ]
       },
-      "transform": [
-        {
-          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
-        }
-      ],
       "params": [
         {
-          "name": "siteType",
+          "name": "siteBand",
           "select": {
             "type": "point",
             "fields": [
-              "type"
+              "band"
             ]
           },
           "bind": "legend"
