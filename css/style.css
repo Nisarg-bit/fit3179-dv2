@@ -298,11 +298,12 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 .site-foot {
   position: relative; overflow: hidden; color: #fff;
   background: linear-gradient(180deg, #0b1130 0%, #151c4b 38%, #241f55 70%, #392a5b 100%);
-  min-height: clamp(480px, 40vw, 660px);
-  padding: 118px 0 0;
+  --scene-h: clamp(170px, 17vw, 260px);
+  padding: 118px 0 calc(var(--scene-h) + 28px);
 }
 .foot-edge { position: absolute; top: -1px; left: 0; width: 100%; height: 46px; z-index: 2; fill: var(--page); display: block; }
-.foot-scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.foot-sky { position: absolute; top: 0; left: 0; width: 100%; height: 1400px; z-index: 0; }
+.foot-scene { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: var(--scene-h); z-index: 0; }
 .foot-in { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 .foot-line {
   font-family: var(--display); font-weight: 700; margin: 0;
@@ -310,17 +311,31 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
   max-width: 32ch; text-wrap: balance; color: rgba(255,255,255,.96);
 }
 .foot-line em { font-style: normal; color: #ffb35c; }
-.site-foot .star { opacity: .8; animation: foot-twinkle 5s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.site-foot .star { opacity: .5; animation: foot-twinkle 5s ease-in-out infinite; animation-delay: var(--d, 0s); }
 .site-foot .fire-glow { transform-box: fill-box; transform-origin: 50% 50%; animation: foot-flicker 2.6s ease-in-out infinite alternate; }
 .site-foot .flame { transform-box: fill-box; transform-origin: 50% 100%; animation: foot-flame 1.3s ease-in-out infinite alternate; }
 .site-foot .spark { opacity: 0; animation: foot-spark 3.6s ease-out infinite; }
 .site-foot .s2 { animation-delay: 1.2s; } .site-foot .s3 { animation-delay: 2.3s; }
-@keyframes foot-twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes foot-twinkle { 0%, 100% { opacity: .15; } 50% { opacity: .62; } }
 @keyframes foot-flicker { from { opacity: .78; transform: scale(.95); } to { opacity: 1; transform: scale(1.07); } }
 @keyframes foot-flame { from { transform: scale(1, .9); } to { transform: scale(1.08, 1.12); } }
 @keyframes foot-spark { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .9; } 100% { opacity: 0; transform: translate(10px, -46px); } }
 @media (prefers-reduced-motion: reduce) {
   .site-foot .star, .site-foot .fire-glow, .site-foot .flame, .site-foot .spark { animation: none; }
-  .site-foot .star { opacity: .8; } .site-foot .spark { display: none; }
+  .site-foot .star { opacity: .5; } .site-foot .spark { display: none; }
 }
-@media (max-width: 760px) { .site-foot { min-height: 480px; padding-top: 100px; } .foot-in { padding: 0 22px; } }
+@media (max-width: 760px) { .site-foot { padding-top: 112px; } .foot-in { padding: 0 22px; } }
+
+/* Sources, set into the night sky */
+.site-foot .meta { margin-top: 64px; border-top: 1px solid rgba(255,255,255,.22); padding-top: 26px; color: rgba(255,255,255,.88); }
+.site-foot .sec-head { border-bottom-color: rgba(255,255,255,.22); }
+.site-foot .sec-num { color: #ffb35c; }
+.site-foot .meta h2 { color: #fff; }
+.site-foot .meta th, .site-foot .meta td { border-bottom-color: rgba(255,255,255,.16); }
+.site-foot .meta th { color: rgba(255,255,255,.62); }
+.site-foot .meta a { color: #a9cdfa; text-underline-offset: 2px; }
+.site-foot .meta a:hover { color: #fff; }
+.site-foot .note { color: rgba(255,255,255,.8); }
+.site-foot .note strong { color: #fff; }
+.site-foot .meta code { background: rgba(255,255,255,.12); color: #fff; padding: 1px 5px; border-radius: 2px; }
+.site-foot .todo { color: #ffb4a8; }

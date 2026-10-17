@@ -237,7 +237,7 @@ document.querySelectorAll('.viz[data-spec]').forEach(draw);
   const update = () => {
     const y = window.scrollY + 100;
     let cur = null;
-    for (const s of secs) if (s.offsetTop <= y) cur = s;
+    for (const s of secs) if (s.getBoundingClientRect().top + window.scrollY <= y) cur = s;
     const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
     if (atEnd) cur = secs[secs.length - 1];
     links.forEach(a => {
