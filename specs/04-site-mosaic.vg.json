@@ -1,22 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": [
-      "Where the money is"
-    ],
-    "subtitle": [
-      "Park revenue (bar width) against occupancy (bar height), 2024.",
-      "Cabins: $1.9b at 60% full. Unpowered tent sites: $66m at 20%."
-    ],
-    "fontSize": 17,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleLineHeight": 17,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 6
-  },
   "width": "container",
   "height": 330,
   "data": {

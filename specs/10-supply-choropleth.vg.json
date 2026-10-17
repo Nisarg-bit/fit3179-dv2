@@ -131,17 +131,6 @@
       }
     ]
   },
-  "title": {
-    "text": "Supply per head",
-    "subtitle": "Campgrounds per 100,000 residents by state and territory",
-    "fontSize": 17,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 5
-  },
   "autosize": {
     "type": "fit-x",
     "contains": "padding"

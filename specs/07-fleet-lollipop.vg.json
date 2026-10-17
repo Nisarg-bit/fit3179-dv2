@@ -210,19 +210,5 @@
         }
       }
     }
-  ],
-  "title": {
-    "text": "Rental fleets, not households",
-    "subtitle": [
-      "Campervans per 10,000 registered vehicles, January 2025. The 18 highest postcodes",
-      "with a fleet of at least 2,000 vehicles. The median such postcode runs 40 (dashed line)."
-    ],
-    "fontSize": 17,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 5
-  }
+  ]
 }

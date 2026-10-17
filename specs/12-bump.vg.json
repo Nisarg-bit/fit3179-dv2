@@ -322,17 +322,6 @@
       "name": "labR"
     }
   ],
-  "title": {
-    "text": "Absolute versus per person",
-    "subtitle": "State rank by total camping nights and by nights per 1,000 residents.",
-    "fontSize": 17,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 5
-  },
   "autosize": {
     "type": "fit",
     "contains": "padding"

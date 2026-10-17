@@ -1,16 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Ownership rose in every state",
-    "subtitle": "Registered campervans, 2021–2025. Each panel on its own scale.",
-    "fontSize": 17,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 5
-  },
   "data": {
     "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_state.csv"
   },

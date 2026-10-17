@@ -142,20 +142,6 @@
       }
     }
   ],
-  "title": {
-    "text": "Where campgrounds cluster",
-    "subtitle": [
-      "Campgrounds per 0.9 degree cell. Classed breaks,",
-      "because a few cells hold more than fifty sites."
-    ],
-    "fontSize": 17,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 5
-  },
   "params": [
     {
       "name": "minSites",

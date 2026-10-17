@@ -135,17 +135,6 @@
       ]
     }
   ],
-  "title": {
-    "text": "Nearly ten thousand places to camp",
-    "subtitle": "Every campground and caravan site in OpenStreetMap, October 2026.",
-    "fontSize": 17,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 10,
-    "subtitleFontSize": 12.5,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 5
-  },
   "autosize": {
     "type": "fit-x",
     "contains": "padding"

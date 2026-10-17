@@ -50,8 +50,6 @@
     </ul>
   </div>
 </nav>
-<div class="wrap">
-
 <header class="masthead">
   <svg class="hero-scene" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
     <defs>
@@ -94,6 +92,7 @@
       <ellipse cx="1158" cy="456" rx="26" ry="12"/><ellipse cx="1190" cy="448" rx="26" ry="12"/>
     </g>
   </svg>
+  <div class="masthead-in">
   <p class="eyebrow">FIT3179 Data Visualisation 2 &middot; Semester 2, 2026</p>
   <h1>All Gear,<br>No Go</h1>
   <p class="standfirst">Australia owns more than 100,000 campervans and nearly 10,000 campgrounds
@@ -101,7 +100,10 @@
   <p class="byline">
     <span>Nisarg</span><span>Monash University</span><span>October 2026</span>
   </p>
+  </div>
 </header>
+
+<div class="wrap">
 
 <div class="tiles">
     <div class="tile"><div class="v">15.2M</div><div class="k">Caravan &amp; camping trips, 2024</div></div>
@@ -118,19 +120,22 @@
   </div>
   <div class="charts two">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Every line starts at 100 in 2015, so where it ends in 2024 is the percentage change over the decade. Hover a line for the exact index.</p>
+      <h3>A decade of growth</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Every line starts at 100 in 2015 (the index), so where it ends in 2024 is the percentage change over the decade. Hover a line for the exact value.</p>
       <div class="viz" data-spec="01-slope-decade.vg.json"></div>
       <figcaption>Economic impact grew fastest &mdash; up 42% in a decade. Trips rose 38% but nights only 15%, and RV manufacturing 11%. More people went, but each visit was already getting shorter.<span class="src">Source: Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
     </figure>
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> The shaded area is total spending each year and the labelled point is the peak. Hover a year for the exact amount.</p>
+      <h3>Spending recovered, then stalled</h3>
+      <p class="tip"><span class="tip-label">Tip</span> The shaded area is domestic caravan and camping spending each year from 2020 to 2024, and the labelled point is the peak. Hover a year for the exact amount.</p>
       <div class="viz" data-spec="02-spend-area.vg.json"></div>
       <figcaption>Spending almost doubled between 2020 and 2022, from $5.7B to $10.4B. Then it stalled &mdash; $10.7B in 2023, $10.6B in 2024. That dip is the first fall in the series.<span class="src">Source: Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
     </figure>
   </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Each panel is one state&rsquo;s registered campervans from 2021 to 2025, drawn on its own scale, so compare the shape rather than the height. The figure in each panel is the percentage growth since 2021; hover for yearly values.</p>
+      <h3>Ownership rose in every state</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each panel is one state&rsquo;s registered campervans from 2021 to 2025, drawn on its own scale, so compare the shape rather than the height. The figure in each panel is growth since 2021; hover for yearly values.</p>
       <div class="viz" data-spec="15-state-smallmultiples.vg.json"></div>
       <figcaption>Every state and territory added campervans between 2021 and 2025 &mdash; 83,944 to 103,481 nationally, up 23%. Western Australia grew fastest at 45%; Tasmania slowest at 13%.<span class="src">Source: BITRE, Road Vehicles Australia, January 2021&ndash;2025</span></figcaption>
     </figure>
@@ -151,12 +156,14 @@
   </div>
   <div class="charts two">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Each dot is a year, joined in order: further right means more spent per trip, higher up means longer stays. Hover a dot for the exact figures.</p>
+      <h3>Paying more, staying less</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each dot is a year from 2020 to 2024, joined in order: further right means more spent per trip, higher up means longer average stays. Hover a dot for the exact figures.</p>
       <div class="viz" data-spec="03-trip-length.vg.json"></div>
       <figcaption>Each point is one year, joined in sequence. The path climbs, then turns left: spend per trip rose from $546 to $712 while nights fell from 4.1 to 3.78. In 2024 spending stopped rising &mdash; the nights did not stop falling.<span class="src">Source: Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
     </figure>
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Bar width is a site type&rsquo;s share of park revenue and bar height is how full it was, so wide, tall bars are the ones that matter. Hover a bar for exact values.</p>
+      <h3>Where the money is</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Bar width is a site type&rsquo;s share of park revenue and bar height is its 2024 occupancy, so wide, tall bars are the ones that matter. Hover a bar for exact values.</p>
       <div class="viz" data-spec="04-site-mosaic.vg.json"></div>
       <figcaption>Width is share of park revenue, height is occupancy. Cabins carry the industry: $1.9B at 60% full. Unpowered tent sites take $66M at 20% &mdash; roughly 2% of revenue.<span class="src">Source: Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
     </figure>
@@ -177,21 +184,24 @@
   </div>
   <div class="charts">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to use</span> Circle size is the number of campervans in a 1&deg; square and colour is the rate per 10,000 local vehicles. Use the dropdown to isolate a state, drag to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
+      <h3>Campervans by postcode area</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Postcodes are pooled into 1&deg; squares, about 100 km across. Circle size is the number of campervans and colour is the rate per 10,000 local vehicles in January 2025; grey squares have too few vehicles. Use the dropdown to isolate a state, drag to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="05-postcode-map.vg.json"></div>
       <figcaption>The three largest squares, in Queensland, New South Wales and Victoria, hold 26% of the national fleet. Rental depots inflate some of them: BITRE records where a van is registered, not where its owner lives.<span class="src">Source: BITRE / data.gov.au, Road Vehicles Australia, January 2025</span></figcaption>
     </figure>
   </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Each bar is campervans per 10,000 registered vehicles in one remoteness class; a longer bar means more vans per vehicle. Hover a bar for the detail.</p>
+      <h3>The outer regions, not the outback</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each bar is campervans per 10,000 registered vehicles in one remoteness class, January 2025; a longer bar means more vans per vehicle. Hover a bar for the detail.</p>
       <div class="viz" data-spec="06-remoteness.vg.json"></div>
       <figcaption>Ownership peaks in the outer regions at 62.5 vans per 10,000 vehicles &mdash; not in the deep outback. Very Remote Australia records 29.8, the lowest of the five and below the major cities at 38.0.<span class="src">Source: BITRE Jan 2025 &middot; ABS remoteness structure</span></figcaption>
     </figure>
     </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Each row is a postcode, ranked by campervans per 10,000 vehicles; the dashed line is the median postcode at 40. Colour shows the state; hover a dot for details.</p>
+      <h3>Rental fleets, not households</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each row is one of the 18 postcodes with the highest rate (only postcodes with at least 2,000 vehicles count), ranked by campervans per 10,000 vehicles; the dashed line is the median postcode at 40. Colour shows the state; hover a dot for details.</p>
       <div class="viz" data-spec="07-fleet-lollipop.vg.json"></div>
       <figcaption>Ten of the eighteen are Tasmanian. The two extremes are rental depots &mdash; postcode 4013 in Queensland runs 1,820 campervans per 10,000 vehicles against a median of 40 &mdash; but Tasmania is not a depot, it is a whole state of hire fleets registered where the vans are based rather than where their drivers live. Postcodes with fewer than 2,000 vehicles are excluded, because three vans in a fleet of three produces a meaningless rate.<span class="src">Source: BITRE / data.gov.au, January 2025</span></figcaption>
     </figure>
@@ -212,21 +222,24 @@
   </div>
   <div class="charts">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to use</span> Each dot is one site: orange are caravan sites, blue are camp sites. Pick a state under &ldquo;Show state&rdquo; to zoom in, click a legend entry to isolate one type, drag to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
+      <h3>Nearly ten thousand places to camp</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each dot is one site in OpenStreetMap (October 2026): orange are caravan sites, blue are camp sites. Pick a state under &ldquo;Show state&rdquo; to zoom in, click a legend entry to isolate one type, drag to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="08-campground-dots.vg.json"></div>
       <figcaption>9,945 sites &mdash; 7,920 camp sites and 2,025 caravan sites. They crowd the east coast, the south-west and Tasmania; inland they thin into strings that follow the highways.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL), via Overpass API, 7 Oct 2026</span></figcaption>
     </figure>
   </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to use</span> Each square is a 0.9&deg; cell: the darker the blue, the more campgrounds inside it. Drag the slider to hide sparse cells, drag the map to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
+      <h3>Where campgrounds cluster</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each square is a 0.9&deg; cell: the darker the blue, the more campgrounds inside it. The classes are uneven because a few cells hold more than fifty. Drag the slider to hide sparse cells, drag the map to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="09-campground-hex.vg.json"></div>
       <figcaption>Counting sites per cell instead of plotting them removes the overplotting along the coast. Classed breaks are used because a handful of cells hold more than fifty sites and would otherwise flatten everything else.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL)</span></figcaption>
     </figure>
   </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to use</span> A darker state has more campgrounds per 100,000 residents. Hover a state for its figure; press + / &minus; or Ctrl/&#8984; + scroll to zoom and drag to pan.</p>
+      <h3>Supply per head</h3>
+      <p class="tip"><span class="tip-label">Tip</span> A darker state has more campgrounds per 100,000 residents. Hover a state for its figure; press + / &minus; or Ctrl/&#8984; + scroll to zoom and drag to pan.</p>
       <div class="viz" data-spec="10-supply-choropleth.vg.json"></div>
       <figcaption>Per 100,000 residents the picture inverts. The Northern Territory reaches 150 &mdash; more than five times New South Wales at 27 &mdash; because the divisor is residents, and there are few. The Australian Capital Territory, with 14 campgrounds, sits at 2.9.<span class="src">Source: OpenStreetMap &middot; ABS population, March 2026</span></figcaption>
     </figure>
@@ -247,14 +260,16 @@
   </div>
   <div class="charts">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Each circle is a state: further right means more RVs per 1,000 residents, higher up means more camping nights, and size is population. The dashed line is the trend across the six states; the Northern Territory is left out of it as an outlier.</p>
+      <h3>Owning and camping rise together &mdash; everywhere except the Territory</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each circle is a state in 2024: further right means more RVs per 1,000 residents, higher up means more camping nights per 1,000, and size is population. The dashed line is the trend across the six states; the Northern Territory is left out of it as an outlier.</p>
       <div class="viz" data-spec="11-ownership-usage.vg.json"></div>
       <figcaption>Across the six states the relationship is positive &mdash; more RVs per head, more camping nights per head (r = +0.76). The Northern Territory breaks it: 3.0 RVs per 1,000 residents but 3,689 camping nights per 1,000, the highest in the country. Territorians don&rsquo;t own the vans; other people drive them there.<span class="src">Source: Caravan Industry Association 2025 &middot; BITRE &middot; ABS population</span></figcaption>
     </figure>
     </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to use</span> The left axis ranks states by total camping nights and the right by nights per 1,000 residents, so a line that crosses has changed rank. Click a state, its line or its label to highlight it and grey out the rest; double-click to reset.</p>
+      <h3>Absolute versus per person</h3>
+      <p class="tip"><span class="tip-label">Tip</span> The left axis ranks states by total camping nights and the right by nights per 1,000 residents, so a line that crosses has changed rank. Click a state, its line or its label to highlight it and grey out the rest; double-click to reset.</p>
       <div class="viz" data-spec="12-bump.vg.json"></div>
       <figcaption>New South Wales records the most camping nights but ranks sixth per head. The Northern Territory is last by volume and first per head. Ranking by population turns the order almost upside down.<span class="src">Source: Caravan Industry Association 2025 &middot; ABS population</span></figcaption>
     </figure>
@@ -275,19 +290,22 @@
   </div>
   <div class="charts two">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> Each square is 1% of trips and each colour is a type of accommodation, so count a colour&rsquo;s squares to read its share. Hover a square for the type.</p>
+      <h3>Camping is the third most common way to camp</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each square is 1% of 2024 caravan and camping trips and each colour is a type of accommodation, so count a colour&rsquo;s squares to read its share. Hover a square for the type.</p>
       <div class="viz" data-spec="13-accommodation.vg.json"></div>
       <figcaption>Each square is 1% of trips. Only 23% of caravan and camping trips involve actual camping. Cabins take 39%, and just 6% use a motorhome or campervan.<span class="src">Source: Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
     </figure>
         <figure class="chart">
-      <p class="tip"><span class="tip-label">How to read</span> For each age group the left bar is its share of trips and the right bar its share of nights. Where the right bar is longer, that group stays longer than its share of trips suggests.</p>
+      <h3>Older campers take fewer trips but stay far longer</h3>
+      <p class="tip"><span class="tip-label">Tip</span> For each age group in 2024, the left bar is its share of all trips and the right bar its share of all nights. Where the right bar is longer, that group stays longer than its share of trips suggests.</p>
       <div class="viz" data-spec="16-age-pyramid.vg.json"></div>
       <figcaption>The over-55s take 31% of trips but 42% of nights &mdash; they stay longest. Under-30s are the mirror image: 22% of trips, 16% of nights.<span class="src">Source: Caravan Industry Association of Australia, State of Industry 2025</span></figcaption>
     </figure>
   </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <p class="tip"><span class="tip-label">How to use</span> Circle size is the number of trips and colour is the change in nights: blue grew, red shrank. Hover a circle for the region; press + / &minus; or Ctrl/&#8984; + scroll to zoom and drag to pan.</p>
+      <h3>Winners and losers</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Circles mark the ten top tourism regions in 2024: size is the number of trips and colour is the change in nights (blue grew, red shrank). Hover a circle for the region; press + / &minus; or Ctrl/&#8984; + scroll to zoom and drag to pan.</p>
       <div class="viz" data-spec="14-region-map.vg.json"></div>
       <figcaption>The top ten regions by trips. Queensland Country grew fastest &mdash; trips up 34%, nights up 52%. The Hunter took 17% more trips but 33% fewer nights. The New South Wales North Coast is still the largest, and fell on both.<span class="src">Source: Caravan Industry Association 2025, Table 2</span></figcaption>
     </figure>

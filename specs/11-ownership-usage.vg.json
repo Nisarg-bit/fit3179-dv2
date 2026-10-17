@@ -1,18 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Owning and camping rise together — everywhere except the Territory",
-    "subtitle": "Campervan ownership against camping nights, per 1,000 residents, 2024.",
-    "fontSize": 17,
-    "lineHeight": 21,
-    "anchor": "start",
-    "color": "#0b0b0b",
-    "offset": 12,
-    "subtitleFontSize": 12.5,
-    "subtitleLineHeight": 17,
-    "subtitleColor": "#52514e",
-    "subtitlePadding": 7
-  },
   "width": "container",
   "height": 400,
   "padding": {
