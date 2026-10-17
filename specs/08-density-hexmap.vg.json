@@ -38,99 +38,89 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds_cells.csv"
+        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds_hex.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
       },
+      "transform": [
+        {
+          "calculate": "datum.properties.density < 1 ? 'Under 1' : datum.properties.density < 3 ? '1–3' : datum.properties.density < 6 ? '3–6' : datum.properties.density < 12 ? '6–12' : datum.properties.density < 25 ? '12–25' : '25 or more'",
+          "as": "band"
+        }
+      ],
       "mark": {
-        "type": "circle",
-        "fill": "#d9582b",
+        "type": "geoshape",
         "stroke": "#fcfcfb",
-        "strokeWidth": 0.4,
+        "strokeWidth": 0.5,
+        "opacity": 0.94,
         "clip": true
       },
       "encoding": {
-        "longitude": {
-          "field": "cell_lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "cell_lat",
-          "type": "quantitative"
-        },
-        "size": {
-          "field": "density",
-          "type": "quantitative",
+        "color": {
+          "field": "band",
+          "type": "ordinal",
           "title": "Sites per 1,000 km²",
           "scale": {
-            "type": "sqrt",
             "domain": [
-              0,
-              55
+              "Under 1",
+              "1–3",
+              "3–6",
+              "6–12",
+              "12–25",
+              "25 or more"
             ],
             "range": [
-              3,
-              100
+              "#fadfcd",
+              "#f4bb98",
+              "#ea9164",
+              "#d9622b",
+              "#b03f16",
+              "#7a2a0c"
             ]
           },
           "legend": {
-            "values": [
-              1,
-              5,
-              15,
-              40
-            ],
-            "format": ".0f",
-            "symbolFillColor": "#d9582b",
-            "symbolStrokeColor": "#fcfcfb"
+            "type": "symbol",
+            "symbolType": "square",
+            "symbolSize": 150,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 6,
+            "titleOrient": "top",
+            "titleFontSize": 11.5,
+            "labelFontSize": 11,
+            "offset": 10
           }
-        },
-        "order": {
-          "field": "density",
-          "type": "quantitative",
-          "sort": "descending"
         },
         "tooltip": [
           {
-            "field": "state",
+            "field": "properties.state",
             "type": "nominal",
             "title": "State"
           },
           {
-            "field": "sites",
+            "field": "properties.sites",
             "type": "quantitative",
-            "title": "Sites in the square"
+            "title": "Sites in the hexagon"
           },
           {
-            "field": "density",
+            "field": "properties.density",
             "type": "quantitative",
             "title": "Sites per 1,000 km²",
             "format": ".1f"
           },
           {
-            "field": "camp",
+            "field": "properties.camp",
             "type": "quantitative",
             "title": "Camp sites"
           },
           {
-            "field": "caravan",
+            "field": "properties.caravan",
             "type": "quantitative",
             "title": "Caravan sites"
           }
-        ],
-        "opacity": {
-          "field": "density",
-          "type": "quantitative",
-          "scale": {
-            "type": "sqrt",
-            "domain": [
-              0,
-              55
-            ],
-            "range": [
-              0.22,
-              0.85
-            ]
-          }
-        }
+        ]
       }
     }
   ],

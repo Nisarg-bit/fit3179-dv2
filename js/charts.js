@@ -98,7 +98,7 @@ function addMapControls(el, view) {
     const z = Math.min(MAX, Math.max(MIN, 0.8 * Math.min(w / ((b[2] - b[0]) * base), h / ((b[3] - b[1]) * base))));
     return { z, x: -base * z * ((b[0] + b[2]) / 2 - MAP_CENTRE[0]), y: -base * z * ((b[1] + b[3]) / 2 - MAP_CENTRE[1]) };
   };
-  const hasStatePicker = el.dataset.spec === '08-campground-dots.vg.json';
+  const hasStatePicker = el.dataset.spec === '08-density-hexmap.vg.json';
 
   const bar = document.createElement('div');
   bar.className = 'map-controls';

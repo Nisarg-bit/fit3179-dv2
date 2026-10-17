@@ -12,7 +12,7 @@ Full provenance is in SOURCES.md. These are the exact caption credits.
 | `05-postcode-map.vg.json` | BITRE / data.gov.au, Road Vehicles Australia, January 2025 |
 | `06-remoteness.vg.json` | BITRE Jan 2025 &middot; ABS remoteness structure |
 | `07-fleet-lollipop.vg.json` | BITRE / data.gov.au, January 2025 |
-| `08-campground-dots.vg.json` | &copy; OpenStreetMap contributors (ODbL), via Overpass API, 7 Oct 2026 |
+| `08-density-hexmap.vg.json` | &copy; OpenStreetMap contributors (ODbL), via Overpass API, 7 Oct 2026 |
 | `09-campground-hex.vg.json` | &copy; OpenStreetMap contributors (ODbL) |
 | `10-supply-choropleth.vg.json` | OpenStreetMap &middot; ABS population, March 2026 |
 | `11-ownership-usage.vg.json` | Caravan Industry Association 2025 &middot; BITRE &middot; ABS population |
