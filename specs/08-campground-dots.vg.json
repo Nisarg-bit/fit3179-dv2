@@ -40,16 +40,11 @@
       "data": {
         "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds_cells.csv"
       },
-      "transform": [
-        {
-          "calculate": "datum.caravan == 0 ? 'No caravan sites' : datum.caravan_share < 0.25 ? 'Under 25% caravan' : datum.caravan_share < 0.5 ? '25–50% caravan' : '50% or more caravan'",
-          "as": "band"
-        }
-      ],
       "mark": {
         "type": "circle",
+        "fill": "#d9582b",
         "stroke": "#fcfcfb",
-        "strokeWidth": 0.6,
+        "strokeWidth": 0.4,
         "clip": true
       },
       "encoding": {
@@ -72,8 +67,8 @@
               55
             ],
             "range": [
-              10,
-              230
+              3,
+              100
             ]
           },
           "legend": {
@@ -84,38 +79,9 @@
               40
             ],
             "format": ".0f",
-            "symbolFillColor": "#898781",
-            "symbolOpacity": 0.7
+            "symbolFillColor": "#d9582b",
+            "symbolStrokeColor": "#fcfcfb"
           }
-        },
-        "color": {
-          "field": "band",
-          "type": "nominal",
-          "title": "Share of sites in the cell",
-          "scale": {
-            "domain": [
-              "No caravan sites",
-              "Under 25% caravan",
-              "25–50% caravan",
-              "50% or more caravan"
-            ],
-            "range": [
-              "#2a78d6",
-              "#8db4e2",
-              "#f2a77d",
-              "#eb6834"
-            ]
-          },
-          "legend": {
-            "symbolOpacity": 0.9
-          }
-        },
-        "opacity": {
-          "condition": {
-            "param": "siteBand",
-            "value": 0.72
-          },
-          "value": 0.05
         },
         "order": {
           "field": "density",
@@ -131,7 +97,7 @@
           {
             "field": "sites",
             "type": "quantitative",
-            "title": "Sites in the cell"
+            "title": "Sites in the square"
           },
           {
             "field": "density",
@@ -149,20 +115,23 @@
             "type": "quantitative",
             "title": "Caravan sites"
           }
-        ]
-      },
-      "params": [
-        {
-          "name": "siteBand",
-          "select": {
-            "type": "point",
-            "fields": [
-              "band"
+        ],
+        "opacity": {
+          "field": "density",
+          "type": "quantitative",
+          "scale": {
+            "type": "sqrt",
+            "domain": [
+              0,
+              55
+            ],
+            "range": [
+              0.22,
+              0.85
             ]
-          },
-          "bind": "legend"
+          }
         }
-      ]
+      }
     }
   ],
   "autosize": {
