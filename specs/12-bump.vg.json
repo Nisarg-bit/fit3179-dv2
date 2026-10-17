@@ -325,8 +325,7 @@
   "title": {
     "text": "Absolute versus per person",
     "subtitle": "State rank by total camping nights and by nights per 1,000 residents.",
-    "fontSize": 15,
-    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "fontSize": 17,
     "anchor": "start",
     "color": "#0b0b0b",
     "offset": 10,

@@ -5,15 +5,24 @@
 // raw.githubusercontent both ignore query strings for caching, so a stale spec
 // could survive a BUILD bump. Instead each spec is fetched with
 // cache: 'reload', which forces a revalidated network fetch every time.
-const BUILD = '2026-10-17b';
+const BUILD = '2026-10-17c';
+const BODY_FONT = 'Figtree, system-ui, -apple-system, "Segoe UI", sans-serif';
+const DISPLAY_FONT = '"Zilla Slab", Rockwell, Georgia, serif';
+// Canvas text is measured at draw time, so wait (briefly) for the web fonts before the
+// first chart is drawn; if they are blocked the system fallbacks are used after 2.5 s.
+const fontsReady = Promise.race([
+  Promise.all(['400 13px Figtree', '600 13px Figtree', '700 13px Figtree', '600 17px "Zilla Slab"']
+    .map(f => document.fonts.load(f))).catch(() => {}),
+  new Promise(r => setTimeout(r, 2500))
+]);
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();
   return {
     background: null,
-    font: 'system-ui, -apple-system, "Segoe UI", sans-serif',
-    title:  { fontSize: 15, anchor: 'start', color: v('--ink'),
-              subtitleColor: v('--ink-2'), subtitleFontSize: 12.5, offset: 10 },
+    font: BODY_FONT,
+    title:  { font: DISPLAY_FONT, fontWeight: 600, fontSize: 17, anchor: 'start', color: v('--ink'),
+              subtitleFont: BODY_FONT, subtitleColor: v('--ink-2'), subtitleFontSize: 12.5, offset: 10 },
     axis:   { labelColor: v('--muted'), titleColor: v('--ink-2'),
               gridColor: v('--grid'), domainColor: v('--rule'), tickColor: v('--rule'),
               labelFontSize: 12, titleFontSize: 12, titleFontWeight: 600,
@@ -198,6 +207,7 @@ async function draw(el) {
   try {
     // cache: 'reload' bypasses the HTTP cache for this request, so an edited
     // spec always takes effect without needing a cache-busting query string.
+    await fontsReady;
     const res = await fetch(`specs/${spec}`, { cache: 'reload' });
     if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
     const json = await res.json();
@@ -235,6 +245,27 @@ document.querySelectorAll('.viz[data-spec]').forEach(draw);
       if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
       if (on) { const ul = a.closest('ul'); const r = a.getBoundingClientRect(), u = ul.getBoundingClientRect();
         if (r.left < u.left || r.right > u.right) ul.scrollTo({ left: a.offsetLeft - 40, behavior: 'smooth' }); }
+    });
+  };
+  let t; window.addEventListener('scroll', () => { cancelAnimationFrame(t); t = requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+
+// Campervan road dividers: the van drives across as the divider scrolls through the
+// window, and its wheels turn with it. Reduced-motion users get a parked van.
+(() => {
+  const roads = [...document.querySelectorAll('.road')];
+  if (!roads.length) return;
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const update = () => {
+    const vh = window.innerHeight;
+    roads.forEach(r => {
+      const top = r.getBoundingClientRect().top;
+      const p = still ? 0.5 : Math.min(1, Math.max(0, (vh - top) / (vh * 0.85)));
+      r.style.setProperty('--p', p.toFixed(4));
+      r.style.setProperty('--spin', (still ? 0 : p * 1800).toFixed(1) + 'deg');
     });
   };
   let t; window.addEventListener('scroll', () => { cancelAnimationFrame(t); t = requestAnimationFrame(update); }, { passive: true });

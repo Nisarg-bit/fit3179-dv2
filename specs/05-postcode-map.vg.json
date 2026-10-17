@@ -169,8 +169,7 @@
       "Postcodes pooled into 1° squares, about 100 km across. Size is the campervan count.",
       "Colour is campervans per 10,000 local vehicles, January 2025."
     ],
-    "fontSize": 15,
-    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "fontSize": 17,
     "anchor": "start",
     "color": "#0b0b0b",
     "offset": 10,

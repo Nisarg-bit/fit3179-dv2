@@ -186,8 +186,7 @@
   "title": {
     "text": "Winners and losers",
     "subtitle": "Top ten tourism regions: size is trips, colour is the change in nights, 2024",
-    "fontSize": 15,
-    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "fontSize": 17,
     "anchor": "start",
     "color": "#0b0b0b",
     "offset": 10,

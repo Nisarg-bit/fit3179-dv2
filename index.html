@@ -6,12 +6,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All Gear, No Go — Camping in Australia</title>
 <meta name="description" content="Australia owns more than 100,000 campervans and is using them less every year.">
-<link rel="stylesheet" href="css/style.css?v=2026-10-17b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Zilla+Slab:wght@600;700&amp;display=swap">
+<link rel="stylesheet" href="css/style.css?v=2026-10-17c">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body id="top">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Campervan facing right. Body takes currentColor; windows take --van-win; wheels spin with --spin. -->
+    <symbol id="van" viewBox="0 0 120 60">
+      <path fill="currentColor" d="M6 46V22c0-4 3-8 8-8h58c4 0 7 1 10 4l14 14c6 1 14 3 14 12v2c0 2-2 4-4 4H6z"/>
+      <rect fill="currentColor" x="26" y="7" width="38" height="8" rx="3"/>
+      <rect fill="var(--van-win, #ffe2a8)" x="14" y="21" width="20" height="13" rx="2"/>
+      <rect fill="var(--van-win, #ffe2a8)" x="40" y="21" width="20" height="13" rx="2"/>
+      <path fill="var(--van-win, #ffe2a8)" d="M82 21l12 13H82z"/>
+      <rect fill="var(--van-trim, rgba(255,255,255,.35))" x="6" y="38" width="108" height="3"/>
+      <rect fill="var(--van-win, #ffe2a8)" x="108" y="40" width="6" height="4" rx="1"/>
+      <g style="transform-box:fill-box;transform-origin:center;transform:rotate(var(--spin,0deg))">
+        <circle fill="#1b1520" cx="28" cy="47" r="9"/><circle fill="#c9c2b6" cx="28" cy="47" r="3.5"/>
+      </g>
+      <g style="transform-box:fill-box;transform-origin:center;transform:rotate(var(--spin,0deg))">
+        <circle fill="#1b1520" cx="92" cy="47" r="9"/><circle fill="#c9c2b6" cx="92" cy="47" r="3.5"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
 <a class="skip" href="#boom">Skip to the story</a>
 <nav class="topnav" aria-label="Sections">
   <div class="topnav-in">
@@ -30,6 +53,47 @@
 <div class="wrap">
 
 <header class="masthead">
+  <svg class="hero-scene" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#ffcf8a" stop-opacity=".95"/>
+        <stop offset=".45" stop-color="#ff9a5a" stop-opacity=".35"/>
+        <stop offset="1" stop-color="#ff7a4a" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="fireGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#ffb35c" stop-opacity=".9"/>
+        <stop offset="1" stop-color="#ff8a3c" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <g fill="#fff" opacity=".85">
+      <circle cx="520" cy="60" r="1.6"/><circle cx="610" cy="120" r="1.2"/><circle cx="700" cy="46" r="1.8"/>
+      <circle cx="790" cy="98" r="1.2"/><circle cx="880" cy="40" r="1.5"/><circle cx="960" cy="140" r="1.1"/>
+      <circle cx="1040" cy="72" r="1.8"/><circle cx="1120" cy="120" r="1.2"/><circle cx="1170" cy="44" r="1.4"/>
+      <circle cx="470" cy="150" r="1.1"/><circle cx="1090" cy="190" r="1"/><circle cx="740" cy="170" r="1"/>
+    </g>
+    <circle cx="880" cy="372" r="190" fill="url(#sunGlow)"/>
+    <circle cx="880" cy="372" r="44" fill="#ffd9a0"/>
+    <path fill="#5a3f70" d="M0 440C140 425 260 440 380 430C500 420 600 412 720 392C820 372 900 350 980 360C1070 372 1140 352 1200 340V560H0Z"/>
+    <path fill="#85496a" d="M0 472C140 454 280 482 420 470C560 458 640 478 780 464C920 450 1040 460 1200 438V560H0Z"/>
+    <path fill="#b3573f" d="M0 502C180 486 340 510 520 498C700 486 860 510 1040 496C1120 490 1170 492 1200 488V560H0Z"/>
+    <!-- campsite -->
+    <g transform="translate(0,-26)">
+    <circle cx="840" cy="512" r="34" fill="url(#fireGlow)"/>
+    <path fill="#ffb347" d="M833 520c-8-4-6-14 2-20 0 6 4 8 6 4 6 6 4 14-8 16z"/>
+    <path fill="#2b1a2a" d="M880 524l50-70 50 70z"/>
+    <path fill="#ffcf80" d="M918 524l12-38 12 38z"/>
+    <path fill="#2b1a2a" d="M930 454v-10" stroke="#2b1a2a" stroke-width="2"/>
+    <use href="#van" x="620" y="446" width="170" height="85" style="color:#1c1224;--van-win:#ffd68a;--van-trim:#3a2a4a"/>
+    </g>
+    <path fill="#231622" d="M0 538C200 526 420 546 640 534C860 522 1020 542 1200 530V560H0Z"/>
+    <!-- foreground gum trees -->
+    <g fill="#1a1020" transform="translate(-80,-40)">
+      <path d="M1088 540c-2-40 2-80-2-120 6 26 8 50 10 78 6-24 14-40 26-56-10 22-12 40-12 66 0 12-1 22-2 32z"/>
+      <ellipse cx="1060" cy="410" rx="44" ry="20"/><ellipse cx="1114" cy="396" rx="52" ry="22"/><ellipse cx="1088" cy="380" rx="40" ry="16"/>
+      <path d="M1170 540c-1-24 1-46-1-70 4 14 5 28 6 44 4-12 8-22 15-30-6 12-7 24-7 40z"/>
+      <ellipse cx="1158" cy="456" rx="26" ry="12"/><ellipse cx="1190" cy="448" rx="26" ry="12"/>
+    </g>
+  </svg>
   <p class="eyebrow">FIT3179 Data Visualisation 2 &middot; Semester 2, 2026</p>
   <h1>All Gear,<br>No Go</h1>
   <p class="standfirst">Australia owns more than 100,000 campervans and nearly 10,000 campgrounds
@@ -37,13 +101,14 @@
   <p class="byline">
     <span>Nisarg</span><span>Monash University</span><span>October 2026</span>
   </p>
-  <div class="tiles">
+</header>
+
+<div class="tiles">
     <div class="tile"><div class="v">15.2M</div><div class="k">Caravan &amp; camping trips, 2024</div></div>
     <div class="tile"><div class="v">$10.6B</div><div class="k">Spent on those trips, 2024</div></div>
     <div class="tile"><div class="v">103,481</div><div class="k">Campervans registered, 2025</div></div>
     <div class="tile"><div class="v">9,945</div><div class="k">Campgrounds mapped</div></div>
   </div>
-</header>
 
 <!-- ===== 1 ===== -->
 <section id="boom">
@@ -72,6 +137,12 @@
   </div>
 </section>
 
+<div class="road" aria-hidden="true">
+  <div class="road-van"><svg viewBox="0 0 120 60" width="78" height="39" focusable="false"><use href="#van"/></svg></div>
+  <div class="road-line"></div>
+  <span class="road-next">Next stop &middot; The turn</span>
+</div>
+
 <!-- ===== 2 ===== -->
 <section id="turn">
   <div class="sec-head"><div class="sec-num">02</div><h2>The turn</h2></div>
@@ -91,6 +162,12 @@
     </figure>
   </div>
 </section>
+
+<div class="road" aria-hidden="true">
+  <div class="road-van"><svg viewBox="0 0 120 60" width="78" height="39" focusable="false"><use href="#van"/></svg></div>
+  <div class="road-line"></div>
+  <span class="road-next">Next stop &middot; Where the vans are</span>
+</div>
 
 <!-- ===== 3 ===== -->
 <section id="vans">
@@ -121,6 +198,12 @@
   </div>
 </section>
 
+<div class="road" aria-hidden="true">
+  <div class="road-van"><svg viewBox="0 0 120 60" width="78" height="39" focusable="false"><use href="#van"/></svg></div>
+  <div class="road-line"></div>
+  <span class="road-next">Next stop &middot; Where the campgrounds are</span>
+</div>
+
 <!-- ===== 4 ===== -->
 <section id="campgrounds">
   <div class="sec-head"><div class="sec-num">04</div><h2>Where the campgrounds are</h2></div>
@@ -150,6 +233,12 @@
   </div>
 </section>
 
+<div class="road" aria-hidden="true">
+  <div class="road-van"><svg viewBox="0 0 120 60" width="78" height="39" focusable="false"><use href="#van"/></svg></div>
+  <div class="road-line"></div>
+  <span class="road-next">Next stop &middot; A territory of destinations</span>
+</div>
+
 <!-- ===== 5 ===== -->
 <section id="gap">
   <div class="sec-head"><div class="sec-num">05</div><h2>A territory of destinations</h2></div>
@@ -171,6 +260,12 @@
     </figure>
   </div>
 </section>
+
+<div class="road" aria-hidden="true">
+  <div class="road-van"><svg viewBox="0 0 120 60" width="78" height="39" focusable="false"><use href="#van"/></svg></div>
+  <div class="road-line"></div>
+  <span class="road-next">Next stop &middot; What they actually book</span>
+</div>
 
 <!-- ===== 6 ===== -->
 <section id="booking">
@@ -199,6 +294,12 @@
   </div>
 </section>
 
+<div class="road" aria-hidden="true">
+  <div class="road-van"><svg viewBox="0 0 120 60" width="78" height="39" focusable="false"><use href="#van"/></svg></div>
+  <div class="road-line"></div>
+  <span class="road-next">Next stop &middot; Sources</span>
+</div>
+
 <!-- ===== Sources ===== -->
 <section id="sources" class="meta">
   <div class="sec-head"><div class="sec-num">DATA &amp; METHOD</div><h2>Sources</h2></div>
@@ -223,10 +324,10 @@
     </tbody>
   </table>
   <p class="note"><strong>Method notes.</strong> Postcodes on the campervan map are pooled into 1&deg; squares by the position of each postcode centre; squares with fewer than 300 registered vehicles are greyed because their rates are unreliable. The rental-fleet chart keeps only postcodes with at least 2,000 vehicles. The trend line on the ownership-and-camping chart is fitted to the six states and leaves out the Northern Territory. Registration records where a vehicle is registered, not where its owner lives, so depot and hire-fleet postcodes inflate some figures. Industry figures are for 2024 and registration figures for January 2025.</p>
-  <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository.</p>
+  <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository. Typefaces are Figtree and Zilla Slab (SIL Open Font License) from Google Fonts; the hero scene and campervan are drawn in SVG for this project.</p>
 </section>
 
 </div>
-<script src="js/charts.js?v=2026-10-17b"></script>
+<script src="js/charts.js?v=2026-10-17c"></script>
 </body>
 </html>

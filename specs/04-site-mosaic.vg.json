@@ -5,10 +5,10 @@
       "Where the money is"
     ],
     "subtitle": [
-      "Caravan park revenue (bar width) against occupancy (bar height), 2024.",
-      "Cabins earn $1.9b at 60% full; unpowered tent sites earn $66m at 20%."
+      "Park revenue (bar width) against occupancy (bar height), 2024.",
+      "Cabins: $1.9b at 60% full. Unpowered tent sites: $66m at 20%."
     ],
-    "fontSize": 15,
+    "fontSize": 17,
     "anchor": "start",
     "color": "#0b0b0b",
     "offset": 10,

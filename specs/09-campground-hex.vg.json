@@ -148,8 +148,7 @@
       "Campgrounds per 0.9 degree cell. Classed breaks,",
       "because a few cells hold more than fifty sites."
     ],
-    "fontSize": 15,
-    "font": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "fontSize": 17,
     "anchor": "start",
     "color": "#0b0b0b",
     "offset": 10,
