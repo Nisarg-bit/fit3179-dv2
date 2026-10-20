@@ -67,12 +67,25 @@
       "type": "quantitative",
       "title": "Indexed, 2015 = 100",
       "scale": {
-        "zero": false,
-        "nice": true
+        "zero": true,
+        "domain": [
+          0,
+          150
+        ],
+        "nice": false
       },
       "axis": {
         "labelExpr": "format(datum.value, '.0f')",
-        "titleFontSize": 12
+        "titleFontSize": 12,
+        "values": [
+          0,
+          25,
+          50,
+          75,
+          100,
+          125,
+          150
+        ]
       }
     },
     "color": {
@@ -137,12 +150,16 @@
       "transform": [
         {
           "filter": "datum.year == 2024"
+        },
+        {
+          "calculate": "datum.idx + {'Economic impact': 3.5, 'Trips': -3.5, 'Nights': 3.5, 'RVs built': -3.5}[datum.label]",
+          "as": "labelY"
         }
       ],
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 10,
+        "dx": 12,
         "fontSize": 11.5,
         "fontWeight": 600,
         "limit": 110
@@ -150,6 +167,10 @@
       "encoding": {
         "text": {
           "field": "label"
+        },
+        "y": {
+          "field": "labelY",
+          "type": "quantitative"
         }
       }
     }
