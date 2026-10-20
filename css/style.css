@@ -18,8 +18,8 @@
 
   --measure: 90ch;      /* section narrative; top of the 45-90ch readable range */
   --gap: 28px;
-  --font: Figtree, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --display: "Zilla Slab", Rockwell, Georgia, serif;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --display: var(--font);   /* headings use the same system sans-serif */
 }
 
 /* Deliberately single-theme (light): map base fills live in static

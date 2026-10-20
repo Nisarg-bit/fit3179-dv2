@@ -6,15 +6,9 @@
 // could survive a BUILD bump. Instead each spec is fetched with
 // cache: 'reload', which forces a revalidated network fetch every time.
 const BUILD = '2026-10-17c';
-const BODY_FONT = 'Figtree, system-ui, -apple-system, "Segoe UI", sans-serif';
-const DISPLAY_FONT = '"Zilla Slab", Rockwell, Georgia, serif';
-// Canvas text is measured at draw time, so wait (briefly) for the web fonts before the
-// first chart is drawn; if they are blocked the system fallbacks are used after 2.5 s.
-const fontsReady = Promise.race([
-  Promise.all(['400 13px Figtree', '600 13px Figtree', '700 13px Figtree', '600 17px "Zilla Slab"']
-    .map(f => document.fonts.load(f))).catch(() => {}),
-  new Promise(r => setTimeout(r, 2500))
-]);
+// System fonts only: nothing is downloaded, so charts can be drawn straight away.
+const BODY_FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+const DISPLAY_FONT = BODY_FONT;
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();
@@ -207,7 +201,6 @@ async function draw(el) {
   try {
     // cache: 'reload' bypasses the HTTP cache for this request, so an edited
     // spec always takes effect without needing a cache-busting query string.
-    await fontsReady;
     const res = await fetch(`specs/${spec}`, { cache: 'reload' });
     if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
     const json = await res.json();
