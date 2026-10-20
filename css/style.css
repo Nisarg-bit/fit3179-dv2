@@ -203,30 +203,6 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 .viz .vega-bindings input[type="range"] { accent-color: var(--accent); width: 190px; }
 .viz .vega-bindings label { display: flex; align-items: center; gap: 8px; }
 
-/* zoom and pan controls above each map */
-.map-controls {
-  display: flex; align-items: center; justify-content: flex-end; gap: 6px;
-  margin: 0 0 8px; font-size: 12px; color: var(--muted);
-}
-.map-controls .map-hint { margin-right: 6px; }
-.map-controls .map-state { margin-right: auto; display: flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
-.map-controls select {
-  font: inherit; font-size: 13px; font-weight: 400; letter-spacing: 0; text-transform: none;
-  padding: 5px 8px; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--rule); border-radius: 2px;
-}
-.map-controls select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-.map-controls button {
-  font: inherit; font-size: 13px; line-height: 1; min-width: 30px; padding: 6px 10px;
-  color: var(--ink); background: var(--surface); border: 1px solid var(--rule);
-  border-radius: 2px; cursor: pointer;
-}
-.map-controls button:hover:not(:disabled) { background: var(--page); }
-.map-controls button:disabled { color: var(--muted); cursor: default; opacity: .6; }
-.map-controls button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
-
-
 /* ---------- top navigation ---------- */
 .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--ink); color: #fff;
         padding: 8px 14px; font-size: 14px; }

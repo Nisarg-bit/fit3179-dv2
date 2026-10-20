@@ -1,178 +1,178 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 440,
-  "projection": {
-    "type": "conicEqualArea",
-    "rotate": [
-      -132,
-      0
-    ],
-    "parallels": [
-      -18,
-      -36
-    ],
-    "scale": {
-      "expr": "(min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom)"
-    },
-    "translate": {
-      "expr": "[width / 2 + mapPanX - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.018354, height / 2 + mapPanY - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.926161]"
-    }
-  },
-  "layer": [
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "states"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#f4f3f0",
-        "stroke": "#c3c2b7",
-        "strokeWidth": 0.6,
-        "clip": true
-      }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds.csv"
-      },
-      "transform": [
-        {
-          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
-        },
-        {
-          "calculate": "floor(datum.lon / 0.9) * 0.9 + 0.45",
-          "as": "gx"
-        },
-        {
-          "calculate": "floor(datum.lat / 0.9) * 0.9 + 0.45",
-          "as": "gy"
-        },
-        {
-          "aggregate": [
-            {
-              "op": "count",
-              "as": "n"
-            }
-          ],
-          "groupby": [
-            "gx",
-            "gy"
-          ]
-        },
-        {
-          "filter": "datum.n >= minSites"
-        },
-        {
-          "calculate": "datum.n < 2 ? '1' : datum.n < 5 ? '2–4' : datum.n < 10 ? '5–9' : datum.n < 25 ? '10–24' : datum.n < 50 ? '25–49' : '50+'",
-          "as": "band"
-        }
-      ],
-      "mark": {
-        "type": "square",
-        "opacity": 0.88,
-        "stroke": null,
-        "clip": true
-      },
-      "encoding": {
-        "longitude": {
-          "field": "gx",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "gy",
-          "type": "quantitative"
-        },
-        "size": {
-          "value": {
-            "expr": "56 * mapZoom * mapZoom"
-          }
-        },
-        "color": {
-          "field": "band",
-          "type": "ordinal",
-          "title": "Campgrounds in cell",
-          "scale": {
-            "domain": [
-              "1",
-              "2–4",
-              "5–9",
-              "10–24",
-              "25–49",
-              "50+"
-            ],
-            "range": [
-              "#e8f1fd",
-              "#b7d3f6",
-              "#86b6ef",
-              "#5598e7",
-              "#2a78d6",
-              "#184f95"
-            ]
-          },
-          "legend": {
-            "type": "symbol",
-            "symbolType": "square",
-            "symbolSize": 150,
-            "orient": "bottom",
-            "direction": "horizontal",
-            "columns": 6,
-            "titleOrient": "top",
-            "titleFontSize": 11.5,
-            "labelFontSize": 11,
-            "offset": 10
-          }
-        },
-        "tooltip": [
-          {
-            "field": "n",
-            "type": "quantitative",
-            "title": "Campgrounds in cell"
-          },
-          {
-            "field": "band",
-            "type": "nominal",
-            "title": "Class"
-          }
-        ]
-      }
-    }
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "width": "container",
+ "height": 440,
+ "projection": {
+  "type": "conicEqualArea",
+  "rotate": [
+   -132,
+   0
   ],
-  "params": [
-    {
-      "name": "minSites",
-      "value": 1,
-      "bind": {
-        "input": "range",
-        "min": 1,
-        "max": 40,
-        "step": 1,
-        "name": "Only cells with at least:  "
-      }
-    },
-    {
-      "name": "mapZoom",
-      "value": 1
-    },
-    {
-      "name": "mapPanX",
-      "value": 0
-    },
-    {
-      "name": "mapPanY",
-      "value": 0
-    }
+  "parallels": [
+   -18,
+   -36
   ],
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
-  },
-  "view": {
-    "stroke": "#dcdad2",
-    "strokeWidth": 1
+  "center": [
+   1.195,
+   -26.967
+  ],
+  "scale": {
+   "expr": "min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom"
   }
+ },
+ "layer": [
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
+    "format": {
+     "type": "topojson",
+     "feature": "states"
+    }
+   },
+   "mark": {
+    "type": "geoshape",
+    "fill": "#f4f3f0",
+    "stroke": "#c3c2b7",
+    "strokeWidth": 0.6,
+    "clip": true
+   }
+  },
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campgrounds.csv"
+   },
+   "transform": [
+    {
+     "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+    },
+    {
+     "calculate": "floor(datum.lon / 0.9) * 0.9 + 0.45",
+     "as": "gx"
+    },
+    {
+     "calculate": "floor(datum.lat / 0.9) * 0.9 + 0.45",
+     "as": "gy"
+    },
+    {
+     "aggregate": [
+      {
+       "op": "count",
+       "as": "n"
+      }
+     ],
+     "groupby": [
+      "gx",
+      "gy"
+     ]
+    },
+    {
+     "filter": "datum.n >= minSites"
+    },
+    {
+     "calculate": "datum.n < 2 ? '1' : datum.n < 5 ? '2–4' : datum.n < 10 ? '5–9' : datum.n < 25 ? '10–24' : datum.n < 50 ? '25–49' : '50+'",
+     "as": "band"
+    }
+   ],
+   "mark": {
+    "type": "square",
+    "opacity": 0.88,
+    "stroke": null,
+    "clip": true
+   },
+   "encoding": {
+    "longitude": {
+     "field": "gx",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "gy",
+     "type": "quantitative"
+    },
+    "size": {
+     "value": {
+      "expr": "56 * mapZoom * mapZoom"
+     }
+    },
+    "color": {
+     "field": "band",
+     "type": "ordinal",
+     "title": "Campgrounds in cell",
+     "scale": {
+      "domain": [
+       "1",
+       "2–4",
+       "5–9",
+       "10–24",
+       "25–49",
+       "50+"
+      ],
+      "range": [
+       "#e8f1fd",
+       "#b7d3f6",
+       "#86b6ef",
+       "#5598e7",
+       "#2a78d6",
+       "#184f95"
+      ]
+     },
+     "legend": {
+      "type": "symbol",
+      "symbolType": "square",
+      "symbolSize": 150,
+      "orient": "bottom",
+      "direction": "horizontal",
+      "columns": 6,
+      "titleOrient": "top",
+      "titleFontSize": 11.5,
+      "labelFontSize": 11,
+      "offset": 10
+     }
+    },
+    "tooltip": [
+     {
+      "field": "n",
+      "type": "quantitative",
+      "title": "Campgrounds in cell"
+     },
+     {
+      "field": "band",
+      "type": "nominal",
+      "title": "Class"
+     }
+    ]
+   }
+  }
+ ],
+ "params": [
+  {
+   "name": "minSites",
+   "value": 1,
+   "bind": {
+    "input": "range",
+    "min": 1,
+    "max": 40,
+    "step": 1,
+    "name": "Only cells with at least:  "
+   }
+  },
+  {
+   "name": "mapZoom",
+   "value": 1,
+   "bind": {
+    "input": "range",
+    "min": 1,
+    "max": 10,
+    "step": 0.5,
+    "name": "Zoom: "
+   }
+  }
+ ],
+ "autosize": {
+  "type": "fit-x",
+  "contains": "padding"
+ },
+ "view": {
+  "stroke": "#dcdad2",
+  "strokeWidth": 1
+ }
 }

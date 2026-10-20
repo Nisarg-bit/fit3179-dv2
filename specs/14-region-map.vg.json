@@ -1,208 +1,208 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 440,
-  "projection": {
-    "type": "conicEqualArea",
-    "rotate": [
-      -132,
-      0
-    ],
-    "parallels": [
-      -18,
-      -36
-    ],
-    "scale": {
-      "expr": "(min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom)"
-    },
-    "translate": {
-      "expr": "[width / 2 + mapPanX - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.018354, height / 2 + mapPanY - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.926161]"
-    }
-  },
-  "layer": [
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "states"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#f4f3f0",
-        "stroke": "#c3c2b7",
-        "strokeWidth": 0.6,
-        "clip": true
-      }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/regions.csv"
-      },
-      "mark": {
-        "type": "circle",
-        "opacity": 0.88,
-        "stroke": "#fcfcfb",
-        "strokeWidth": 1.2,
-        "clip": true
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "size": {
-          "field": "trips_k",
-          "type": "quantitative",
-          "title": "Trips (000s)",
-          "scale": {
-            "type": "sqrt",
-            "range": [
-              120,
-              1400
-            ]
-          },
-          "legend": {
-            "format": ".0f",
-            "values": [
-              500,
-              800,
-              1300
-            ]
-          }
-        },
-        "color": {
-          "field": "nights_yoy_pct",
-          "type": "quantitative",
-          "title": [
-            "Change in",
-            "nights (%)"
-          ],
-          "scale": {
-            "scheme": "redblue",
-            "domainMid": 0,
-            "domain": [
-              -35,
-              55
-            ]
-          },
-          "legend": {
-            "format": "+d"
-          }
-        },
-        "tooltip": [
-          {
-            "field": "region",
-            "type": "nominal",
-            "title": "Region"
-          },
-          {
-            "field": "stateName",
-            "type": "nominal",
-            "title": "State"
-          },
-          {
-            "field": "trips_k",
-            "type": "quantitative",
-            "title": "Trips (000s)",
-            "format": ".1f"
-          },
-          {
-            "field": "nights_m",
-            "type": "quantitative",
-            "title": "Nights (m)",
-            "format": ".2f"
-          },
-          {
-            "field": "trips_yoy_pct",
-            "type": "quantitative",
-            "title": "Trips change (%)",
-            "format": "+d"
-          },
-          {
-            "field": "nights_yoy_pct",
-            "type": "quantitative",
-            "title": "Nights change (%)",
-            "format": "+d"
-          }
-        ]
-      },
-      "transform": [
-        {
-          "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
-          "as": "stateName"
-        },
-        {
-          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
-        }
-      ]
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/regions.csv"
-      },
-      "transform": [
-        {
-          "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
-          "as": "stateName"
-        },
-        {
-          "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
-        },
-        {
-          "filter": "abs(datum.nights_yoy_pct) >= 18"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 16,
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#52514e",
-        "clip": true
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "region",
-          "type": "nominal"
-        }
-      }
-    }
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "width": "container",
+ "height": 440,
+ "projection": {
+  "type": "conicEqualArea",
+  "rotate": [
+   -132,
+   0
   ],
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
-  },
-  "params": [
-    {
-      "name": "mapZoom",
-      "value": 1
-    },
-    {
-      "name": "mapPanX",
-      "value": 0
-    },
-    {
-      "name": "mapPanY",
-      "value": 0
-    }
+  "parallels": [
+   -18,
+   -36
   ],
-  "view": {
-    "stroke": "#dcdad2",
-    "strokeWidth": 1
+  "center": [
+   1.195,
+   -26.967
+  ],
+  "scale": {
+   "expr": "min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom"
   }
+ },
+ "layer": [
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
+    "format": {
+     "type": "topojson",
+     "feature": "states"
+    }
+   },
+   "mark": {
+    "type": "geoshape",
+    "fill": "#f4f3f0",
+    "stroke": "#c3c2b7",
+    "strokeWidth": 0.6,
+    "clip": true
+   }
+  },
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/regions.csv"
+   },
+   "mark": {
+    "type": "circle",
+    "opacity": 0.88,
+    "stroke": "#fcfcfb",
+    "strokeWidth": 1.2,
+    "clip": true
+   },
+   "encoding": {
+    "longitude": {
+     "field": "lon",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "lat",
+     "type": "quantitative"
+    },
+    "size": {
+     "field": "trips_k",
+     "type": "quantitative",
+     "title": "Trips (000s)",
+     "scale": {
+      "type": "sqrt",
+      "range": [
+       120,
+       1400
+      ]
+     },
+     "legend": {
+      "format": ".0f",
+      "values": [
+       500,
+       800,
+       1300
+      ]
+     }
+    },
+    "color": {
+     "field": "nights_yoy_pct",
+     "type": "quantitative",
+     "title": [
+      "Change in",
+      "nights (%)"
+     ],
+     "scale": {
+      "scheme": "redblue",
+      "domainMid": 0,
+      "domain": [
+       -35,
+       55
+      ]
+     },
+     "legend": {
+      "format": "+d"
+     }
+    },
+    "tooltip": [
+     {
+      "field": "region",
+      "type": "nominal",
+      "title": "Region"
+     },
+     {
+      "field": "stateName",
+      "type": "nominal",
+      "title": "State"
+     },
+     {
+      "field": "trips_k",
+      "type": "quantitative",
+      "title": "Trips (000s)",
+      "format": ".1f"
+     },
+     {
+      "field": "nights_m",
+      "type": "quantitative",
+      "title": "Nights (m)",
+      "format": ".2f"
+     },
+     {
+      "field": "trips_yoy_pct",
+      "type": "quantitative",
+      "title": "Trips change (%)",
+      "format": "+d"
+     },
+     {
+      "field": "nights_yoy_pct",
+      "type": "quantitative",
+      "title": "Nights change (%)",
+      "format": "+d"
+     }
+    ]
+   },
+   "transform": [
+    {
+     "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
+     "as": "stateName"
+    },
+    {
+     "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+    }
+   ]
+  },
+  {
+   "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/regions.csv"
+   },
+   "transform": [
+    {
+     "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
+     "as": "stateName"
+    },
+    {
+     "filter": "datum.lon > 110 && datum.lon < 155 && datum.lat > -44 && datum.lat < -9"
+    },
+    {
+     "filter": "abs(datum.nights_yoy_pct) >= 18"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "dx": 16,
+    "fontSize": 11,
+    "fontWeight": 600,
+    "color": "#52514e",
+    "clip": true
+   },
+   "encoding": {
+    "longitude": {
+     "field": "lon",
+     "type": "quantitative"
+    },
+    "latitude": {
+     "field": "lat",
+     "type": "quantitative"
+    },
+    "text": {
+     "field": "region",
+     "type": "nominal"
+    }
+   }
+  }
+ ],
+ "autosize": {
+  "type": "fit-x",
+  "contains": "padding"
+ },
+ "params": [
+  {
+   "name": "mapZoom",
+   "value": 1,
+   "bind": {
+    "input": "range",
+    "min": 1,
+    "max": 10,
+    "step": 0.5,
+    "name": "Zoom: "
+   }
+  }
+ ],
+ "view": {
+  "stroke": "#dcdad2",
+  "strokeWidth": 1
+ }
 }

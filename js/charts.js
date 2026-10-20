@@ -33,21 +33,6 @@ const THEME = () => {
 };
 
 
-// Projected bounding boxes of each state at projection scale 1 (conic equal area,
-// the same projection every map spec uses): [x0, y0, x1, y1]. The map centre is
-// (0.018354, 0.926161) and the base scale is min(width / 0.628148, height / 0.602988) * 0.94.
-const STATE_BOUNDS = {
-  'New South Wales': [0.12945, 0.96675, 0.32625, 1.12885],
-  'Victoria': [0.12399, 1.05426, 0.24932, 1.15056],
-  'Queensland': [0.09294, 0.62467, 0.33243, 0.98725],
-  'South Australia': [-0.04646, 0.9095, 0.13937, 1.12519],
-  'Western Australia': [-0.29572, 0.69615, -0.04411, 1.08182],
-  'Tasmania': [0.16057, 1.15479, 0.2222, 1.22766],
-  'Northern Territory': [-0.05104, 0.64726, 0.10077, 0.91111],
-  'Australian Capital Territory': [0.23709, 1.08609, 0.24653, 1.09974]
-};
-const MAP_CENTRE = [0.018354, 0.926161];
-
 // Click-to-highlight for the bump chart. The spec has a plain `picked` param that its
 // colour conditions read; a Vega-Lite point selection cannot span lines, dots and
 // labels at once, so the clicks are wired here. Double-click clears the highlight.
@@ -61,118 +46,6 @@ function addPickHighlight(view) {
     if (st) pick(st);
   });
   view.addEventListener('dblclick', () => pick(null));
-}
-
-// Zoom and pan for the five maps. Each map spec declares three plain params
-// (mapZoom, mapPanX, mapPanY) that drive its projection; this wires buttons,
-// mouse drag and Ctrl/Cmd + scroll to them. Specs without those params are left alone.
-function addMapControls(el, view) {
-  let ok = false;
-  try { ok = typeof view.signal('mapZoom') === 'number'; } catch (e) { ok = false; }
-  if (!ok) return;
-
-  const MIN = 1, MAX = 16;
-  const get = () => ({ z: view.signal('mapZoom'), x: view.signal('mapPanX'), y: view.signal('mapPanY') });
-  const set = (z, x, y) => view.signal('mapZoom', z).signal('mapPanX', x).signal('mapPanY', y).run();
-  const zoomAt = (factor, cx, cy) => {            // cx, cy: offset from the map centre, in px
-    const s = get();
-    const z = Math.min(MAX, Math.max(MIN, s.z * factor));
-    if (z === s.z) return;
-    const r = z / s.z;
-    set(z, cx - (cx - s.x) * r, cy - (cy - s.y) * r);
-    refresh();
-  };
-
-  // zoom and pan that frame one state (used by the dropdown on the dot map)
-  const viewFor = name => {
-    const b = STATE_BOUNDS[name];
-    if (!b) return { z: 1, x: 0, y: 0 };
-    const w = view.width(), h = view.height();
-    const base = Math.min(w / 0.628148, h / 0.602988) * 0.94;
-    const z = Math.min(MAX, Math.max(MIN, 0.8 * Math.min(w / ((b[2] - b[0]) * base), h / ((b[3] - b[1]) * base))));
-    return { z, x: -base * z * ((b[0] + b[2]) / 2 - MAP_CENTRE[0]), y: -base * z * ((b[1] + b[3]) / 2 - MAP_CENTRE[1]) };
-  };
-  const hasStatePicker = el.dataset.spec === '08-density-hexmap.vg.json';
-
-  const bar = document.createElement('div');
-  bar.className = 'map-controls';
-  bar.innerHTML =
-    (hasStatePicker
-      ? '<label class="map-state">Show state <select aria-label="Zoom the map to a state">' +
-        '<option value="">All of Australia</option><option value="custom" hidden>Custom view</option>' +
-        Object.keys(STATE_BOUNDS).sort().map(n => '<option>' + n + '</option>').join('') +
-        '</select></label>'
-      : '') +
-    '<button type="button" data-act="in" aria-label="Zoom in">+</button>' +
-    '<button type="button" data-act="out" aria-label="Zoom out">−</button>' +
-    '<button type="button" data-act="reset" aria-label="Reset the map view">Reset</button>';
-  el.prepend(bar);
-
-  const canvas = () => el.querySelector('canvas');
-  const picker = bar.querySelector('select');
-  const syncPicker = () => {
-    if (!picker) return;
-    const s = get();
-    if (s.z === 1 && s.x === 0 && s.y === 0) { picker.value = ''; return; }
-    const t = viewFor(picker.value);
-    const same = picker.value && picker.value !== 'custom' &&
-      Math.abs(t.z - s.z) < 0.01 && Math.abs(t.x - s.x) < 1 && Math.abs(t.y - s.y) < 1;
-    if (!same) picker.value = 'custom';
-  };
-  if (picker) picker.addEventListener('change', () => {
-    if (picker.value === 'custom') return;
-    const t = viewFor(picker.value);
-    set(t.z, t.x, t.y);
-    refresh();
-  });
-  const refresh = () => {
-    syncPicker();
-    const c = canvas();
-    if (c) c.style.cursor = get().z > 1 ? 'grab' : 'default';
-    bar.querySelector('[data-act="reset"]').disabled = get().z === 1 && get().x === 0 && get().y === 0;
-  };
-  bar.addEventListener('click', e => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    if (b.dataset.act === 'in') zoomAt(1.6, 0, 0);
-    if (b.dataset.act === 'out') zoomAt(1 / 1.6, 0, 0);
-    if (b.dataset.act === 'reset') { set(1, 0, 0); refresh(); }
-  });
-
-  // offset of the pointer from the centre of the map frame
-  const offsetFrom = ev => {
-    const r = canvas().getBoundingClientRect();
-    const o = view.origin();
-    const pad = view.padding();
-    const pl = typeof pad === 'number' ? pad : (pad.left || 0);
-    const pt = typeof pad === 'number' ? pad : (pad.top || 0);
-    return [ev.clientX - r.left - o[0] - pl - view.width() / 2,
-            ev.clientY - r.top - o[1] - pt - view.height() / 2];
-  };
-
-  el.addEventListener('wheel', ev => {
-    if (!(ev.ctrlKey || ev.metaKey)) return;      // plain scrolling still scrolls the page
-    ev.preventDefault();
-    const [cx, cy] = offsetFrom(ev);
-    zoomAt(Math.exp(-ev.deltaY * 0.0025), cx, cy);
-  }, { passive: false });
-
-  let drag = null;
-  el.addEventListener('pointerdown', ev => {
-    if (ev.pointerType !== 'mouse' || ev.button !== 0 || get().z <= 1) return;
-    if (!ev.target.closest('canvas')) return;
-    drag = { sx: ev.clientX, sy: ev.clientY, ...get(), moved: false };
-  });
-  window.addEventListener('pointermove', ev => {
-    if (!drag) return;
-    const dx = ev.clientX - drag.sx, dy = ev.clientY - drag.sy;
-    if (!drag.moved && Math.hypot(dx, dy) < 3) return;
-    drag.moved = true;
-    canvas().style.cursor = 'grabbing';
-    set(drag.z, drag.x + dx, drag.y + dy);
-  });
-  window.addEventListener('pointerup', () => { if (drag) { drag = null; refresh(); } });
-  refresh();
 }
 
 // Faceted charts cannot use width: "container", so size the panels from the space
@@ -211,7 +84,6 @@ async function draw(el) {
       renderer: 'canvas'
     });
     el.dataset.w = el.clientWidth; el.dataset.cols = json.columns || '';
-    addMapControls(el, result.view);
     addPickHighlight(result.view);
   } catch (e) {
     el.innerHTML = `<p style="color:#d03b3b;font-size:14px">Could not load <code>${spec}</code> \u2014 ${e}</p>`;
