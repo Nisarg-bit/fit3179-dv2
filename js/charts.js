@@ -6,9 +6,11 @@
 // could survive a BUILD bump. Instead each spec is fetched with
 // cache: 'reload', which forces a revalidated network fetch every time.
 const BUILD = '2026-10-17c';
-// System fonts only: nothing is downloaded, so charts can be drawn straight away.
-const BODY_FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
-const DISPLAY_FONT = BODY_FONT;
+// The charts use the same fonts as the page. They are self-hosted (fonts/ folder) and loaded
+// before any chart is drawn, because charts are painted on a canvas and canvas text cannot
+// switch fonts after it has been drawn.
+const BODY_FONT = '"DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
+const DISPLAY_FONT = '"Fraunces", Georgia, "Times New Roman", serif';
 const THEME = () => {
   const cs = getComputedStyle(document.documentElement);
   const v = n => cs.getPropertyValue(n).trim();
@@ -17,7 +19,7 @@ const THEME = () => {
     font: BODY_FONT,
     title:  { font: DISPLAY_FONT, fontWeight: 600, fontSize: 17, anchor: 'start', color: v('--ink'),
               subtitleFont: BODY_FONT, subtitleColor: v('--ink-2'), subtitleFontSize: 12.5, offset: 10 },
-    axis:   { labelColor: v('--muted'), titleColor: v('--ink-2'),
+    axis:   { labelColor: v('--ink-2'), titleColor: v('--ink-2'),
               gridColor: v('--grid'), domainColor: v('--rule'), tickColor: v('--rule'),
               labelFontSize: 12, titleFontSize: 12, titleFontWeight: 600,
               titlePadding: 10, grid: true },
@@ -219,7 +221,11 @@ async function draw(el) {
   }
 }
 
-document.querySelectorAll('.viz[data-spec]').forEach(draw);
+Promise.all([
+  document.fonts.load('400 12px "DM Sans"'),
+  document.fonts.load('600 12px "DM Sans"'),
+  document.fonts.load('600 17px "Fraunces"')
+]).catch(() => {}).then(() => document.querySelectorAll('.viz[data-spec]').forEach(draw));
 
 
 // Highlights the navbar link for the section currently under the bar.

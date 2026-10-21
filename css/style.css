@@ -1,6 +1,13 @@
 /* FIT3179 DV2 — All Gear, No Go
    Palette: validated reference instance (blue sequential, blue<->red diverging) */
 
+/* Self-hosted fonts (SIL Open Font License, see fonts/): Fraunces, a soft vintage serif,
+   for headings and numbers; DM Sans, a friendly geometric sans, for text. */
+@font-face { font-family: "Fraunces"; font-weight: 100 900; font-style: normal; font-display: swap;
+             src: url("../fonts/fraunces-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "DM Sans"; font-weight: 100 1000; font-style: normal; font-display: swap;
+             src: url("../fonts/dm-sans-latin-wght-normal.woff2") format("woff2"); }
+
 :root {
   color-scheme: light;
   --page:        #efece4;   /* warm stone; chart cards sit on it as white */
@@ -16,10 +23,10 @@
   --accent-2:    #eb6834;
   --critical:    #d03b3b;
 
-  --measure: 90ch;      /* section narrative; top of the 45-90ch readable range */
+  --measure: 68ch;      /* section narrative: inside the 45-75 character readable range */
   --gap: 28px;
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --display: var(--font);   /* headings use the same system sans-serif */
+  --font: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;   /* headings and big numbers */
 }
 
 /* Deliberately single-theme (light): map base fills live in static
@@ -139,10 +146,10 @@ figure.chart .sub { font-size: 14px; color: var(--muted); margin: 0 0 16px; max-
 .charts:not(.two) figure.chart figcaption { max-width: none; }
 
 figure.chart figcaption {
-  font-size: 13px; color: var(--ink-2); margin-top: 14px;
-  padding-top: 12px; border-top: 1px solid var(--grid); max-width: 70ch;
+  font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-top: 14px;
+  padding-top: 12px; border-top: 1px solid var(--grid); max-width: 66ch;
 }
-figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 6px; font-size: 12px; }
+figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 6px; font-size: 12.5px; }
 
 .viz { width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; }
 .viz .vega-embed { width: 100%; }
@@ -265,7 +272,7 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 
 /* ---------- how-to-read tips ---------- */
 .tip {
-  margin: 0 0 16px; padding: 9px 14px; font-size: 13px; line-height: 1.5;
+  margin: 0 0 16px; padding: 10px 14px; font-size: 14px; line-height: 1.55;
   color: var(--ink-2); background: var(--page);
   border-left: 3px solid var(--accent); max-width: none;
 }
