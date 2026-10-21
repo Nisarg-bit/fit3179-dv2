@@ -1,19 +1,33 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 345,
   "data": {
-    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_state.csv"
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_state.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "campervans": "number",
+        "year": "number"
+      }
+    }
   },
   "transform": [
     {
       "joinaggregate": [
         {
+          "op": "min",
+          "field": "campervans",
+          "as": "lo"
+        },
+        {
           "op": "max",
           "field": "campervans",
-          "as": "peak"
+          "as": "hi"
         }
       ],
       "groupby": [
-        "code"
+        "state"
       ]
     },
     {
@@ -25,7 +39,7 @@
         }
       ],
       "groupby": [
-        "code"
+        "state"
       ],
       "sort": [
         {
@@ -46,7 +60,7 @@
         }
       ],
       "groupby": [
-        "code"
+        "state"
       ],
       "sort": [
         {
@@ -67,130 +81,754 @@
       "as": "final"
     },
     {
-      "calculate": "(datum.final >= 0 ? '+' : '') + format(datum.final, '.0f') + '%'",
+      "window": [
+        {
+          "op": "dense_rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "final",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.rank - 1",
+      "as": "row"
+    },
+    {
+      "calculate": "46 + (datum.year - 2021) / 4 * 26",
+      "as": "px"
+    },
+    {
+      "calculate": "datum.row + 0.3 - (datum.campervans - datum.lo) / (datum.hi - datum.lo) * 0.6",
+      "as": "py"
+    },
+    {
+      "calculate": "'+' + format(datum.final, '.0f') + '%'",
       "as": "finalLabel"
+    },
+    {
+      "calculate": "80 + datum.final * 0.3",
+      "as": "barEnd"
+    },
+    {
+      "calculate": "80",
+      "as": "barStart"
     }
   ],
-  "facet": {
-    "field": "state",
-    "type": "nominal",
-    "title": null,
-    "sort": {
-      "field": "peak",
-      "op": "max",
-      "order": "descending"
-    },
-    "header": {
-      "labelFontSize": 13,
-      "labelFontWeight": 600,
-      "labelColor": "#0b0b0b",
-      "labelAnchor": "start"
-    }
-  },
-  "columns": 4,
-  "spec": {
-    "width": 170,
-    "height": 110,
-    "layer": [
-      {
-        "mark": {
-          "type": "area",
-          "line": {
-            "strokeWidth": 2,
-            "color": "#2a78d6"
-          },
-          "color": "#9ec5f4"
-        },
-        "encoding": {
-          "x": {
-            "field": "year",
-            "type": "ordinal",
-            "title": null,
-            "axis": {
-              "labelAngle": 0,
-              "labelFontSize": 10,
-              "grid": false,
-              "values": [
-                2021,
-                2023,
-                2025
-              ]
-            }
-          },
-          "y": {
-            "field": "campervans",
-            "type": "quantitative",
-            "title": null,
-            "scale": {
-              "zero": true
-            },
-            "axis": {
-              "tickCount": 3,
-              "format": "~s",
-              "labelFontSize": 10
-            }
-          },
-          "tooltip": [
-            {
-              "field": "state",
-              "type": "nominal",
-              "title": "State"
-            },
-            {
-              "field": "year",
-              "type": "ordinal",
-              "title": "Year"
-            },
-            {
-              "field": "campervans",
-              "type": "quantitative",
-              "title": "Campervans",
-              "format": ","
-            },
-            {
-              "field": "growth",
-              "type": "quantitative",
-              "title": "Growth since 2021 (%)",
-              "format": "+.0f"
-            }
-          ]
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
         }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#e1e0d9",
+        "strokeWidth": 1
       },
-      {
-        "transform": [
-          {
-            "filter": "datum.year == 2021"
-          }
-        ],
-        "mark": {
-          "type": "text",
-          "align": "left",
-          "baseline": "top",
-          "dx": 4,
-          "dy": 0,
-          "fontSize": 11,
-          "fontWeight": 700,
-          "color": "#1c5cab"
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
         },
-        "encoding": {
-          "x": {
-            "field": "year",
-            "type": "ordinal"
+        "x2": {
+          "datum": 100
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
           },
-          "y": {
-            "value": 2
-          },
-          "text": {
-            "field": "finalLabel",
-            "type": "nominal"
-          }
+          "axis": null
+        },
+        "yOffset": {
+          "value": 22
+        },
+        "color": {
+          "value": "#e1e0d9"
         }
       }
-    ]
-  },
-  "resolve": {
-    "scale": {
-      "y": "independent"
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "opacity": 0.001,
+        "color": "#2a78d6"
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "x2": {
+          "datum": 100
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "yOffset": {
+          "value": -22
+        },
+        "y2": {
+          "field": "row"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "start",
+            "type": "quantitative",
+            "title": "Campervans in 2021",
+            "format": ","
+          },
+          {
+            "field": "end",
+            "type": "quantitative",
+            "title": "Campervans in 2025",
+            "format": ","
+          },
+          {
+            "field": "final",
+            "type": "quantitative",
+            "title": "Growth since 2021 (%)",
+            "format": "+.0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2,
+        "color": "#2a78d6"
+      },
+      "encoding": {
+        "x": {
+          "field": "px",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "py",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "order": {
+          "field": "year",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 36,
+        "color": "#2a78d6"
+      },
+      "encoding": {
+        "x": {
+          "field": "px",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "py",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "campervans",
+            "type": "quantitative",
+            "title": "Campervans",
+            "format": ","
+          },
+          {
+            "field": "growth",
+            "type": "quantitative",
+            "title": "Growth since 2021 (%)",
+            "format": "+.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 110,
+        "color": "#2a78d6",
+        "stroke": "#fcfcfb",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "px",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "py",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "campervans",
+            "type": "quantitative",
+            "title": "Campervans",
+            "format": ","
+          },
+          {
+            "field": "growth",
+            "type": "quantitative",
+            "title": "Growth since 2021 (%)",
+            "format": "+.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "height": 12,
+        "color": "#9ec5f4"
+      },
+      "encoding": {
+        "x": {
+          "field": "barStart",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "barEnd"
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "start",
+            "type": "quantitative",
+            "title": "Campervans in 2021",
+            "format": ","
+          },
+          {
+            "field": "end",
+            "type": "quantitative",
+            "title": "Campervans in 2025",
+            "format": ","
+          },
+          {
+            "field": "final",
+            "type": "quantitative",
+            "title": "Growth since 2021 (%)",
+            "format": "+.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 13.5,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#0b0b0b"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 13.5,
+        "fontWeight": 400
+      },
+      "encoding": {
+        "x": {
+          "datum": 40,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "end",
+          "type": "quantitative",
+          "format": ","
+        },
+        "color": {
+          "value": "#0b0b0b"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0,
+            "y": -1.0,
+            "t": "State"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11.5,
+        "fontWeight": 700,
+        "color": "#898781"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#898781"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 40,
+            "y": -1.0,
+            "t": "Campervans, Jan 2025"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 11.5,
+        "fontWeight": 700,
+        "color": "#898781"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#898781"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 46,
+            "y": -1.0,
+            "t": "2021 to 2025, each row on its own scale"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11.5,
+        "fontWeight": 700,
+        "color": "#898781"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#898781"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 80,
+            "y": -1.0,
+            "t": "Growth since 2021"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11.5,
+        "fontWeight": 700,
+        "color": "#898781"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#898781"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 6,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#1c5cab"
+      },
+      "encoding": {
+        "x": {
+          "field": "barEnd",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8,
+              -1.3
+            ],
+            "nice": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "finalLabel",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#1c5cab"
+        }
+      }
     }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }
