@@ -11,12 +11,18 @@
       "type": "quantitative",
       "title": "Spend per trip ($)",
       "scale": {
-        "zero": false,
-        "nice": true,
-        "padding": 18
+        "zero": true,
+        "nice": true
       },
       "axis": {
         "labelExpr": "'$' + format(datum.value, ',.0f')",
+        "values": [
+          0,
+          200,
+          400,
+          600,
+          800
+        ],
         "titleFontSize": 12
       }
     },
@@ -25,12 +31,11 @@
       "type": "quantitative",
       "title": "Average nights per trip",
       "scale": {
-        "zero": false,
-        "nice": true,
-        "padding": 18
+        "zero": true,
+        "nice": true
       },
       "axis": {
-        "labelExpr": "format(datum.value, '.2f')",
+        "labelExpr": "format(datum.value, '.1f')",
         "titleFontSize": 12
       }
     }
@@ -92,9 +97,9 @@
     {
       "mark": {
         "type": "text",
-        "align": "left",
-        "dx": 12,
-        "dy": -8,
+        "align": "center",
+        "dx": 0,
+        "dy": -14,
         "fontSize": 12,
         "fontWeight": 600,
         "color": "#52514e"
@@ -105,7 +110,58 @@
           "type": "quantitative",
           "format": "d"
         }
-      }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == 2020 || datum.year == 2022"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 20,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#52514e"
+      },
+      "encoding": {
+        "text": {
+          "field": "year",
+          "type": "quantitative",
+          "format": "d"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == 2021 || datum.year == 2024"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 13,
+        "dy": 0,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#52514e"
+      },
+      "encoding": {
+        "text": {
+          "field": "year",
+          "type": "quantitative",
+          "format": "d"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.year == 2023"
+        }
+      ]
     }
   ],
   "autosize": {
