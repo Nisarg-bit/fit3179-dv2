@@ -28,7 +28,10 @@
         "y": {
           "field": "expenditure_m_aud",
           "type": "quantitative",
-          "title": "Expenditure ($ billion)"
+          "title": "Expenditure ($ billion)",
+          "axis": {
+            "labelExpr": "'$' + format(datum.value/1000, '.0f') + 'b'"
+          }
         },
         "tooltip": [
           {
@@ -39,7 +42,7 @@
           {
             "field": "expenditure_m_aud",
             "type": "quantitative",
-            "title": "Expenditure ($ billion)",
+            "title": "Expenditure ($ million)",
             "format": ","
           },
           {
@@ -55,7 +58,7 @@
         "type": "point",
         "filled": true,
         "size": 80,
-        "color": "#0c67d7"
+        "color": "#2a78d6"
       },
       "encoding": {
         "x": {

@@ -187,5 +187,10 @@
         }
       }
     ]
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
   }
 }
