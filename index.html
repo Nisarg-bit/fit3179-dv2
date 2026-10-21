@@ -177,7 +177,7 @@
 <section id="vans">
   <div class="sec-head"><div class="sec-num">03</div><h2>Where the vans are</h2></div>
   <div class="prose">
-    <p>The 103,481 campervans on the register are spread across 2,414 postcodes, and they are not a city habit. Ownership runs at 38 per 10,000 vehicles in the major cities and rises to 62.5 in the outer regions &mdash; then collapses to 29.8 in Very Remote Australia, the lowest of the five classes. Vans cluster where there is road access to country, not in the deep interior. One caveat matters: registration records where a vehicle is registered, not where its owner lives. Two depot postcodes sit at forty and thirty times the median rate, and ten of the eighteen highest are Tasmanian &mdash; hire fleets, not households.</p>
+    <p>The 103,481 campervans on the register are spread across 2,414 postcodes, and they are not a city habit. Ownership runs at 38 per 10,000 vehicles in the major cities and rises to 62.5 in the outer regions &mdash; then collapses to 29.8 in Very Remote Australia, the lowest of the five classes. Vans cluster where there is road access to country, not in the deep interior. One caveat matters: registration records where a vehicle is registered, not where its owner lives. Tasmania stands far apart at 112 per 10,000 vehicles, more than double the national rate of 46.5 &mdash; a pattern that fits hire fleets rather than households.</p>
   </div>
   <div class="charts">
     <figure class="chart">
@@ -198,9 +198,9 @@
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
       <h3>Rental fleets, not households</h3>
-      <p class="tip"><span class="tip-label">Tip</span> Each row is one of the 18 postcodes with the highest rate (only postcodes with at least 2,000 vehicles count), ranked by campervans per 10,000 vehicles; the dashed line is the median postcode at 40. Colour shows the state; hover a dot for details.</p>
+      <p class="tip"><span class="tip-label">Tip</span> Each lollipop is one state or territory: the further it stretches, the more campervans it has per 10,000 registered vehicles in January 2025. The dashed line is the national rate, and Tasmania is highlighted. Hover a lollipop for the state&rsquo;s totals.</p>
       <div class="viz" data-spec="07-fleet-lollipop.vg.json"></div>
-      <figcaption>Ten of the eighteen are Tasmanian. The two extremes are rental depots &mdash; postcode 4013 in Queensland runs 1,820 campervans per 10,000 vehicles against a median of 40 &mdash; but Tasmania is not a depot, it is a whole state of hire fleets registered where the vans are based rather than where their drivers live. Postcodes with fewer than 2,000 vehicles are excluded, because three vans in a fleet of three produces a meaningless rate.<span class="src">Source: BITRE / data.gov.au, January 2025</span></figcaption>
+      <figcaption>Tasmania has 112 campervans per 10,000 registered vehicles &mdash; more than double the national rate of 46.5 and nearly twice Queensland&rsquo;s 61. At the other end, Western Australia and the Northern Territory sit near 10. Registration records where a van is registered, not who uses it, so a pattern like Tasmania&rsquo;s most likely reflects hire fleets based on the island rather than local owners.<span class="src">Source: BITRE / data.gov.au, January 2025 (state totals summed from the postcode records)</span></figcaption>
     </figure>
   </div>
 </section>
@@ -514,7 +514,7 @@
             <td>Sections 3, 4 and 6</td></tr>
       </tbody>
     </table>
-    <p class="note"><strong>Method notes.</strong> Postcodes on the campervan map are pooled into 1&deg; squares by the position of each postcode centre; squares with fewer than 300 registered vehicles are greyed because their rates are unreliable. The rental-fleet chart keeps only postcodes with at least 2,000 vehicles. The trend line on the ownership-and-camping chart is fitted to the six states and leaves out the Northern Territory. Registration records where a vehicle is registered, not where its owner lives, so depot and hire-fleet postcodes inflate some figures. Industry figures are for 2024 and registration figures for January 2025.</p>
+    <p class="note"><strong>Method notes.</strong> Postcodes on the campervan map are pooled into 1&deg; squares by the position of each postcode centre; squares with fewer than 300 registered vehicles are greyed because their rates are unreliable. The rental-fleet chart adds up the postcode records in each state, so its rates are state totals of campervans divided by all registered vehicles. The trend line on the ownership-and-camping chart is fitted to the six states and leaves out the Northern Territory. Registration records where a vehicle is registered, not where its owner lives, so depot and hire-fleet postcodes inflate some figures. Industry figures are for 2024 and registration figures for January 2025.</p>
     <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository. Text is set in each reader’s own system sans-serif typeface, so no web fonts are loaded; the hero and footer scenes and the campervan are drawn in SVG for this project.</p>
   </section>
   </div>

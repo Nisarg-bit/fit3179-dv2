@@ -1,214 +1,250 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 430,
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "width": "container",
+ "height": 300,
+ "autosize": {
+  "type": "fit",
+  "contains": "padding"
+ },
+ "data": {
+  "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_postcode.csv",
+  "format": {
+   "type": "csv",
+   "parse": {
+    "postcode": "string",
+    "state": "string",
+    "campervans": "number",
+    "fleet_total": "number",
+    "per_10k_fleet": "number"
+   }
+  }
+ },
+ "transform": [
+  {
+   "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
+   "as": "stateName"
   },
-  "data": {
-    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_postcode.csv",
-    "format": {
-      "type": "csv",
-      "parse": {
-        "postcode": "string",
-        "state": "string",
-        "campervans": "number",
-        "fleet_total": "number",
-        "per_10k_fleet": "number"
-      }
-    }
+  {
+   "filter": "datum.stateName != null"
   },
-  "transform": [
+  {
+   "aggregate": [
     {
-      "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[upper(datum.state)]",
-      "as": "stateName"
+     "op": "sum",
+     "field": "campervans",
+     "as": "vans"
     },
     {
-      "filter": "datum.fleet_total >= 2000"
-    },
-    {
-      "window": [
-        {
-          "op": "rank",
-          "as": "rk"
-        }
-      ],
-      "sort": [
-        {
-          "field": "per_10k_fleet",
-          "order": "descending"
-        }
-      ]
-    },
-    {
-      "filter": "datum.rk <= 18"
-    },
-    {
-      "calculate": "datum.postcode + '  ' + datum.stateName",
-      "as": "label"
+     "op": "sum",
+     "field": "fleet_total",
+     "as": "fleet"
     }
-  ],
-  "encoding": {
-    "y": {
-      "field": "label",
-      "type": "nominal",
-      "title": null,
-      "sort": {
-        "field": "per_10k_fleet",
-        "order": "descending"
-      },
-      "axis": {
-        "labelFontSize": 12.5,
-        "grid": false,
-        "labelPadding": 6
-      }
+   ],
+   "groupby": [
+    "stateName"
+   ]
+  },
+  {
+   "calculate": "datum.vans / datum.fleet * 10000",
+   "as": "rate"
+  },
+  {
+   "joinaggregate": [
+    {
+     "op": "sum",
+     "field": "vans",
+     "as": "allVans"
     },
+    {
+     "op": "sum",
+     "field": "fleet",
+     "as": "allFleet"
+    }
+   ]
+  },
+  {
+   "calculate": "datum.allVans / datum.allFleet * 10000",
+   "as": "national"
+  }
+ ],
+ "encoding": {
+  "y": {
+   "field": "stateName",
+   "type": "nominal",
+   "title": null,
+   "sort": {
+    "field": "rate",
+    "order": "descending"
+   },
+   "axis": {
+    "labelFontSize": 12.5,
+    "grid": false,
+    "labelPadding": 6
+   }
+  },
+  "x": {
+   "field": "rate",
+   "type": "quantitative",
+   "title": "Campervans per 10,000 registered vehicles",
+   "scale": {
+    "domain": [
+     0,
+     125
+    ],
+    "nice": false
+   },
+   "axis": {
+    "values": [
+     0,
+     25,
+     50,
+     75,
+     100,
+     125
+    ],
+    "titleFontSize": 12,
+    "grid": true
+   }
+  }
+ },
+ "layer": [
+  {
+   "mark": {
+    "type": "rule",
+    "stroke": "#898781",
+    "strokeDash": [
+     4,
+     3
+    ],
+    "strokeWidth": 1.2
+   },
+   "encoding": {
     "x": {
-      "field": "per_10k_fleet",
-      "type": "quantitative",
-      "title": "Campervans per 10,000 registered vehicles",
-      "scale": {
-        "domain": [
-          0,
-          2100
-        ],
-        "nice": false
-      },
-      "axis": {
-        "values": [
-          0,
-          500,
-          1000,
-          1500,
-          2000
-        ],
-        "titleFontSize": 12,
-        "grid": true
+     "field": "national",
+     "type": "quantitative"
+    },
+    "y": null
+   }
+  },
+  {
+   "transform": [
+    {
+     "window": [
+      {
+       "op": "row_number",
+       "as": "rn"
       }
+     ]
+    },
+    {
+     "filter": "datum.rn == 1"
+    },
+    {
+     "calculate": "'Australia ' + format(datum.national, '.1f')",
+     "as": "natLabel"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "baseline": "bottom",
+    "dx": 5,
+    "dy": -4,
+    "fontSize": 11,
+    "fontWeight": 600,
+    "color": "#6f6d66"
+   },
+   "encoding": {
+    "x": {
+     "field": "national",
+     "type": "quantitative"
+    },
+    "y": {
+     "value": 0
+    },
+    "text": {
+     "field": "natLabel"
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "rule",
+    "strokeWidth": 2.5,
+    "opacity": 0.85
+   },
+   "encoding": {
+    "x": {
+     "datum": 0
+    },
+    "x2": {
+     "field": "rate"
     },
     "color": {
+     "condition": {
+      "test": "datum.stateName === 'Tasmania'",
+      "value": "#1baf7a"
+     },
+     "value": "#898781"
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "circle",
+    "size": 150,
+    "opacity": 1
+   },
+   "encoding": {
+    "color": {
+     "condition": {
+      "test": "datum.stateName === 'Tasmania'",
+      "value": "#1baf7a"
+     },
+     "value": "#898781"
+    },
+    "tooltip": [
+     {
       "field": "stateName",
       "type": "nominal",
-      "title": null,
-      "scale": {
-        "domain": [
-          "Tasmania",
-          "Queensland",
-          "Victoria",
-          "New South Wales"
-        ],
-        "range": [
-          "#1baf7a",
-          "#eb6834",
-          "#2a78d6",
-          "#898781"
-        ]
-      },
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "offset": 10,
-        "symbolType": "circle"
-      }
-    }
+      "title": "State"
+     },
+     {
+      "field": "vans",
+      "type": "quantitative",
+      "title": "Campervans",
+      "format": ","
+     },
+     {
+      "field": "fleet",
+      "type": "quantitative",
+      "title": "All vehicles",
+      "format": ","
+     },
+     {
+      "field": "rate",
+      "type": "quantitative",
+      "title": "Per 10,000 vehicles",
+      "format": ".1f"
+     }
+    ]
+   }
   },
-  "layer": [
-    {
-      "data": {
-        "values": [
-          {
-            "m": 40
-          }
-        ]
-      },
-      "mark": {
-        "type": "rule",
-        "stroke": "#898781",
-        "strokeDash": [
-          4,
-          3
-        ],
-        "strokeWidth": 1.2
-      },
-      "encoding": {
-        "x": {
-          "field": "m",
-          "type": "quantitative"
-        },
-        "y": null,
-        "color": null
-      }
-    },
-    {
-      "mark": {
-        "type": "rule",
-        "strokeWidth": 2.5,
-        "opacity": 0.85
-      },
-      "encoding": {
-        "x": {
-          "datum": 0
-        },
-        "x2": {
-          "field": "per_10k_fleet"
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "circle",
-        "size": 150,
-        "opacity": 1
-      },
-      "encoding": {
-        "tooltip": [
-          {
-            "field": "postcode",
-            "type": "nominal",
-            "title": "Postcode"
-          },
-          {
-            "field": "stateName",
-            "type": "nominal",
-            "title": "State"
-          },
-          {
-            "field": "campervans",
-            "type": "quantitative",
-            "title": "Campervans",
-            "format": ","
-          },
-          {
-            "field": "fleet_total",
-            "type": "quantitative",
-            "title": "All vehicles",
-            "format": ","
-          },
-          {
-            "field": "per_10k_fleet",
-            "type": "quantitative",
-            "title": "Per 10,000",
-            "format": ".0f"
-          }
-        ]
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 11,
-        "fontSize": 11.5,
-        "fontWeight": 600
-      },
-      "encoding": {
-        "text": {
-          "field": "per_10k_fleet",
-          "type": "quantitative",
-          "format": ".0f"
-        }
-      }
+  {
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "dx": 11,
+    "fontSize": 11.5,
+    "fontWeight": 600
+   },
+   "encoding": {
+    "text": {
+     "field": "rate",
+     "type": "quantitative",
+     "format": ".0f"
     }
-  ]
+   }
+  }
+ ]
 }
