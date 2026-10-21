@@ -10,32 +10,16 @@
       "mark": {
         "type": "area",
         "line": {
-          "strokeWidth": 2.5,
+          "strokeWidth": 2,
           "color": "#2a78d6"
         },
-        "color": {
-          "x1": 1,
-          "y1": 1,
-          "x2": 1,
-          "y2": 0,
-          "gradient": "linear",
-          "stops": [
-            {
-              "offset": 0,
-              "color": "#ffffff"
-            },
-            {
-              "offset": 1,
-              "color": "#9ec5f4"
-            }
-          ]
-        }
+        "color": "#9ec5f4"
       },
       "encoding": {
         "x": {
           "field": "year",
           "type": "ordinal",
-          "title": null,
+          "title": "Years",
           "axis": {
             "labelAngle": 0,
             "grid": false
@@ -44,11 +28,7 @@
         "y": {
           "field": "expenditure_m_aud",
           "type": "quantitative",
-          "title": "Expenditure ($ billion)",
-          "axis": {
-            "format": "$.1f",
-            "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
-          }
+          "title": "Expenditure ($ billion)"
         },
         "tooltip": [
           {
@@ -60,11 +40,7 @@
             "field": "expenditure_m_aud",
             "type": "quantitative",
             "title": "Expenditure ($ billion)",
-            "format": ",",
-            "axis": {
-              "format": "$.1f",
-              "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
-            }
+            "format": ","
           },
           {
             "field": "spend_per_trip_aud",
@@ -79,7 +55,7 @@
         "type": "point",
         "filled": true,
         "size": 80,
-        "color": "#2a78d6"
+        "color": "#0c67d7"
       },
       "encoding": {
         "x": {
@@ -89,11 +65,7 @@
         "y": {
           "field": "expenditure_m_aud",
           "type": "quantitative",
-          "title": "Expenditure ($ billion)",
-          "axis": {
-            "format": "$.1f",
-            "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
-          }
+          "title": "Expenditure ($ billion)"
         }
       }
     },
@@ -119,11 +91,7 @@
         "y": {
           "field": "expenditure_m_aud",
           "type": "quantitative",
-          "title": "Expenditure ($ billion)",
-          "axis": {
-            "format": "$.1f",
-            "labelExpr": "'$' + format(datum.value/1000, '.1f') + 'b'"
-          }
+          "title": "Expenditure ($ billion)"
         },
         "text": {
           "value": "peak"
