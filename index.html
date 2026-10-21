@@ -5,10 +5,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All Gear, No Go — Camping in Australia</title>
-<meta name="description" content="Australia owns more than 100,000 campervans and is using them less every year.">
+<meta name="description" content="Australia owns more than 100,000 campervans and its trips are getting shorter.">
 <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=2026-10-21i">
+<link rel="stylesheet" href="css/style.css?v=2026-10-21j">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -95,7 +95,7 @@
   <p class="eyebrow">FIT3179 Data Visualisation 2 &middot; Semester 2, 2026</p>
   <h1>All Gear,<br>No Go</h1>
   <p class="standfirst">Australia owns more than 100,000 campervans and nearly 10,000 campgrounds
-    to put them in. It is using both less every year.</p>
+    to put them in. But each trip is getting shorter, and spending has stalled.</p>
   <p class="byline">
     <span>Nisarg</span><span>Monash University</span><span>October 2026</span>
   </p>
@@ -114,6 +114,7 @@
 <!-- ===== 1 ===== -->
 <section id="boom">
   <div class="sec-head"><div class="sec-num">01</div><h2>The boom that was</h2></div>
+  <p class="pull"><span class="pull-num">+38%</span><span class="pull-label">more caravan and camping trips in a decade, from 11.0 to 15.2 million</span></p>
   <div class="prose">
     <p>Australians took 15.2&nbsp;million caravan and camping trips in 2024, up from 11.0&nbsp;million a decade earlier &mdash; a rise of 38%. The money grew faster still: the sector&rsquo;s economic impact (a broader measure than the $10.6&nbsp;billion visitors spent directly) reached $27.1&nbsp;billion, against $19.0&nbsp;billion in 2015. Campervan registrations climbed in every state and territory, from 83,944 in 2021 to 103,481 by January 2025. On almost every headline measure, the past ten years look like an unbroken run of growth.</p>
   </div>
@@ -150,6 +151,7 @@
 <!-- ===== 2 ===== -->
 <section id="turn">
   <div class="sec-head"><div class="sec-num">02</div><h2>The turn</h2></div>
+  <p class="pull"><span class="pull-num">3.78 nights</span><span class="pull-label">average stay in 2024, down from 4.1 in 2020, while each trip costs more</span></p>
   <div class="prose">
     <p>The nights tell a different story. Trips grew 38% over the decade but nights only 15%, and the average stay shrank from 4.1&nbsp;nights in 2020 to 3.78 in 2024. Spending per trip rose from $546 to a peak of $712 in 2023 &mdash; and then stopped. Total expenditure peaked at $10.7&nbsp;billion in 2023 and slipped to $10.6&nbsp;billion in 2024, the first fall in the series. Occupancy fell across every site type that year. People are still going; they are paying more and staying less.</p>
   </div>
@@ -178,6 +180,7 @@
 <!-- ===== 3 ===== -->
 <section id="vans">
   <div class="sec-head"><div class="sec-num">03</div><h2>Where the vans are</h2></div>
+  <p class="pull"><span class="pull-num">112 per 10,000</span><span class="pull-label">campervans per vehicle in Tasmania, more than double the national 46.5</span></p>
   <div class="prose">
     <p>The 103,481 campervans on the register are spread across 2,414 postcodes, and they are not a city habit. Ownership runs at 38 per 10,000 vehicles in the major cities and rises to 62.5 in the outer regions &mdash; then collapses to 29.8 in Very Remote Australia, the lowest of the five classes. Vans cluster where there is road access to country, not in the deep interior. One caveat matters: registration records where a vehicle is registered, not where its owner lives. Tasmania stands far apart at 112 per 10,000 vehicles, more than double the national rate of 46.5 &mdash; a pattern that fits hire fleets rather than households.</p>
   </div>
@@ -191,21 +194,19 @@
   </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
-      <h3>The outer regions, not the outback</h3>
-      <p class="tip"><span class="tip-label">Tip</span> Each bar is campervans per 10,000 registered vehicles in one remoteness class, January 2025; a longer bar means more vans per vehicle. Hover a bar for the detail.</p>
-      <div class="viz" data-spec="06-remoteness.vg.json"></div>
-      <figcaption>Ownership peaks in the outer regions at 62.5 vans per 10,000 vehicles &mdash; not in the deep outback. Very Remote Australia records 29.8, the lowest of the five and below the major cities at 38.0.<span class="src">Source: BITRE Jan 2025 &middot; ABS remoteness structure</span></figcaption>
-    </figure>
-    </div>
-  <div class="charts" style="margin-top:28px">
-    <figure class="chart">
       <h3>Regional areas beat the cities, state by state</h3>
       <p class="tip"><span class="tip-label">Tip</span> Each square is one state (down) and one remoteness class (across); the darker the blue, the more campervans per 10,000 registered vehicles, and the number is printed inside. Grey squares have too few vehicles for a reliable rate, and blank squares have no postcodes of that kind. Hover a square for the totals.</p>
       <div class="viz" data-spec="17-remoteness-heatmap.vg.json"></div>
       <figcaption>In New South Wales, Queensland, Victoria, South Australia and Western Australia, the inner and outer regions each have more campervans per vehicle than the major cities. New South Wales peaks at 72 in its inner regions, and Tasmania is in a class of its own at 139 in its outer regions, while Western Australia stays below 23 everywhere. The Northern Territory is left out because its postcodes have no remoteness class in the source data.<span class="src">Source: BITRE Jan 2025 &middot; ABS remoteness structure</span></figcaption>
     </figure>
   </div>
-  <div class="charts" style="margin-top:28px">
+    <div class="charts two" style="margin-top:28px">
+    <figure class="chart">
+      <h3>The outer regions, not the outback</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each bar is campervans per 10,000 registered vehicles in one remoteness class, January 2025; a longer bar means more vans per vehicle. Hover a bar for the detail.</p>
+      <div class="viz" data-spec="06-remoteness.vg.json"></div>
+      <figcaption>Ownership peaks in the outer regions at 62.5 vans per 10,000 vehicles &mdash; not in the deep outback. Very Remote Australia records 29.8, the lowest of the five and below the major cities at 38.0.<span class="src">Source: BITRE Jan 2025 &middot; ABS remoteness structure</span></figcaption>
+    </figure>
     <figure class="chart">
       <h3>Rental fleets, not households</h3>
       <p class="tip"><span class="tip-label">Tip</span> Each lollipop is one state or territory: the further it stretches, the more campervans it has per 10,000 registered vehicles in January 2025. The dashed line is the national rate, and Tasmania is highlighted. Hover a lollipop for the state&rsquo;s totals.</p>
@@ -224,6 +225,7 @@
 <!-- ===== 4 ===== -->
 <section id="campgrounds">
   <div class="sec-head"><div class="sec-num">04</div><h2>Where the campgrounds are</h2></div>
+  <p class="pull"><span class="pull-num">150 vs 27</span><span class="pull-label">campgrounds per 100,000 residents: Northern Territory against New South Wales</span></p>
   <div class="prose">
     <p>OpenStreetMap lists 9,945 places to camp in Australia &mdash; 7,920 camp sites and 2,025 caravan sites. They crowd the east coast, the south-west and Tasmania, and inland they thin into strings that follow the highways. Counted per 100,000 residents the picture inverts: the Northern Territory reaches 150 against New South Wales&rsquo; 27, because there are so few people to share them among. Read this as where campgrounds are <em>mapped</em> rather than where they are &mdash; OpenStreetMap is contributor-built, and remote areas have fewer contributors.</p>
   </div>
@@ -238,7 +240,7 @@
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
       <h3>Where campgrounds cluster</h3>
-      <p class="tip"><span class="tip-label">Tip</span> Each square is a 0.9&deg; cell: the darker the blue, the more campgrounds inside it. The classes are uneven because a few cells hold more than fifty. Drag the slider to hide sparse cells, drag the map to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
+      <p class="tip"><span class="tip-label">Tip</span> Each square is a 0.9&deg; cell: the darker the orange, the more campgrounds inside it. The classes are uneven because a few cells hold more than fifty. Drag the slider to hide sparse cells, drag the map to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="09-campground-hex.vg.json"></div>
       <figcaption>Counting sites per cell instead of plotting them stops the dots piling on top of each other along the coast. The colour bands are uneven because a handful of cells hold more than fifty sites and would otherwise wash out everything else.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL)</span></figcaption>
     </figure>
@@ -262,6 +264,7 @@
 <!-- ===== 5 ===== -->
 <section id="gap">
   <div class="sec-head"><div class="sec-num">05</div><h2>A territory of destinations</h2></div>
+  <p class="pull"><span class="pull-num">3,689</span><span class="pull-label">camping nights per 1,000 residents in the Northern Territory, the highest in the country</span></p>
   <div class="prose">
     <p>Across the six states, owning a van and using one go together: more RVs per head means more camping nights per head. Tasmania leads on both. The Northern Territory breaks the pattern, and breaks it hard &mdash; 3.0&nbsp;RVs per 1,000 residents, the fewest in the country, but 3,689 camping nights per 1,000, by far the most. Territorians are not the ones camping. The Northern Territory is a destination rather than an ownership market, and it is the only place where the two come apart.</p>
   </div>
@@ -292,6 +295,7 @@
 <!-- ===== 6 ===== -->
 <section id="booking">
   <div class="sec-head"><div class="sec-num">06</div><h2>What they actually book</h2></div>
+  <p class="pull"><span class="pull-num">42%</span><span class="pull-label">of camping nights are taken by over-55s, who make only 31% of trips</span></p>
   <div class="prose">
     <p>Most caravan and camping trips involve neither a caravan nor camping. Cabins take 39% of trips; only 23% are actual camping, and just 6% use a motorhome or campervan. Older travellers stay longest &mdash; the over-55s take 31% of trips but 42% of nights. Where people go is shifting too: Queensland Country drew 34% more trips and 52% more nights in 2024, while the Hunter took 17% more trips but 33% fewer nights.</p>
   </div>
@@ -501,7 +505,7 @@
     </g>
   </svg>
   <div class="foot-in">
-    <p class="foot-line">More than 100,000 campervans and nearly 10,000 campgrounds,<br><em>used less every year.</em></p>
+    <p class="foot-line">More than 100,000 campervans and nearly 10,000 campgrounds,<br><em>and every trip a little shorter.</em></p>
   <section id="sources" class="meta">
     <div class="sec-head"><div class="sec-num">DATA &amp; METHOD</div><h2>Sources</h2></div>
     <table>
@@ -525,10 +529,10 @@
       </tbody>
     </table>
     <p class="note"><strong>Method notes.</strong> Postcodes on the campervan map are pooled into 1&deg; squares by the position of each postcode centre; squares with fewer than 300 registered vehicles are greyed because their rates are unreliable. The rental-fleet chart adds up the postcode records in each state, so its rates are state totals of campervans divided by all registered vehicles. Those postcode records add up to 103,419 campervans, slightly fewer than the 103,481 in BITRE&rsquo;s state totals, so the rates use the smaller figure. Registration records where a vehicle is registered, not where its owner lives, so depot and hire-fleet postcodes inflate some figures. Industry figures are for 2024 and registration figures for January 2025.</p>
-    <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository. Text is set in each reader’s own system sans-serif typeface, so no web fonts are loaded; the hero and footer scenes and the campervan are drawn in SVG for this project.</p>
+    <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository. Headings are set in Fraunces and text in DM Sans, both open-licence typefaces (SIL OFL) served from the project’s <code>fonts</code> folder; the hero and footer scenes and the campervan are drawn in SVG for this project.</p>
   </section>
   </div>
 </footer>
-<script src="js/charts.js?v=2026-10-21i"></script>
+<script src="js/charts.js?v=2026-10-21j"></script>
 </body>
 </html>

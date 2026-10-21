@@ -118,7 +118,7 @@
             ],
             "range": [
               "#2a78d6",
-              "#eb6834"
+              "#1baf7a"
             ]
           },
           "legend": {
@@ -328,11 +328,68 @@
         "dy": 18,
         "fontSize": 12,
         "fontStyle": "italic",
-        "color": "#b8431a"
+        "color": "#0e7a55"
       },
       "encoding": {
         "text": {
           "value": "fewest vans, most nights"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code == 'TAS'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dy": -20,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#52514e"
+      },
+      "encoding": {
+        "text": {
+          "value": "leads on both"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "own": 8,
+            "use": 1750,
+            "t": [
+              "Most states: 25 to 42 RVs per 1,000",
+              "and 1,600 to 2,300 nights"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#52514e"
+      },
+      "encoding": {
+        "x": {
+          "field": "own",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "use",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "value": "#52514e"
         }
       }
     }

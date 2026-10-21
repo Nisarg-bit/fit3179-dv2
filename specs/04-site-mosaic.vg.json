@@ -164,6 +164,116 @@
           "format": ".1f"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.site_type == 'Cabins'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#ffffff",
+        "align": "center"
+      },
+      "encoding": {
+        "x": {
+          "field": "xm",
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 28,
+          "type": "quantitative"
+        },
+        "text": {
+          "value": [
+            "Cabins carry the industry:",
+            "$1.9B, 60% full"
+          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.site_type == 'Powered sites'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#0b0b0b",
+        "align": "center"
+      },
+      "encoding": {
+        "x": {
+          "field": "xm",
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 24,
+          "type": "quantitative"
+        },
+        "text": {
+          "value": [
+            "Powered sites:",
+            "$1.1B, 49% full"
+          ]
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#b8431a",
+        "strokeWidth": 1,
+        "strokeDash": [
+          3,
+          3
+        ]
+      },
+      "encoding": {
+        "x": {
+          "datum": 98.9,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 24,
+          "type": "quantitative"
+        },
+        "y2": {
+          "datum": 56
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#b8431a",
+        "align": "right",
+        "baseline": "bottom"
+      },
+      "encoding": {
+        "x": {
+          "datum": 100,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 57,
+          "type": "quantitative"
+        },
+        "text": {
+          "value": [
+            "Tent sites: $66M,",
+            "about 2% of revenue"
+          ]
+        }
+      }
     }
   ],
   "autosize": {

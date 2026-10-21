@@ -127,6 +127,46 @@
           "format": ".1f"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.label == 'Outer Regional'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "text": {
+          "value": "highest"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.label == 'Very Remote'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "text": {
+          "value": "lowest"
+        }
+      }
     }
   ],
   "autosize": {

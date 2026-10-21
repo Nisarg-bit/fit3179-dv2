@@ -46,6 +46,10 @@
     {
       "calculate": "{'trips':'Trips','nights':'Nights','rv_manufacturing':'RVs built','economic_impact':'Economic impact'}[datum.metric]",
       "as": "label"
+    },
+    {
+      "calculate": "datum.label + ' +' + format(datum.idx - 100, '.0f') + '%'",
+      "as": "labelText"
     }
   ],
   "encoding": {
@@ -162,15 +166,49 @@
         "dx": 12,
         "fontSize": 11.5,
         "fontWeight": 600,
-        "limit": 110
+        "limit": 150
       },
       "encoding": {
         "text": {
-          "field": "label"
+          "field": "labelText"
         },
         "y": {
           "field": "labelY",
           "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2015",
+            "idx": 86,
+            "t": "Everything starts at 100 in 2015"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "idx",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "value": "#52514e"
         }
       }
     }
@@ -184,7 +222,7 @@
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 8
+    "right": 110
   },
   "autosize": {
     "type": "fit",

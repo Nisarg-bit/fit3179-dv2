@@ -346,3 +346,15 @@ figure.chart figcaption .src { color: var(--muted); display: block; margin-top: 
 .site-foot .note strong { color: #fff; }
 .site-foot .meta code { background: rgba(255,255,255,.12); color: #fff; padding: 1px 5px; border-radius: 2px; }
 .site-foot .todo { color: #ffb4a8; }
+
+/* ---------- section pull-stat ---------- */
+.pull { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin: 0 0 22px; padding: 4px 0 4px 18px; border-left: 4px solid var(--accent); max-width: var(--measure); }
+.pull-num { font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5vw, 46px); line-height: 1; color: var(--accent); letter-spacing: -.01em; }
+.pull-label { font-size: 15px; line-height: 1.4; color: var(--ink-2); flex: 1 1 220px; }
+
+/* ---------- paired charts: equal heights, captions aligned at the bottom ---------- */
+.charts.two figure.chart { display: flex; flex-direction: column; }
+.charts.two figure.chart .viz { margin-bottom: 14px; }
+.charts.two figure.chart figcaption { margin-top: auto; }
+#campgrounds .pull { border-left-color: var(--accent-2); }
+#campgrounds .pull-num { color: #b8431a; }

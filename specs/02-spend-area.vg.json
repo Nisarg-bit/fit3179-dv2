@@ -97,7 +97,82 @@
           "title": "Expenditure ($ billion)"
         },
         "text": {
-          "value": "peak"
+          "value": "peak $10.7B"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2020",
+            "v": 5729,
+            "t": "$5.7B"
+          },
+          {
+            "year": "2022",
+            "v": 10449,
+            "t": "$10.4B"
+          },
+          {
+            "year": "2024",
+            "v": 10606,
+            "t": "$10.6B"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#52514e"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2021",
+            "v": 9400,
+            "t": [
+              "almost doubled",
+              "in two years"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#52514e",
+        "align": "center"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
         }
       }
     }

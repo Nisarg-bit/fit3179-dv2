@@ -122,6 +122,107 @@
           }
         ]
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 140.5,
+            "lat": -40.4,
+            "lon2": 146.4,
+            "lat2": -36.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#52514e",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 133,
+            "lat": -41.6,
+            "t": [
+              "Murray valley and Victorian high",
+              "country: up to 53 sites per 1,000 km²"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#0b0b0b",
+        "align": "center",
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 129,
+            "lat": -26,
+            "t": [
+              "Inland, sites thin into",
+              "strings along the highways"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#52514e",
+        "align": "center",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
     }
   ],
   "autosize": {

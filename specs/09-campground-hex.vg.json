@@ -106,12 +106,12 @@
               "50+"
             ],
             "range": [
-              "#e8f1fd",
-              "#b7d3f6",
-              "#86b6ef",
-              "#5598e7",
-              "#2a78d6",
-              "#184f95"
+              "#fadfcd",
+              "#f4bb98",
+              "#ea9164",
+              "#d9622b",
+              "#b03f16",
+              "#7a2a0c"
             ]
           },
           "legend": {
@@ -139,6 +139,40 @@
             "title": "Class"
           }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 128,
+            "lat": -37.3,
+            "t": [
+              "Cells with 50+ sites",
+              "hug the south-east coast"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#0b0b0b",
+        "align": "center",
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
       }
     }
   ],

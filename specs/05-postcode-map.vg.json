@@ -161,6 +161,74 @@
           }
         ]
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 130,
+            "lat": -25,
+            "t": [
+              "Few vans inland:",
+              "they follow the roads"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#52514e",
+        "align": "center",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 127,
+            "lat": -37.2,
+            "t": [
+              "Three squares (Qld, NSW, Vic)",
+              "hold 26% of the fleet"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#0b0b0b",
+        "align": "center",
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
     }
   ],
   "params": [

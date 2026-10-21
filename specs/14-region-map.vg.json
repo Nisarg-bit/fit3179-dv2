@@ -156,6 +156,10 @@
         },
         {
           "filter": "abs(datum.nights_yoy_pct) >= 18"
+        },
+        {
+          "calculate": "datum.region + ' ' + (datum.nights_yoy_pct > 0 ? '+' : '') + datum.nights_yoy_pct + '%'",
+          "as": "labelText"
         }
       ],
       "mark": {
@@ -177,8 +181,48 @@
           "type": "quantitative"
         },
         "text": {
-          "field": "region",
+          "field": "labelText",
           "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 116,
+            "lat": -24.5,
+            "t": [
+              "Only three regions changed by",
+              "more than 18%; the rest are close",
+              "to last year"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#52514e",
+        "lineHeight": 15,
+        "clip": true
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "value": "#52514e"
         }
       }
     }

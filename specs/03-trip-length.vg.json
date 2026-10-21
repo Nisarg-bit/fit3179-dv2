@@ -106,6 +106,93 @@
           "format": "d"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2020"
+        },
+        {
+          "calculate": "'$' + datum.spend_per_trip_aud + ' · ' + datum.avg_trip_nights + ' nights'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -6,
+        "dy": 20,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#0b0b0b"
+      },
+      "encoding": {
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#0b0b0b"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        },
+        {
+          "calculate": "'$' + datum.spend_per_trip_aud + ' · ' + datum.avg_trip_nights + ' nights'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 6,
+        "dy": 20,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#0b0b0b"
+      },
+      "encoding": {
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#0b0b0b"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "spend_per_trip_aud": 618,
+            "avg_trip_nights": 3.84,
+            "t": [
+              "Spend up, stays shorter"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#52514e"
+      },
+      "encoding": {
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#52514e"
+        }
+      }
     }
   ],
   "autosize": {

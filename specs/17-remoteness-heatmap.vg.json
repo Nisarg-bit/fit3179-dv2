@@ -222,6 +222,39 @@
           "value": "#0b0b0b"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": "Outer Regional",
+            "stateName": "Australian Capital Territory",
+            "t": [
+              "Tasmania's outer regions top the",
+              "country: 139 per 10,000 vehicles"
+            ]
+          }
+        ]
+      },
+      "transform": [],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": -62,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "lineHeight": 14,
+        "color": "#52514e"
+      },
+      "encoding": {
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "value": "#52514e"
+        }
+      }
     }
   ],
   "autosize": {

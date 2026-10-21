@@ -19,118 +19,6 @@
       "expr": "[width / 2 + mapPanX - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.018354, height / 2 + mapPanY - (min(width / 0.628148, height / 0.602988) * 0.94 * mapZoom) * 0.926161]"
     }
   },
-  "data": {
-    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
-    "format": {
-      "type": "topojson",
-      "feature": "states"
-    }
-  },
-  "transform": [
-    {
-      "lookup": "properties.STATE_NAME",
-      "from": {
-        "key": "state",
-        "fields": [
-          "per_100k",
-          "campgrounds"
-        ],
-        "data": {
-          "values": [
-            {
-              "state": "Northern Territory",
-              "per_100k": 150.2,
-              "campgrounds": 404
-            },
-            {
-              "state": "Tasmania",
-              "per_100k": 71.3,
-              "campgrounds": 414
-            },
-            {
-              "state": "South Australia",
-              "per_100k": 58.5,
-              "campgrounds": 1121
-            },
-            {
-              "state": "Western Australia",
-              "per_100k": 39.1,
-              "campgrounds": 1210
-            },
-            {
-              "state": "Queensland",
-              "per_100k": 33.6,
-              "campgrounds": 1931
-            },
-            {
-              "state": "Victoria",
-              "per_100k": 28.2,
-              "campgrounds": 2020
-            },
-            {
-              "state": "New South Wales",
-              "per_100k": 26.8,
-              "campgrounds": 2326
-            },
-            {
-              "state": "Australian Capital Territory",
-              "per_100k": 2.9,
-              "campgrounds": 14
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "#fcfcfb",
-    "strokeWidth": 1,
-    "clip": true
-  },
-  "encoding": {
-    "color": {
-      "field": "per_100k",
-      "type": "quantitative",
-      "title": [
-        "Campgrounds per",
-        "100,000 residents"
-      ],
-      "scale": {
-        "type": "quantize",
-        "nice": true,
-        "scheme": "blues"
-      },
-      "legend": {
-        "format": ".0f",
-        "orient": "bottom",
-        "direction": "horizontal",
-        "titleOrient": "top",
-        "offset": 6,
-        "titleFontSize": 11.5,
-        "labelFontSize": 11
-      }
-    },
-    "tooltip": [
-      {
-        "field": "properties.STATE_NAME",
-        "type": "nominal",
-        "title": "State"
-      },
-      {
-        "field": "campgrounds",
-        "type": "quantitative",
-        "title": "Campgrounds",
-        "format": ","
-      },
-      {
-        "field": "per_100k",
-        "type": "quantitative",
-        "title": "Per 100k residents",
-        "format": ".1f"
-      }
-    ]
-  },
   "autosize": {
     "type": "fit-x",
     "contains": "padding"
@@ -152,5 +40,262 @@
   "view": {
     "stroke": "#dcdad2",
     "strokeWidth": 1
-  }
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "key": "state",
+            "fields": [
+              "per_100k",
+              "campgrounds"
+            ],
+            "data": {
+              "values": [
+                {
+                  "state": "Northern Territory",
+                  "per_100k": 150.2,
+                  "campgrounds": 404
+                },
+                {
+                  "state": "Tasmania",
+                  "per_100k": 71.3,
+                  "campgrounds": 414
+                },
+                {
+                  "state": "South Australia",
+                  "per_100k": 58.5,
+                  "campgrounds": 1121
+                },
+                {
+                  "state": "Western Australia",
+                  "per_100k": 39.1,
+                  "campgrounds": 1210
+                },
+                {
+                  "state": "Queensland",
+                  "per_100k": 33.6,
+                  "campgrounds": 1931
+                },
+                {
+                  "state": "Victoria",
+                  "per_100k": 28.2,
+                  "campgrounds": 2020
+                },
+                {
+                  "state": "New South Wales",
+                  "per_100k": 26.8,
+                  "campgrounds": 2326
+                },
+                {
+                  "state": "Australian Capital Territory",
+                  "per_100k": 2.9,
+                  "campgrounds": 14
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fcfcfb",
+        "strokeWidth": 1,
+        "clip": true
+      },
+      "encoding": {
+        "color": {
+          "field": "per_100k",
+          "type": "quantitative",
+          "title": [
+            "Campgrounds per",
+            "100,000 residents"
+          ],
+          "scale": {
+            "type": "quantize",
+            "nice": true,
+            "range": [
+              "#fadfcd",
+              "#f4bb98",
+              "#ea9164",
+              "#d9622b",
+              "#b03f16"
+            ]
+          },
+          "legend": {
+            "format": ".0f",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleOrient": "top",
+            "offset": 6,
+            "titleFontSize": 11.5,
+            "labelFontSize": 11
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "campgrounds",
+            "type": "quantitative",
+            "title": "Campgrounds",
+            "format": ","
+          },
+          {
+            "field": "per_100k",
+            "type": "quantitative",
+            "title": "Per 100k residents",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 133.3,
+            "lat": -19.8,
+            "t": [
+              "NT:",
+              "150 per",
+              "100,000"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#ffffff",
+        "align": "center",
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 145.8,
+            "lat": -32,
+            "t": [
+              "NSW: 27"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#0b0b0b",
+        "align": "center",
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 149.1,
+            "lat": -35.4,
+            "lon2": 153.4,
+            "lat2": -37.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#52514e",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 154.5,
+            "lat": -39.3,
+            "t": [
+              "ACT: 2.9",
+              "(14 sites)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "color": "#0b0b0b",
+        "align": "center",
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
 }

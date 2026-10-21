@@ -320,6 +320,72 @@
         }
       },
       "name": "labR"
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "axis": "Per 1,000 residents",
+            "rank": 6,
+            "t": "1st by nights, 6th per head"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 132,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "baseline": "middle",
+        "color": "#52514e"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "axis": "Per 1,000 residents",
+            "rank": 1,
+            "t": "last by nights, 1st per head"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 150,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "baseline": "middle",
+        "color": "#52514e"
+      },
+      "encoding": {
+        "x": {
+          "field": "axis",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
     }
   ],
   "autosize": {
@@ -330,7 +396,7 @@
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 5
+    "right": 230
   },
   "params": [
     {
