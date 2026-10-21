@@ -69,7 +69,25 @@
           "field": "expenditure_m_aud",
           "type": "quantitative",
           "title": "Expenditure ($ billion)"
-        }
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "expenditure_m_aud",
+            "type": "quantitative",
+            "title": "Expenditure ($ million)",
+            "format": ","
+          },
+          {
+            "field": "spend_per_trip_aud",
+            "type": "quantitative",
+            "title": "Per trip ($)"
+          }
+        ]
       }
     },
     {
@@ -174,6 +192,38 @@
         "text": {
           "field": "t"
         }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 36,
+        "opacity": 0.001,
+        "color": "#2a78d6"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "expenditure_m_aud",
+            "type": "quantitative",
+            "title": "Expenditure ($ million)",
+            "format": ","
+          },
+          {
+            "field": "spend_per_trip_aud",
+            "type": "quantitative",
+            "title": "Per trip ($)"
+          }
+        ]
       }
     }
   ],

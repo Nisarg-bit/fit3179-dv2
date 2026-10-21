@@ -222,7 +222,7 @@
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 110
+    "right": 10
   },
   "autosize": {
     "type": "fit",
