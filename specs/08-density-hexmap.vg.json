@@ -189,40 +189,6 @@
           "field": "t"
         }
       }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "lon": 129,
-            "lat": -26,
-            "t": [
-              "Inland, sites thin into",
-              "strings along the highways"
-            ]
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "fontSize": 12,
-        "color": "#52514e",
-        "align": "center",
-        "fontStyle": "italic"
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "t"
-        }
-      }
     }
   ],
   "autosize": {

@@ -166,44 +166,11 @@
       "data": {
         "values": [
           {
-            "lon": 130,
-            "lat": -25,
-            "t": [
-              "Few vans inland:",
-              "they follow the roads"
-            ]
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "fontSize": 12,
-        "color": "#52514e",
-        "align": "center",
-        "fontStyle": "italic"
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "t"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
             "lon": 127,
             "lat": -37.2,
             "t": [
-              "Three squares (Qld, NSW, Vic)",
+              "Three squares (Queensland,",
+              "New South Wales, Victoria)",
               "hold 26% of the fleet"
             ]
           }

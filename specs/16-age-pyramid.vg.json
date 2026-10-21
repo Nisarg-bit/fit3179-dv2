@@ -151,45 +151,6 @@
       "data": {
         "values": [
           {
-            "age_group": "15-19",
-            "x": 14,
-            "t": [
-              "55+ take 31% of trips",
-              "but 42% of nights"
-            ]
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "fontSize": 12,
-        "fontStyle": "italic",
-        "lineHeight": 14,
-        "color": "#52514e"
-      },
-      "encoding": {
-        "y": {
-          "field": "age_group",
-          "type": "ordinal"
-        },
-        "x": {
-          "field": "x",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "t"
-        },
-        "color": {
-          "value": "#52514e"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
             "age_group": "20-29",
             "x": 22,
             "t": [
@@ -224,10 +185,88 @@
           "value": "#52514e"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "age_group": "55+",
+            "x": -8,
+            "t": "55+: 31% of trips, 42% of nights"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -34,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#0b0b0b"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal"
+        },
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "value": "#0b0b0b"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "age_group": "55+",
+            "x": 22,
+            "t": "↓"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -14,
+        "fontSize": 20,
+        "fontWeight": 700,
+        "color": "#0b0b0b"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal"
+        },
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "value": "#0b0b0b"
+        }
+      }
     }
   ],
   "autosize": {
     "type": "fit",
     "contains": "padding"
+  },
+  "padding": {
+    "top": 40,
+    "left": 5,
+    "right": 5,
+    "bottom": 5
   }
 }
