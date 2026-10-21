@@ -1,0 +1,234 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/campervans_postcode.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.remoteness != null && datum.remoteness != ''"
+    },
+    {
+      "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','ACT':'Australian Capital Territory'}[upper(datum.state)]",
+      "as": "stateName"
+    },
+    {
+      "filter": "datum.stateName != null"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "campervans",
+          "as": "vans"
+        },
+        {
+          "op": "sum",
+          "field": "fleet_total",
+          "as": "fleet"
+        }
+      ],
+      "groupby": [
+        "stateName",
+        "remoteness"
+      ]
+    },
+    {
+      "calculate": "datum.vans / datum.fleet * 10000",
+      "as": "rate"
+    },
+    {
+      "calculate": "replace(replace(datum.remoteness, ' of Australia', ''), ' Australia', '')",
+      "as": "label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "label",
+      "type": "nominal",
+      "title": "Remoteness",
+      "sort": [
+        "Major Cities",
+        "Inner Regional",
+        "Outer Regional",
+        "Remote",
+        "Very Remote"
+      ],
+      "axis": {
+        "orient": "top",
+        "labelAngle": 0,
+        "labelFontSize": 12.5,
+        "grid": false,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "stateName",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "New South Wales",
+        "Victoria",
+        "Queensland",
+        "Western Australia",
+        "South Australia",
+        "Tasmania",
+        "Australian Capital Territory"
+      ],
+      "axis": {
+        "labelFontSize": 12.5,
+        "grid": false,
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "fill": "#e1e0d9",
+        "stroke": "#fcfcfb",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "stateName",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "remoteness",
+            "type": "nominal",
+            "title": "Remoteness"
+          },
+          {
+            "field": "vans",
+            "type": "quantitative",
+            "title": "Campervans",
+            "format": ","
+          },
+          {
+            "field": "fleet",
+            "type": "quantitative",
+            "title": "All vehicles",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.fleet >= 5000"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "stroke": "#fcfcfb",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "color": {
+          "field": "rate",
+          "type": "quantitative",
+          "title": "Campervans per 10,000 vehicles",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
+            "range": [
+              "#cde2fb",
+              "#9ec5f4",
+              "#6da7ec",
+              "#3987e5",
+              "#256abf",
+              "#184f95"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleOrient": "top",
+            "titleFontSize": 11.5,
+            "labelFontSize": 11,
+            "offset": 10,
+            "format": ".0f",
+            "titleLimit": 320
+          }
+        },
+        "tooltip": [
+          {
+            "field": "stateName",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "remoteness",
+            "type": "nominal",
+            "title": "Remoteness"
+          },
+          {
+            "field": "vans",
+            "type": "quantitative",
+            "title": "Campervans",
+            "format": ","
+          },
+          {
+            "field": "fleet",
+            "type": "quantitative",
+            "title": "All vehicles",
+            "format": ","
+          },
+          {
+            "field": "rate",
+            "type": "quantitative",
+            "title": "Per 10,000 vehicles",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.fleet >= 5000"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "rate",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.rate >= 80",
+            "value": "#ffffff"
+          },
+          "value": "#0b0b0b"
+        }
+      }
+    }
+  ],
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "view": {
+    "stroke": null
+  }
+}

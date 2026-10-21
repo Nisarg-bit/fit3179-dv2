@@ -8,7 +8,7 @@
 <meta name="description" content="Australia owns more than 100,000 campervans and is using them less every year.">
 <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=2026-10-21h">
+<link rel="stylesheet" href="css/style.css?v=2026-10-21i">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -197,6 +197,14 @@
       <figcaption>Ownership peaks in the outer regions at 62.5 vans per 10,000 vehicles &mdash; not in the deep outback. Very Remote Australia records 29.8, the lowest of the five and below the major cities at 38.0.<span class="src">Source: BITRE Jan 2025 &middot; ABS remoteness structure</span></figcaption>
     </figure>
     </div>
+  <div class="charts" style="margin-top:28px">
+    <figure class="chart">
+      <h3>Regional areas beat the cities, state by state</h3>
+      <p class="tip"><span class="tip-label">Tip</span> Each square is one state (down) and one remoteness class (across); the darker the blue, the more campervans per 10,000 registered vehicles, and the number is printed inside. Grey squares have too few vehicles for a reliable rate, and blank squares have no postcodes of that kind. Hover a square for the totals.</p>
+      <div class="viz" data-spec="17-remoteness-heatmap.vg.json"></div>
+      <figcaption>In New South Wales, Queensland, Victoria, South Australia and Western Australia, the inner and outer regions each have more campervans per vehicle than the major cities. New South Wales peaks at 72 in its inner regions, and Tasmania is in a class of its own at 139 in its outer regions, while Western Australia stays below 23 everywhere. The Northern Territory is left out because its postcodes have no remoteness class in the source data.<span class="src">Source: BITRE Jan 2025 &middot; ABS remoteness structure</span></figcaption>
+    </figure>
+  </div>
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
       <h3>Rental fleets, not households</h3>
@@ -521,6 +529,6 @@
   </section>
   </div>
 </footer>
-<script src="js/charts.js?v=2026-10-21h"></script>
+<script src="js/charts.js?v=2026-10-21i"></script>
 </body>
 </html>
