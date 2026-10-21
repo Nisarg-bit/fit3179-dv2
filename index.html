@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All Gear, No Go — Camping in Australia</title>
 <meta name="description" content="Australia owns more than 100,000 campervans and is using them less every year.">
-<link rel="stylesheet" href="css/style.css?v=2026-10-20a">
+<link rel="stylesheet" href="css/style.css?v=2026-10-21a">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -182,7 +182,7 @@
   <div class="charts">
     <figure class="chart">
       <h3>Campervans by postcode area</h3>
-      <p class="tip"><span class="tip-label">Tip</span> Postcodes are pooled into 1&deg; squares, about 100 km across. Circle size is the number of campervans and colour is the rate per 10,000 local vehicles in January 2025; grey squares have too few vehicles. Use the state dropdown to isolate a state and the zoom slider to look closer.</p>
+      <p class="tip"><span class="tip-label">Tip</span> Postcodes are pooled into 1&deg; squares, about 100 km across. Circle size is the number of campervans and colour is the rate per 10,000 local vehicles in January 2025; grey squares have too few vehicles. Use the dropdown to isolate a state, drag to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="05-postcode-map.vg.json"></div>
       <figcaption>The three largest squares, in Queensland, New South Wales and Victoria, hold 26% of the national fleet. Rental depots inflate some of them: BITRE records where a van is registered, not where its owner lives.<span class="src">Source: BITRE / data.gov.au, Road Vehicles Australia, January 2025</span></figcaption>
     </figure>
@@ -220,7 +220,7 @@
   <div class="charts">
     <figure class="chart">
       <h3>Nearly ten thousand places to camp</h3>
-      <p class="tip"><span class="tip-label">Tip</span> Each hexagon covers the same area, about 3,100 km&sup2; (60 km across), so a darker hexagon really does mean more campgrounds per square kilometre. Empty hexagons are left blank, so the gaps show. Hover a hexagon for its camp and caravan counts. Pick a state under &ldquo;Show state&rdquo; to zoom to it, and use the Zoom slider to look closer.</p>
+      <p class="tip"><span class="tip-label">Tip</span> Each hexagon covers the same area, about 3,100 km&sup2; (60 km across), so a darker hexagon really does mean more campgrounds per square kilometre. Empty hexagons are left blank, so the gaps show. Hover a hexagon for its camp and caravan counts. Pick a state under &ldquo;Show state&rdquo; to zoom in, drag to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="08-density-hexmap.vg.json"></div>
       <figcaption>9,945 sites &mdash; 7,920 camp sites and 2,025 caravan sites &mdash; grouped into equal-area hexagons so busy and quiet places compare fairly. Density peaks along the Murray and in Victoria&rsquo;s high country, at up to 53 sites per 1,000 km&sup2;. Outside the south-east, sites thin into strings that follow the coast and highways. Five sites on offshore islands are not drawn.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL), via Overpass API, 7 Oct 2026</span></figcaption>
     </figure>
@@ -228,7 +228,7 @@
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
       <h3>Where campgrounds cluster</h3>
-      <p class="tip"><span class="tip-label">Tip</span> Each square is a 0.9&deg; cell: the darker the blue, the more campgrounds inside it. The classes are uneven because a few cells hold more than fifty. Use the first slider to hide sparse cells and the Zoom slider to look closer.</p>
+      <p class="tip"><span class="tip-label">Tip</span> Each square is a 0.9&deg; cell: the darker the blue, the more campgrounds inside it. The classes are uneven because a few cells hold more than fifty. Drag the slider to hide sparse cells, drag the map to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="09-campground-hex.vg.json"></div>
       <figcaption>Counting sites per cell instead of plotting them removes the overplotting along the coast. Classed breaks are used because a handful of cells hold more than fifty sites and would otherwise flatten everything else.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL)</span></figcaption>
     </figure>
@@ -236,7 +236,7 @@
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
       <h3>Supply per head</h3>
-      <p class="tip"><span class="tip-label">Tip</span> A darker state has more campgrounds per 100,000 residents. Hover a state for its figure, and use the Zoom slider to look closer.</p>
+      <p class="tip"><span class="tip-label">Tip</span> A darker state has more campgrounds per 100,000 residents. Hover a state for its figure; press + / &minus; or Ctrl/&#8984; + scroll to zoom and drag to pan.</p>
       <div class="viz" data-spec="10-supply-choropleth.vg.json"></div>
       <figcaption>Per 100,000 residents the picture inverts. The Northern Territory reaches 150 &mdash; more than five times New South Wales at 27 &mdash; because the divisor is residents, and there are few. The Australian Capital Territory, with 14 campgrounds, sits at 2.9.<span class="src">Source: OpenStreetMap &middot; ABS population, March 2026</span></figcaption>
     </figure>
@@ -302,7 +302,7 @@
   <div class="charts" style="margin-top:28px">
     <figure class="chart">
       <h3>Winners and losers</h3>
-      <p class="tip"><span class="tip-label">Tip</span> Circles mark the ten top tourism regions in 2024: size is the number of trips and colour is the change in nights (blue grew, red shrank). Hover a circle for the region, and use the Zoom slider to look closer.</p>
+      <p class="tip"><span class="tip-label">Tip</span> Circles mark the ten top tourism regions in 2024: size is the number of trips and colour is the change in nights (blue grew, red shrank). Hover a circle for the region; press + / &minus; or Ctrl/&#8984; + scroll to zoom and drag to pan.</p>
       <div class="viz" data-spec="14-region-map.vg.json"></div>
       <figcaption>The top ten regions by trips. Queensland Country grew fastest &mdash; trips up 34%, nights up 52%. The Hunter took 17% more trips but 33% fewer nights. The New South Wales North Coast is still the largest, and fell on both.<span class="src">Source: Caravan Industry Association 2025, Table 2</span></figcaption>
     </figure>
@@ -519,6 +519,6 @@
   </section>
   </div>
 </footer>
-<script src="js/charts.js?v=2026-10-20a"></script>
+<script src="js/charts.js?v=2026-10-21a"></script>
 </body>
 </html>
