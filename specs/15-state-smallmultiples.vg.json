@@ -108,11 +108,11 @@
             "stops": [
               {
                 "offset": 0,
-                "color": "#ffffff"
+                "color": "#9ec5f4"
               },
               {
                 "offset": 1,
-                "color": "#b7d3f6"
+                "color": "#9ec5f4"
               }
             ]
           }
