@@ -8,7 +8,7 @@
 <meta name="description" content="Australia owns more than 100,000 campervans and is using them less every year.">
 <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=2026-10-21g">
+<link rel="stylesheet" href="css/style.css?v=2026-10-21h">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -217,14 +217,14 @@
 <section id="campgrounds">
   <div class="sec-head"><div class="sec-num">04</div><h2>Where the campgrounds are</h2></div>
   <div class="prose">
-    <p>OpenStreetMap lists 9,945 places to camp in Australia &mdash; 7,920 camp sites and 2,025 caravan sites. They crowd the east coast, the south-west and Tasmania, and inland they thin into strings that follow the highways. Counted per 100,000 residents the picture inverts: the Northern Territory reaches 150 against New South Wales&rsquo; 27, because the divisor is people and there are few. Read this as where campgrounds are <em>mapped</em> rather than where they are &mdash; OpenStreetMap is contributor-built, and remote areas have fewer contributors.</p>
+    <p>OpenStreetMap lists 9,945 places to camp in Australia &mdash; 7,920 camp sites and 2,025 caravan sites. They crowd the east coast, the south-west and Tasmania, and inland they thin into strings that follow the highways. Counted per 100,000 residents the picture inverts: the Northern Territory reaches 150 against New South Wales&rsquo; 27, because there are so few people to share them among. Read this as where campgrounds are <em>mapped</em> rather than where they are &mdash; OpenStreetMap is contributor-built, and remote areas have fewer contributors.</p>
   </div>
   <div class="charts">
     <figure class="chart">
       <h3>Nearly ten thousand places to camp</h3>
       <p class="tip"><span class="tip-label">Tip</span> Each hexagon covers the same area, about 3,100 km&sup2; (60 km across), so a darker hexagon really does mean more campgrounds per square kilometre. Empty hexagons are left blank, so the gaps show. Hover a hexagon for its camp and caravan counts. Pick a state under &ldquo;Show state&rdquo; to zoom in, drag to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="08-density-hexmap.vg.json"></div>
-      <figcaption>9,945 sites &mdash; 7,920 camp sites and 2,025 caravan sites &mdash; grouped into equal-area hexagons so busy and quiet places compare fairly. Density peaks along the Murray and in Victoria&rsquo;s high country, at up to 53 sites per 1,000 km&sup2;. Outside the south-east, sites thin into strings that follow the coast and highways. Five sites on offshore islands are not drawn.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL), via Overpass API, 7 Oct 2026</span></figcaption>
+      <figcaption>9,945 sites &mdash; 7,920 camp sites and 2,025 caravan sites &mdash; grouped into equal-sized hexagons so busy and quiet places compare fairly. Density peaks along the Murray and in Victoria&rsquo;s high country, at up to 53 sites per 1,000 km&sup2;. Outside the south-east, sites thin into strings that follow the coast and highways. Five sites on offshore islands are not drawn.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL), via Overpass API, 7 Oct 2026</span></figcaption>
     </figure>
   </div>
   <div class="charts" style="margin-top:28px">
@@ -232,7 +232,7 @@
       <h3>Where campgrounds cluster</h3>
       <p class="tip"><span class="tip-label">Tip</span> Each square is a 0.9&deg; cell: the darker the blue, the more campgrounds inside it. The classes are uneven because a few cells hold more than fifty. Drag the slider to hide sparse cells, drag the map to pan, and press + / &minus; or Ctrl/&#8984; + scroll to zoom.</p>
       <div class="viz" data-spec="09-campground-hex.vg.json"></div>
-      <figcaption>Counting sites per cell instead of plotting them removes the overplotting along the coast. Classed breaks are used because a handful of cells hold more than fifty sites and would otherwise flatten everything else.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL)</span></figcaption>
+      <figcaption>Counting sites per cell instead of plotting them stops the dots piling on top of each other along the coast. The colour bands are uneven because a handful of cells hold more than fifty sites and would otherwise wash out everything else.<span class="src">Source: &copy; OpenStreetMap contributors (ODbL)</span></figcaption>
     </figure>
   </div>
   <div class="charts" style="margin-top:28px">
@@ -240,7 +240,7 @@
       <h3>Supply per head</h3>
       <p class="tip"><span class="tip-label">Tip</span> A darker state has more campgrounds per 100,000 residents. Hover a state for its figure; press + / &minus; or Ctrl/&#8984; + scroll to zoom and drag to pan.</p>
       <div class="viz" data-spec="10-supply-choropleth.vg.json"></div>
-      <figcaption>Per 100,000 residents the picture inverts. The Northern Territory reaches 150 &mdash; more than five times New South Wales at 27 &mdash; because the divisor is residents, and there are few. The Australian Capital Territory, with 14 campgrounds, sits at 2.9.<span class="src">Source: OpenStreetMap &middot; ABS population, March 2026</span></figcaption>
+      <figcaption>Per 100,000 residents the picture inverts. The Northern Territory reaches 150 &mdash; more than five times New South Wales at 27 &mdash; because the Territory has so few residents. The Australian Capital Territory, with 14 campgrounds, sits at 2.9.<span class="src">Source: OpenStreetMap &middot; ABS population, March 2026</span></figcaption>
     </figure>
   </div>
 </section>
@@ -255,7 +255,7 @@
 <section id="gap">
   <div class="sec-head"><div class="sec-num">05</div><h2>A territory of destinations</h2></div>
   <div class="prose">
-    <p>Across the six states, owning a van and using one go together: more RVs per head means more camping nights per head, with a correlation of +0.76. Tasmania leads on both. The Northern Territory breaks the pattern, and breaks it hard &mdash; 3.0&nbsp;RVs per 1,000 residents, the fewest in the country, but 3,689 camping nights per 1,000, by far the most. Territorians are not the ones camping. The Northern Territory is a destination rather than an ownership market, and it is the only place where the two come apart.</p>
+    <p>Across the six states, owning a van and using one go together: more RVs per head means more camping nights per head. Tasmania leads on both. The Northern Territory breaks the pattern, and breaks it hard &mdash; 3.0&nbsp;RVs per 1,000 residents, the fewest in the country, but 3,689 camping nights per 1,000, by far the most. Territorians are not the ones camping. The Northern Territory is a destination rather than an ownership market, and it is the only place where the two come apart.</p>
   </div>
   <div class="charts">
     <figure class="chart">
@@ -521,6 +521,6 @@
   </section>
   </div>
 </footer>
-<script src="js/charts.js?v=2026-10-21g"></script>
+<script src="js/charts.js?v=2026-10-21h"></script>
 </body>
 </html>
