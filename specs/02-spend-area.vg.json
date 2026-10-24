@@ -1,227 +1,348 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 300,
+  "height": 345,
   "data": {
-    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/spend_series.csv"
+    "url": "https://raw.githubusercontent.com/Nisarg-bit/fit3179-dv2/main/data/spend_series.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "expenditure_m_aud": "number",
+        "year": "number"
+      }
+    }
   },
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "lag",
+          "field": "expenditure_m_aud",
+          "as": "prev"
+        }
+      ],
+      "sort": [
+        {
+          "field": "year"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.year == 2024 ? [0, 1] : [0]",
+      "as": "copies"
+    },
+    {
+      "flatten": [
+        "copies"
+      ],
+      "as": [
+        "copy"
+      ]
+    },
+    {
+      "calculate": "datum.year * 10 + datum.copy",
+      "as": "ord"
+    },
+    {
+      "calculate": "datum.copy == 1 ? '2024 total' : '' + datum.year",
+      "as": "xl"
+    },
+    {
+      "calculate": "(datum.year == 2020 || datum.copy == 1) ? 'Total spending' : (datum.expenditure_m_aud >= datum.prev ? 'Rose' : 'Fell')",
+      "as": "kind"
+    },
+    {
+      "calculate": "(datum.kind == 'Total spending') ? 0 : datum.prev",
+      "as": "start"
+    },
+    {
+      "calculate": "datum.expenditure_m_aud",
+      "as": "end"
+    },
+    {
+      "calculate": "datum.expenditure_m_aud",
+      "as": "level"
+    },
+    {
+      "calculate": "datum.kind == 'Total spending' ? 0 : datum.expenditure_m_aud - datum.prev",
+      "as": "changeM"
+    },
+    {
+      "calculate": "max(datum.start, datum.end)",
+      "as": "top"
+    },
+    {
+      "calculate": "datum.kind == 'Total spending' ? '$' + format(datum.end / 1000, '.1f') + 'B' : (datum.changeM >= 0 ? '+$' : '−$') + format(abs(datum.changeM) / 1000, '.1f') + 'B'",
+      "as": "barLabel"
+    },
+    {
+      "calculate": "datum.kind == 'Total spending' ? 'not applicable (a total)' : (datum.changeM >= 0 ? '+' : '−') + format(abs(datum.changeM), ',')",
+      "as": "changeText"
+    }
+  ],
   "layer": [
     {
       "mark": {
-        "type": "area",
-        "line": {
-          "strokeWidth": 2,
-          "color": "#2a78d6"
-        },
-        "color": "#9ec5f4"
+        "type": "bar",
+        "size": 58,
+        "cornerRadiusTopLeft": 2,
+        "cornerRadiusTopRight": 2
       },
       "encoding": {
         "x": {
-          "field": "year",
-          "type": "ordinal",
-          "title": "Years",
+          "field": "xl",
+          "type": "nominal",
+          "title": null,
+          "sort": {
+            "field": "ord"
+          },
           "axis": {
             "labelAngle": 0,
-            "grid": false
+            "grid": false,
+            "labelFontSize": 12
           }
         },
         "y": {
-          "field": "expenditure_m_aud",
+          "field": "start",
           "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              13800
+            ],
+            "nice": false,
+            "zero": true
+          },
           "title": "Expenditure ($ billion)",
           "axis": {
-            "labelExpr": "'$' + format(datum.value/1000, '.0f') + 'b'"
-          }
-        },
-        "tooltip": [
-          {
-            "field": "year",
-            "type": "ordinal",
-            "title": "Year"
-          },
-          {
-            "field": "expenditure_m_aud",
-            "type": "quantitative",
-            "title": "Expenditure ($ million)",
-            "format": ","
-          },
-          {
-            "field": "spend_per_trip_aud",
-            "type": "quantitative",
-            "title": "Per trip ($)"
-          }
-        ]
-      }
-    },
-    {
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 80,
-        "color": "#2a78d6"
-      },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal"
-        },
-        "y": {
-          "field": "expenditure_m_aud",
-          "type": "quantitative",
-          "title": "Expenditure ($ billion)"
-        },
-        "tooltip": [
-          {
-            "field": "year",
-            "type": "ordinal",
-            "title": "Year"
-          },
-          {
-            "field": "expenditure_m_aud",
-            "type": "quantitative",
-            "title": "Expenditure ($ million)",
-            "format": ","
-          },
-          {
-            "field": "spend_per_trip_aud",
-            "type": "quantitative",
-            "title": "Per trip ($)"
-          }
-        ]
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.year == 2023"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "dy": -18,
-        "fontSize": 12,
-        "fontWeight": 600,
-        "color": "#52514e"
-      },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal"
-        },
-        "y": {
-          "field": "expenditure_m_aud",
-          "type": "quantitative",
-          "title": "Expenditure ($ billion)"
-        },
-        "text": {
-          "value": "peak $10.7B"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "year": "2020",
-            "v": 5729,
-            "t": "$5.7B"
-          },
-          {
-            "year": "2022",
-            "v": 10449,
-            "t": "$10.4B"
-          },
-          {
-            "year": "2024",
-            "v": 10606,
-            "t": "$10.6B"
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "dy": -14,
-        "fontSize": 12,
-        "fontWeight": 600,
-        "color": "#52514e"
-      },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal"
-        },
-        "y": {
-          "field": "v",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "t"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "year": "2021",
-            "v": 9400,
-            "t": [
-              "almost doubled",
-              "in two years"
+            "labelExpr": "'$' + format(datum.value / 1000, '.0f') + 'b'",
+            "values": [
+              0,
+              2000,
+              4000,
+              6000,
+              8000,
+              10000,
+              12000
             ]
           }
+        },
+        "y2": {
+          "field": "end"
+        },
+        "color": {
+          "field": "kind",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Total spending",
+              "Rose",
+              "Fell"
+            ],
+            "range": [
+              "#9ec5f4",
+              "#2a78d6",
+              "#eb6834"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "labelFontSize": 12
+          }
+        },
+        "tooltip": [
+          {
+            "field": "xl",
+            "type": "nominal",
+            "title": "Bar"
+          },
+          {
+            "field": "level",
+            "type": "quantitative",
+            "title": "Spending at the end ($ million)",
+            "format": ","
+          },
+          {
+            "field": "changeText",
+            "type": "nominal",
+            "title": "Change in the year ($ million)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "bottom",
+        "dy": -6,
+        "fontSize": 12.5,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "xl",
+          "type": "nominal",
+          "title": null,
+          "sort": {
+            "field": "ord"
+          },
+          "axis": {
+            "labelAngle": 0,
+            "grid": false,
+            "labelFontSize": 12
+          }
+        },
+        "y": {
+          "field": "top",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              13800
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "text": {
+          "field": "barLabel",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#0b0b0b"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "xl": "2021",
+            "top": 13350,
+            "t": "almost doubled in two years"
+          }
         ]
       },
       "mark": {
         "type": "text",
+        "align": "left",
+        "dx": -34,
         "fontSize": 12,
-        "fontStyle": "italic",
-        "color": "#52514e",
-        "align": "center"
+        "fontStyle": "italic"
       },
       "encoding": {
         "x": {
-          "field": "year",
-          "type": "ordinal"
+          "field": "xl",
+          "type": "nominal",
+          "sort": {
+            "field": "ord"
+          },
+          "title": null
         },
         "y": {
-          "field": "v",
-          "type": "quantitative"
+          "field": "top",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              13800
+            ],
+            "nice": false,
+            "zero": true
+          }
         },
         "text": {
-          "field": "t"
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#52514e"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "xl": "2024",
+            "top": 12350,
+            "t": "first fall in the series"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 29,
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {
+          "field": "xl",
+          "type": "nominal",
+          "sort": {
+            "field": "ord"
+          },
+          "title": null
+        },
+        "y": {
+          "field": "top",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              13800
+            ],
+            "nice": false,
+            "zero": true
+          }
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#b8431a"
         }
       }
     },
     {
       "mark": {
         "type": "rule",
-        "strokeWidth": 36,
+        "strokeWidth": 58,
         "opacity": 0.001,
         "color": "#2a78d6"
       },
       "encoding": {
         "x": {
-          "field": "year",
-          "type": "ordinal"
+          "field": "xl",
+          "type": "nominal",
+          "sort": {
+            "field": "ord"
+          },
+          "title": null
         },
         "tooltip": [
           {
-            "field": "year",
-            "type": "ordinal",
-            "title": "Year"
+            "field": "xl",
+            "type": "nominal",
+            "title": "Bar"
           },
           {
-            "field": "expenditure_m_aud",
+            "field": "level",
             "type": "quantitative",
-            "title": "Expenditure ($ million)",
+            "title": "Spending at the end ($ million)",
             "format": ","
           },
           {
-            "field": "spend_per_trip_aud",
-            "type": "quantitative",
-            "title": "Per trip ($)"
+            "field": "changeText",
+            "type": "nominal",
+            "title": "Change in the year ($ million)"
           }
         ]
       }
