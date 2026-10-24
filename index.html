@@ -8,7 +8,7 @@
 <meta name="description" content="Australia owns more than 100,000 campervans and its trips are getting shorter.">
 <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=2026-10-24a">
+<link rel="stylesheet" href="css/style.css?v=2026-10-24b">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -524,15 +524,16 @@
             <td><a href="https://www.abs.gov.au" rel="noopener">Australian Bureau of Statistics</a></td>
             <td>Sections 3, 4 and 5</td></tr>
         <tr><td>State and territory boundaries (simplified, TopoJSON)</td>
-            <td><span class="todo">Add the original boundary source here</span></td>
+            <td><a href="https://github.com/rowanhogan/australian-states" rel="noopener">rowanhogan/australian-states</a> on GitHub, simplified and converted to TopoJSON for this project</td>
             <td>Sections 3, 4 and 6</td></tr>
       </tbody>
     </table>
     <p class="note"><strong>Method notes.</strong> Postcodes on the campervan map are pooled into 1&deg; squares by the position of each postcode centre; squares with fewer than 300 registered vehicles are greyed because their rates are unreliable. The rental-fleet chart adds up the postcode records in each state, so its rates are state totals of campervans divided by all registered vehicles. Those postcode records add up to 103,419 campervans, slightly fewer than the 103,481 in BITRE&rsquo;s state totals, so the rates use the smaller figure. Registration records where a vehicle is registered, not where its owner lives, so depot and hire-fleet postcodes inflate some figures. Industry figures are for 2024 and registration figures for January 2025.</p>
     <p class="note">Charts are built with <a href="https://vega.github.io/vega-lite/" rel="noopener">Vega-Lite</a> and embedded with Vega-Embed. Source specifications are in the <code>specs</code> folder of the project repository. Headings are set in Fraunces and text in DM Sans, both open-licence typefaces (SIL OFL) served from the project’s <code>fonts</code> folder; the hero and footer scenes and the campervan are drawn in SVG for this project.</p>
+    <p class="note"><strong>AI acknowledgement.</strong> This project was built with the help of Claude, an AI assistant made by Anthropic. Claude was used to help write and revise the Vega-Lite specifications and the page&rsquo;s HTML, CSS and JavaScript, to draft and edit the narrative text and chart annotations, and to help create the illustrations. I chose the topic, selected and checked the data, and made the design decisions, and I reviewed the final page.</p>
   </section>
   </div>
 </footer>
-<script src="js/charts.js?v=2026-10-24a"></script>
+<script src="js/charts.js?v=2026-10-24b"></script>
 </body>
 </html>
